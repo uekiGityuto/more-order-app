@@ -4,7 +4,6 @@ import 'package:smart_order_app/domain/entity/scene.dart';
 import 'package:smart_order_app/domain/errors/error.dart';
 import 'package:smart_order_app/domain/repository/repository.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
-import 'package:smart_order_app/infrastructure/db/dto/phrase.dart';
 import "package:smart_order_app/infrastructure/db/dto/reason.dart";
 import 'package:smart_order_app/infrastructure/db/dto/scene.dart';
 import 'package:smart_order_app/util/date.dart';
@@ -84,35 +83,37 @@ class DAO implements Repository {
     FROM scenes s
     LEFT JOIN scenes_phrases sp ON s.id = sp.scene_id
     LEFT JOIN phrases p ON sp.phrase_id = p.id
-  ''');
+    ''');
 
-    Map<int, SceneDTO> scenesMap = {};
+    Map<int, Map<String, dynamic>> scenesMap = {};
     for (var row in result) {
       final sceneId = row['scene_id'] as int;
-
-      final sceneDTO = scenesMap.putIfAbsent(
-        sceneId,
-        () => SceneDTO.fromJson({
+      if (!scenesMap.containsKey(sceneId)) {
+        scenesMap[sceneId] = {
           'id': sceneId,
           'scene': row['scene'],
+          'phrases': [],
           'is_default': row['is_default'],
           'created_at': row['scene_created_at'],
           'updated_at': row['scene_updated_at'],
-        }),
-      );
+        };
+      }
 
       if (row['phrase_id'] != null) {
-        final phraseDTO = PhraseDTO.fromJson({
+        final phraseMap = {
           'id': row['phrase_id'],
           'phrase': row['phrase'],
           'created_at': row['phrase_created_at'],
           'updated_at': row['phrase_updated_at'],
-        });
-        sceneDTO.phrases.add(phraseDTO);
+        };
+        scenesMap[sceneId]?['phrases'].add(phraseMap);
       }
     }
 
-    return scenesMap.values.map((dto) => dto.toEntity()).toList();
+    final scenesDTOs = scenesMap.values
+        .map((sceneMap) => SceneDTO.fromJson(sceneMap))
+        .toList();
+    return scenesDTOs.map((dto) => dto.toEntity()).toList();
   }
 
   // TODO: トランザクション
@@ -128,7 +129,7 @@ class DAO implements Repository {
       await _add(
         "scenes_phrases",
         {
-          "scene": scene.id.value,
+          "scene_id": scene.id.value,
           "phrase_id": phraseId,
         },
       );
@@ -136,6 +137,7 @@ class DAO implements Repository {
       if (e.isUniqueConstraintError()) {
         throw const DomainException(ErrorType.phraseDuplicate);
       }
+      rethrow;
     }
   }
 
@@ -152,6 +154,7 @@ class DAO implements Repository {
       if (e.isUniqueConstraintError()) {
         throw const DomainException(ErrorType.phraseDuplicate);
       }
+      rethrow;
     }
   }
 
@@ -179,6 +182,7 @@ class DAO implements Repository {
       if (e.isUniqueConstraintError()) {
         throw const DomainException(ErrorType.reasonDuplicate);
       }
+      rethrow;
     }
   }
 
@@ -193,6 +197,7 @@ class DAO implements Repository {
       if (e.isUniqueConstraintError()) {
         throw const DomainException(ErrorType.reasonDuplicate);
       }
+      rethrow;
     }
   }
 
@@ -214,6 +219,7 @@ class DAO implements Repository {
       if (e.isUniqueConstraintError()) {
         throw const DomainException(ErrorType.sceneDuplicate);
       }
+      rethrow;
     }
   }
 
@@ -230,6 +236,7 @@ class DAO implements Repository {
       if (e.isUniqueConstraintError()) {
         throw const DomainException(ErrorType.sceneDuplicate);
       }
+      rethrow;
     }
   }
 

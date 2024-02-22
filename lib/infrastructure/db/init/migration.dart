@@ -1,3 +1,4 @@
+import 'package:smart_order_app/constants.dart';
 import 'package:sqflite/sqflite.dart';
 
 const _migrationScripts = {
@@ -9,7 +10,7 @@ const _migrationScripts = {
         is_default INTEGER NOT NULL DEFAULT 0,
         created_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime')),
         updated_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime')),
-        CONSTRAINT check(is_default IN (0, 1))
+        CONSTRAINT is_default_check CHECK (is_default IN (0, 1))
       );
     ''',
     '''
@@ -24,11 +25,13 @@ const _migrationScripts = {
       CREATE TABLE scenes_phrases (
         scene_id INTEGER,
         phrase_id INTEGER,
+        created_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime')),
+        updated_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime')),
         PRIMARY KEY (scene_id, phrase_id),
-        FOREIGN KEY (scene_id) REFERENCES scenes(scene_id) ON DELETE CASCADE,
-        FOREIGN KEY (phrase_id) REFERENCES phrases(phrase_id) ON DELETE CASCADE
+        FOREIGN KEY (scene_id) REFERENCES scenes(id) ON DELETE CASCADE,
+        FOREIGN KEY (phrase_id) REFERENCES phrases(id) ON DELETE CASCADE
       );
-    '''
+    ''',
     '''
       CREATE TABLE reasons (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,16 +39,16 @@ const _migrationScripts = {
         is_default INTEGER NOT NULL DEFAULT 0,
         created_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime')),
         updated_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime')),
-        CONSTRAINT check(is_default IN (0, 1))
+        CONSTRAINT is_default_check CHECK (is_default IN (0, 1))
       );
     ''',
     '''
-      INSERT INTO scenes(scene, is_default) VALUES('よく使うフレーズ', 1)
+      INSERT INTO scenes(scene, is_default) VALUES('$defaultScene', 1);
     ''',
   ],
 };
 
-void executeScript(Database db, int oldVersion, int newVersion) async {
+Future<void> executeScript(Database db, int oldVersion, int newVersion) async {
   for (int i = oldVersion + 1; i <= newVersion; i++) {
     List<String>? queries = _migrationScripts[i];
     if (queries != null) {

@@ -2,8 +2,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:smart_order_app/domain/entity/scene.dart';
 import 'package:smart_order_app/domain/errors/error.dart';
 import 'package:smart_order_app/domain/repository/repository.dart';
-import 'package:smart_order_app/usecase/result.dart';
-import 'package:smart_order_app/usecase/state/error.dart';
+import 'package:smart_order_app/useCase/result.dart';
+import 'package:smart_order_app/useCase/state/error.dart';
 
 part 'scenes.g.dart';
 
@@ -20,7 +20,7 @@ class ScenesNotifier extends _$ScenesNotifier {
     ref.read(errorNotifierProvider.notifier).updateState(errorType);
   }
 
-  Future<void> getScenes() async {
+  Future<void> updateState() async {
     try {
       state = AsyncValue.data(await build());
     } on DomainException catch (e) {
@@ -34,7 +34,7 @@ class ScenesNotifier extends _$ScenesNotifier {
     final repository = ref.read(repositoryProvider);
     try {
       await repository.addPhrase(phrase, scene);
-      await getScenes();
+      await updateState();
       return Result.success;
     } on DomainException catch (e) {
       _notifyError(e.type);
