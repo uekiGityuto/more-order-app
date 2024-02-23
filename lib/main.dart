@@ -36,6 +36,21 @@ class App extends StatelessWidget {
           seedColor: MaterialTheme.lightScheme().primary,
           error: MaterialTheme.lightScheme().error,
         ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: MaterialTheme.lightScheme().primary,
+            textStyle: TextStyle(
+              color: MaterialTheme.lightScheme().onPrimary,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+            foregroundColor: MaterialTheme.lightScheme().onPrimary,
+            minimumSize: const Size(double.infinity, 50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+        ),
         useMaterial3: true,
       ),
       darkTheme: ThemeData(
