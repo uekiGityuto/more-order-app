@@ -21,10 +21,12 @@ class Root extends ConsumerWidget {
     // そのため、このページを残しつつOrderSupportSelectPageに遷移するようにしている。
     // FIXME: もっと良い方法あれば修正する。
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (_) => const OrderSelectPage(sceneName: defaultScene)));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+            builder: (_) => const OrderSelectPage(sceneName: defaultScene)),
+        (_) => false,
+      );
     });
     return Scaffold(
       body: Center(child: buildProgressIndicator(context)),

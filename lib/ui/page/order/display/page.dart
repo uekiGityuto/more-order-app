@@ -21,9 +21,16 @@ class OrderDisplay extends StatelessWidget {
                 itemCount: phrases.length,
                 itemBuilder: (context, index) {
                   final scene = phrases[index];
-                  return Text(scene.phrase);
+                  return ListTile(
+                    leading: const Icon(Icons.fiber_manual_record),
+                    title: Text(scene.phrase),
+                    contentPadding: EdgeInsets.zero,
+                  );
                 },
               ),
+            ),
+            const SizedBox(
+              height: 24,
             ),
             const Text("お願いします"),
           ],
