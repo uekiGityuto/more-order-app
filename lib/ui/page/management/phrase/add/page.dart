@@ -32,27 +32,44 @@ class PhraseAddPage extends HookConsumerWidget {
             return Column(children: [
               Expanded(
                 child: ListView(
-                  children: scenes.map((scene) {
-                    return CheckboxListTile(
-                      value: checkedStates.value[scene.id],
-                      onChanged: (bool? newValue) {
-                        final newCheckedStates =
-                            Map<Id, bool>.from(checkedStates.value)
-                              ..[scene.id] = newValue ?? false;
-                        checkedStates.value = newCheckedStates;
-                      },
-                      title: Text(scene.scene),
-                    );
-                  }).toList(),
+                  children: [
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("◼️場面"),
+                          ...scenes.map((scene) {
+                            return CheckboxListTile(
+                              value: checkedStates.value[scene.id],
+                              onChanged: (bool? newValue) {
+                                final newCheckedStates =
+                                    Map<Id, bool>.from(checkedStates.value)
+                                      ..[scene.id] = newValue ?? false;
+                                checkedStates.value = newCheckedStates;
+                              },
+                              title: Text(scene.scene),
+                              contentPadding: EdgeInsets.zero,
+                              dense: true,
+                            );
+                          }).toList(),
+                        ]),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("◼️フレーズ"),
+                          TextField(
+                              decoration: const InputDecoration(
+                                hintText: 'フレーズを入力してください',
+                              ),
+                              onChanged: (text) {
+                                phrase = text;
+                              }),
+                        ]),
+                  ],
                 ),
               ),
-              TextField(
-                  decoration: const InputDecoration(
-                    hintText: 'フレーズを入力してください',
-                  ),
-                  onChanged: (text) {
-                    phrase = text;
-                  }),
               ElevatedButton(
                 onPressed: () {
                   ref
@@ -64,11 +81,11 @@ class PhraseAddPage extends HookConsumerWidget {
                               .toList())
                       .then((result) {
                     if (result == Result.success) {
-                      showSnackbar(context, '追加しました');
+                      showSnackbar(context, '登録しました');
                     }
                   });
                 },
-                child: const Text('作成'),
+                child: const Text('登録'),
               ),
             ]);
           },

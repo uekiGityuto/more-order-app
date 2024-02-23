@@ -14,33 +14,34 @@ class SceneAddPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     String scene = '';
     return Scaffold(
-        drawer: const BaseDrawer(),
-        appBar: SimpleAppBar(title: '場面追加'),
-        body: DefaultLayout(
-            child: Column(children: [
+      drawer: const BaseDrawer(),
+      appBar: SimpleAppBar(title: '場面追加'),
+      body: DefaultLayout(
+        child: Column(children: [
           Expanded(
-              child: Column(children: [
-            TextField(
+            child: TextField(
                 decoration: const InputDecoration(
                   hintText: '場面を入力してください',
                 ),
                 onChanged: (text) {
                   scene = text;
                 }),
-            ElevatedButton(
-              onPressed: () {
-                ref
-                    .read(scenesNotifierProvider.notifier)
-                    .addScene(scene)
-                    .then((result) {
-                  if (result == Result.success) {
-                    showSnackbar(context, '追加しました');
-                  }
-                });
-              },
-              child: const Text('作成'),
-            ),
-          ]))
-        ])));
+          ),
+          ElevatedButton(
+            onPressed: () {
+              ref
+                  .read(scenesNotifierProvider.notifier)
+                  .addScene(scene)
+                  .then((result) {
+                if (result == Result.success) {
+                  showSnackbar(context, '登録しました');
+                }
+              });
+            },
+            child: const Text('登録'),
+          ),
+        ]),
+      ),
+    );
   }
 }

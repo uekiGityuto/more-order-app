@@ -48,6 +48,8 @@ class OrderSelectPage extends HookConsumerWidget {
                           checkedStates.value = newCheckedStates;
                         },
                         title: Text(phrase.phrase),
+                        contentPadding: EdgeInsets.zero,
+                        dense: true,
                       );
                     }).toList(),
                   ),
