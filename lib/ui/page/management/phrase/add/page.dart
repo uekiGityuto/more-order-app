@@ -7,6 +7,7 @@ import 'package:smart_order_app/ui/component/error.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/simple_app_bar.dart';
 import 'package:smart_order_app/ui/component/snackBar/snackbar.dart';
+import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/usecase/result.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
@@ -20,7 +21,7 @@ class PhraseAddPage extends HookConsumerWidget {
     return Scaffold(
       drawer: const BaseDrawer(),
       appBar: SimpleAppBar(title: 'フレーズ追加'),
-      body: SafeArea(
+      body: DefaultLayout(
         child: scenesFuture.when(
           error: (e, s) => buildErrorMessage(),
           loading: () => buildProgressIndicator(context),

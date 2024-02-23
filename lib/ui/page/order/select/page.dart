@@ -8,6 +8,7 @@ import 'package:smart_order_app/ui/component/base_drawer.dart';
 import 'package:smart_order_app/ui/component/error.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/simple_app_bar.dart';
+import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/ui/page/order/display/page.dart';
 import 'package:smart_order_app/ui/page/order/select/options.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
@@ -28,7 +29,7 @@ class OrderSelectPage extends HookConsumerWidget {
     return Scaffold(
       appBar: SimpleAppBar(title: sceneName),
       drawer: const BaseDrawer(),
-      body: SafeArea(
+      body: DefaultLayout(
         child: scenesFuture.when(
             error: (e, s) => buildErrorMessage(),
             loading: () => buildProgressIndicator(context),

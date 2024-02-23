@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_order_app/domain/entity/phrase.dart';
 import 'package:smart_order_app/ui/component/simple_app_bar.dart';
+import 'package:smart_order_app/ui/layout/default_layout.dart';
 
 class OrderDisplay extends StatelessWidget {
   final String sceneName;
@@ -12,7 +13,7 @@ class OrderDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SimpleAppBar(title: sceneName),
-      body: SafeArea(
+      body: DefaultLayout(
         child: Column(
           children: [
             Expanded(
