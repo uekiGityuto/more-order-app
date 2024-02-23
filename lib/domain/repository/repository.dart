@@ -12,7 +12,7 @@ Repository repository(RepositoryRef ref) =>
 abstract interface class Repository {
   Future<List<Scene>> getScenesAndPhrases();
 
-  Future<void> addPhrase(String phrase, Scene scene);
+  Future<void> addPhrase(String phrase, List<Scene> scenes);
   Future<void> updatePhrase(Phrase phrase);
   Future<void> deletePhrase(Phrase phrase);
 

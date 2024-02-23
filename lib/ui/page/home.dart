@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/constants.dart';
 import 'package:smart_order_app/domain/errors/error.dart';
 import 'package:smart_order_app/ui/component/snackBar/error_snackbar.dart';
-import 'package:smart_order_app/ui/page/order_support_selection/page.dart';
-import 'package:smart_order_app/useCase/state/error.dart';
+import 'package:smart_order_app/ui/page/order_support_select/page.dart';
+import 'package:smart_order_app/usecase/state/error.dart';
 
 class Home extends ConsumerWidget {
   const Home({super.key});
@@ -16,6 +16,6 @@ class Home extends ConsumerWidget {
         showErrorSnackbar(context, ref, next.message);
       }
     });
-    return const OrderSupportSelectionPage(sceneName: defaultScene);
+    return const OrderSupportSelectPage(sceneName: defaultScene);
   }
 }

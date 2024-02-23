@@ -6,7 +6,7 @@ import 'package:smart_order_app/useCase/state/error.dart';
 Future<void> showErrorSnackbar(
     BuildContext context, WidgetRef ref, String message) {
   final snackBar = SnackBar(
-    backgroundColor: Colors.red,
+    backgroundColor: Theme.of(context).colorScheme.error,
     content: Text(message),
     duration: const Duration(seconds: 10),
     action: SnackBarAction(

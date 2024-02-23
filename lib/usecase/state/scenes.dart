@@ -30,10 +30,10 @@ class ScenesNotifier extends _$ScenesNotifier {
     }
   }
 
-  Future<Result> addPhrase(String phrase, Scene scene) async {
+  Future<Result> addPhrase(String phrase, List<Scene> scenes) async {
     final repository = ref.read(repositoryProvider);
     try {
-      await repository.addPhrase(phrase, scene);
+      await repository.addPhrase(phrase, scenes);
       await updateState();
       return Result.success;
     } on DomainException catch (e) {

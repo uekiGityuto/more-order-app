@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/domain/entity/phrase.dart';
 
-Widget createOptions(List<Phrase> phrases, WidgetRef ref) {
+Widget buildOptions(List<Phrase> phrases, WidgetRef ref) {
   return ListView.builder(
     itemCount: phrases.length,
     itemBuilder: (context, index) {

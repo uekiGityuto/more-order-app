@@ -32,7 +32,19 @@ class App extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: AppBarTheme(
             backgroundColor: MaterialTheme.lightScheme().primaryContainer),
-        colorSchemeSeed: MaterialTheme.lightScheme().primary,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: MaterialTheme.lightScheme().primary,
+          error: MaterialTheme.lightScheme().error,
+        ),
+        useMaterial3: true,
+      ),
+      darkTheme: ThemeData(
+        appBarTheme: AppBarTheme(
+            backgroundColor: MaterialTheme.darkScheme().primaryContainer),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: MaterialTheme.darkScheme().primary,
+          error: MaterialTheme.darkScheme().error,
+        ),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,

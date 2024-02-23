@@ -118,7 +118,7 @@ class DAO implements Repository {
 
   // TODO: トランザクション
   @override
-  Future<void> addPhrase(String phrase, Scene scene) async {
+  Future<void> addPhrase(String phrase, List<Scene> scenes) async {
     try {
       final phraseId = await _add(
         "phrases",
@@ -126,13 +126,15 @@ class DAO implements Repository {
           "phrase": phrase,
         },
       );
-      await _add(
-        "scenes_phrases",
-        {
-          "scene_id": scene.id.value,
-          "phrase_id": phraseId,
-        },
-      );
+      for (final scene in scenes) {
+        await _add(
+          "scenes_phrases",
+          {
+            "scene_id": scene.id.value,
+            "phrase_id": phraseId,
+          },
+        );
+      }
     } on DatabaseException catch (e) {
       if (e.isUniqueConstraintError()) {
         throw const DomainException(ErrorType.phraseDuplicate);
