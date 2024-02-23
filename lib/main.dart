@@ -53,12 +53,28 @@ class App extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
+      // TODO: darkThemeはいらないかも
       darkTheme: ThemeData(
         appBarTheme: AppBarTheme(
             backgroundColor: MaterialTheme.darkScheme().primaryContainer),
         colorScheme: ColorScheme.fromSeed(
           seedColor: MaterialTheme.darkScheme().primary,
           error: MaterialTheme.darkScheme().error,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: MaterialTheme.darkScheme().primary,
+            textStyle: TextStyle(
+              color: MaterialTheme.darkScheme().onPrimary,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+            foregroundColor: MaterialTheme.darkScheme().onPrimary,
+            minimumSize: const Size(double.infinity, 50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
         ),
         useMaterial3: true,
       ),
