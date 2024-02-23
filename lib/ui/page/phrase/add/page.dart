@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:smart_order_app/domain/entity/scene.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
+import 'package:smart_order_app/ui/component/base_drawer.dart';
 import 'package:smart_order_app/ui/component/error.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/simple_app_bar.dart';
 import 'package:smart_order_app/ui/component/snackBar/snackbar.dart';
-import 'package:smart_order_app/useCase/result.dart';
-import 'package:smart_order_app/useCase/state/scenes.dart';
+import 'package:smart_order_app/usecase/result.dart';
+import 'package:smart_order_app/usecase/state/scenes.dart';
 
 class PhraseAddPage extends HookConsumerWidget {
-  final Scene scene;
-
-  const PhraseAddPage({Key? key, required this.scene}) : super(key: key);
+  const PhraseAddPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scenesFuture = ref.watch(scenesNotifierProvider);
     String phrase = '';
     return Scaffold(
+      drawer: const BaseDrawer(),
       appBar: SimpleAppBar(title: 'フレーズ追加'),
       body: SafeArea(
         child: scenesFuture.when(

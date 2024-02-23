@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/domain/errors/error.dart';
-import 'package:smart_order_app/useCase/state/error.dart';
+import 'package:smart_order_app/usecase/state/error.dart';
 
 Future<void> showErrorSnackbar(
     BuildContext context, WidgetRef ref, String message) {

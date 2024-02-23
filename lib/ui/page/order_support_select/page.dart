@@ -2,12 +2,12 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/domain/entity/phrase.dart';
+import 'package:smart_order_app/ui/component/base_drawer.dart';
 import 'package:smart_order_app/ui/component/error.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/simple_app_bar.dart';
 import 'package:smart_order_app/ui/page/order_support_select/options.dart';
-import 'package:smart_order_app/ui/page/phrase/add/page.dart';
-import 'package:smart_order_app/useCase/state/scenes.dart';
+import 'package:smart_order_app/usecase/state/scenes.dart';
 
 Widget buildMainWidget(List<Phrase> phrases, WidgetRef ref) {
   return Column(
@@ -25,6 +25,7 @@ class OrderSupportSelectPage extends ConsumerWidget {
     final scenesFuture = ref.watch(scenesNotifierProvider);
     return Scaffold(
       appBar: SimpleAppBar(title: sceneName),
+      drawer: const BaseDrawer(),
       body: SafeArea(
         child: scenesFuture.when(
             error: (e, s) => createErrorMessage(),
@@ -38,24 +39,6 @@ class OrderSupportSelectPage extends ConsumerWidget {
               return buildMainWidget(scene.phrases, ref);
             }),
       ),
-      floatingActionButton: scenesFuture.hasValue
-          ? FloatingActionButton(
-              onPressed: () {
-                final scenes = scenesFuture.value;
-                if (scenes == null) {
-                  return;
-                }
-                final scene =
-                    scenes.firstWhere((scene) => scene.scene == sceneName);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PhraseAddPage(scene: scene)),
-                );
-              },
-              child: const Icon(Icons.add),
-            )
-          : null,
     );
   }
 }

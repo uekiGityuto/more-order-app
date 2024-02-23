@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:smart_order_app/useCase/state/scenes.dart';
+import 'package:smart_order_app/ui/component/error.dart';
+import 'package:smart_order_app/ui/component/loader.dart';
+import 'package:smart_order_app/ui/page/order_support_select/page.dart';
+import 'package:smart_order_app/ui/page/phrase/add/page.dart';
+import 'package:smart_order_app/ui/page/scene/add/page.dart';
+import 'package:smart_order_app/usecase/state/scenes.dart';
 
 class BaseDrawer extends ConsumerWidget {
   const BaseDrawer({super.key});
@@ -12,16 +17,43 @@ class BaseDrawer extends ConsumerWidget {
       child: ListView(
         children: [
           const ListTile(title: Text("◼️場面選択")),
-          ListTile(
-            title: const Text("◼️フレーズ登録"),
-            onTap: () {
-              Navigator.pushNamed(context, '/terms_of_service');
+          scenesFuture.when(
+            error: (e, s) => createErrorMessage(),
+            loading: () => createProgressIndicator(context),
+            data: (scenes) {
+              return Column(
+                children: scenes.map((scene) {
+                  return ListTile(
+                    title: Text(scene.scene),
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                OrderSupportSelectPage(sceneName: scene.scene)),
+                      );
+                    },
+                  );
+                }).toList(),
+              );
             },
           ),
           ListTile(
-            title: const Text("◼️言い訳登録"),
+            title: const Text("◼️フレーズ登録"),
             onTap: () {
-              Navigator.pushNamed(context, '/privacy_policy');
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const PhraseAddPage()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text("◼️場面登録"),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const SceneAddPage()),
+              );
             },
           ),
         ],
