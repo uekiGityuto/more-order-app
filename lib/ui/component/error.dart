@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // TODO: 文字サイズ周りは別途検討
-Widget createErrorMessage(
+Widget buildErrorMessage(
     {String message = 'エラーが発生しました。お手数ですが、アプリの再起動等をお試しください。'}) {
   return Container(
       alignment: Alignment.center,

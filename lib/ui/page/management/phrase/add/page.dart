@@ -22,8 +22,8 @@ class PhraseAddPage extends HookConsumerWidget {
       appBar: SimpleAppBar(title: 'フレーズ追加'),
       body: SafeArea(
         child: scenesFuture.when(
-          error: (e, s) => createErrorMessage(),
-          loading: () => createProgressIndicator(context),
+          error: (e, s) => buildErrorMessage(),
+          loading: () => buildProgressIndicator(context),
           data: (scenes) {
             final checkedStates = useState<Map<Id, bool>>(
               {for (var scene in scenes) scene.id: false},

@@ -5,7 +5,7 @@ import 'package:smart_order_app/domain/repository/repository.dart';
 import 'package:smart_order_app/infrastructure/db/dao.dart';
 import 'package:smart_order_app/infrastructure/db/init/db.dart';
 import 'package:smart_order_app/theme.dart';
-import 'package:smart_order_app/ui/page/home.dart';
+import 'package:smart_order_app/ui/page/root.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +27,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const Home(),
+      home: const Root(),
       title: 'SmartOrderApp',
       theme: ThemeData(
         appBarTheme: AppBarTheme(

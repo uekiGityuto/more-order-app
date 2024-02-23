@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget createProgressIndicator(BuildContext context) {
+Widget buildProgressIndicator(BuildContext context) {
   return Container(
       alignment: Alignment.center,
       child: CircularProgressIndicator(

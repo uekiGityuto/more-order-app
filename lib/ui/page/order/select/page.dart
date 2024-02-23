@@ -6,7 +6,7 @@ import 'package:smart_order_app/ui/component/base_drawer.dart';
 import 'package:smart_order_app/ui/component/error.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/simple_app_bar.dart';
-import 'package:smart_order_app/ui/page/order_support_select/options.dart';
+import 'package:smart_order_app/ui/page/order/select/options.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
 Widget buildMainWidget(List<Phrase> phrases, WidgetRef ref) {
@@ -14,11 +14,10 @@ Widget buildMainWidget(List<Phrase> phrases, WidgetRef ref) {
       children: [Expanded(child: Center(child: buildOptions(phrases, ref)))]);
 }
 
-class OrderSupportSelectPage extends ConsumerWidget {
+class OrderSelectPage extends ConsumerWidget {
   final String sceneName;
 
-  const OrderSupportSelectPage({Key? key, required this.sceneName})
-      : super(key: key);
+  const OrderSelectPage({Key? key, required this.sceneName}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,13 +27,13 @@ class OrderSupportSelectPage extends ConsumerWidget {
       drawer: const BaseDrawer(),
       body: SafeArea(
         child: scenesFuture.when(
-            error: (e, s) => createErrorMessage(),
-            loading: () => createProgressIndicator(context),
+            error: (e, s) => buildErrorMessage(),
+            loading: () => buildProgressIndicator(context),
             data: (scenes) {
               final scene =
                   scenes.firstWhereOrNull((scene) => scene.scene == sceneName);
               if (scene == null) {
-                return createErrorMessage();
+                return buildErrorMessage();
               }
               return buildMainWidget(scene.phrases, ref);
             }),

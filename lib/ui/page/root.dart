@@ -4,11 +4,11 @@ import 'package:smart_order_app/constants.dart';
 import 'package:smart_order_app/domain/errors/error.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/snackBar/error_snackbar.dart';
-import 'package:smart_order_app/ui/page/order_support_select/page.dart';
+import 'package:smart_order_app/ui/page/order/select/page.dart';
 import 'package:smart_order_app/usecase/state/error.dart';
 
-class Home extends ConsumerWidget {
-  const Home({super.key});
+class Root extends ConsumerWidget {
+  const Root({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,16 +17,17 @@ class Home extends ConsumerWidget {
         showErrorSnackbar(context, ref, next.message);
       }
     });
-    // return const OrderSupportSelectPage(sceneName: defaultScene);
+    // エラーハンドリングし続けるためにこのページを消したくない。
+    // そのため、このページを残しつつOrderSupportSelectPageに遷移するようにしている。
+    // FIXME: もっと良い方法あれば修正する。
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (_) =>
-                  const OrderSupportSelectPage(sceneName: defaultScene)));
+              builder: (_) => const OrderSelectPage(sceneName: defaultScene)));
     });
     return Scaffold(
-      body: Center(child: createProgressIndicator(context)),
+      body: Center(child: buildProgressIndicator(context)),
     );
   }
 }
