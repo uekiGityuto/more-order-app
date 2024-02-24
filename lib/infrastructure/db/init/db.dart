@@ -1,6 +1,6 @@
 import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:smart_order_app/infrastructure/db/init/migration.dart';
+import 'package:sqflite/sqflite.dart';
 
 class DB {
   static const _version = 1;
