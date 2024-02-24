@@ -33,6 +33,7 @@ class OrderDisplay extends StatelessWidget {
               height: 24,
             ),
             const Text("お願いします"),
+            const Text("コメント欄"),
           ],
         ),
       ),
