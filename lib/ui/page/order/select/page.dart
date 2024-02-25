@@ -26,13 +26,13 @@ class OrderSelectPage extends HookConsumerWidget {
       bottomNavigationBar: const SimpleBottomAppBar(),
       body: DefaultLayout(
         child: scenesFuture.when(
-            error: (e, s) => buildErrorMessage(),
+            error: (e, s) => const ErrorMessage(),
             loading: () => const Loader(),
             data: (scenes) {
               final scene =
                   scenes.firstWhereOrNull((scene) => scene.scene == sceneName);
               if (scene == null) {
-                return buildErrorMessage();
+                return const ErrorMessage();
               }
               final checkedStates = useState<Map<Id, bool>>(
                 {for (var phrase in scene.phrases) phrase.id: false},

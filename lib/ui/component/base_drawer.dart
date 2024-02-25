@@ -20,7 +20,7 @@ class BaseDrawer extends ConsumerWidget {
             children: [
               const Text("◼️場面選択"),
               scenesFuture.when(
-                error: (e, s) => buildErrorMessage(),
+                error: (e, s) => const ErrorMessage(),
                 loading: () => const Loader(),
                 data: (scenes) {
                   return Column(
