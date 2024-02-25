@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum NavigationType { push, pushReplacement }
+enum NavigationType { push, pushReplacement, pushAndRemoveUntil }
 
 class ListTileOption {
   final String title;
@@ -34,6 +34,12 @@ class ListTileNavigation extends StatelessWidget {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => option.nextPage));
               break;
+            case NavigationType.pushAndRemoveUntil:
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => option.nextPage),
+                (_) => false,
+              );
           }
         });
   }

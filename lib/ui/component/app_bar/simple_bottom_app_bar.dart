@@ -24,9 +24,10 @@ class SimpleBottomAppBar extends StatelessWidget {
               context: context,
               icon: Icons.settings,
               label: '管理メニュー',
-              onPressed: () => Navigator.pushReplacement(
+              onPressed: () => Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => const ManagementPage()),
+                (_) => false,
               ),
             ),
           ],
