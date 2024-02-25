@@ -7,22 +7,49 @@ class SimpleBottomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Builder(
-            builder: (context) => IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () => Scaffold.of(context).openDrawer(),
+      height: 72.0,
+      child: SizedBox(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Builder(
+              builder: (context) => _buildBottomAppBarItem(
+                context: context,
+                icon: Icons.menu,
+                label: '場面一覧',
+                onPressed: () => Scaffold.of(context).openDrawer(),
+              ),
             ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () => Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const ManagementPage()),
+            _buildBottomAppBarItem(
+              context: context,
+              icon: Icons.settings,
+              label: '管理メニュー',
+              onPressed: () => Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const ManagementPage()),
+              ),
             ),
-          ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBottomAppBarItem({
+    required BuildContext context,
+    required IconData icon,
+    required String label,
+    required VoidCallback onPressed,
+  }) {
+    return InkWell(
+      onTap: onPressed,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, size: 24.0),
+          const SizedBox(height: 4.0),
+          Text(label, style: Theme.of(context).textTheme.bodySmall),
         ],
       ),
     );
