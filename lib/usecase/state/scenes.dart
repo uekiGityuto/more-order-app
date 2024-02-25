@@ -21,42 +21,19 @@ class ScenesNotifier extends _$ScenesNotifier {
   }
 
   Future<void> updateState() async {
-    try {
-      state = AsyncValue.data(await build());
-    } on DomainException catch (e) {
-      _notifyError(e.type);
-    } catch (_) {
-      _notifyError(ErrorType.unexpected);
-    }
+    state = AsyncValue.data(await build());
   }
 
-  Future<Result> addPhrase(String phrase, List<Scene> scenes) async {
+  Future<void> addPhrase(String phrase, List<Scene> scenes) async {
     final repository = ref.read(repositoryProvider);
-    try {
-      await repository.addPhrase(phrase, scenes);
-      await updateState();
-      return Result.success;
-    } on DomainException catch (e) {
-      _notifyError(e.type);
-      return Result.failed;
-    } catch (e) {
-      _notifyError(ErrorType.unexpected);
-      return Result.failed;
-    }
+    await repository.addPhrase(phrase, scenes);
+    await updateState();
   }
 
   Future<Result> addScene(String scene) async {
     final repository = ref.read(repositoryProvider);
-    try {
-      await repository.addScene(scene);
-      await updateState();
-      return Result.success;
-    } on DomainException catch (e) {
-      _notifyError(e.type);
-      return Result.failed;
-    } catch (e) {
-      _notifyError(ErrorType.unexpected);
-      return Result.failed;
-    }
+    await repository.addScene(scene);
+    await updateState();
+    return Result.success;
   }
 }
