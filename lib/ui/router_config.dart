@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:smart_order_app/constants.dart';
 import 'package:smart_order_app/domain/entity/phrase.dart';
 import 'package:smart_order_app/ui/page/management/phrase/add/page.dart';
 import 'package:smart_order_app/ui/page/management/scene/add/page.dart';
 import 'package:smart_order_app/ui/page/order/display/page.dart';
 import 'package:smart_order_app/ui/page/order/select/page.dart';
-import 'package:smart_order_app/ui/page/root.dart';
 
 // TODO: orderDisplayはorderSelectの下にしたいがエラーになるので、一旦これで。
 enum RouteConfigs {
-  root('/', 'root'),
-  orderSelect('order/select', 'order-select'),
-  orderDisplay('order/display', 'order-display'),
-  phraseAdd('management/phrase/add', 'phrase-add'),
-  sceneAdd('management/scene/add', 'scene-add'),
+  orderSelect('/', 'order-select'),
+  orderDisplay('/display', 'order-display'),
+  phraseAdd('/management/phrase/add', 'phrase-add'),
+  sceneAdd('/management/scene/add', 'scene-add'),
   ;
 
   const RouteConfigs(this.path, this.name);
@@ -27,42 +26,37 @@ final routerConfigProvider = Provider<GoRouter>(
   (ref) => GoRouter(
     routes: <RouteBase>[
       GoRoute(
-        path: RouteConfigs.root.path,
-        name: RouteConfigs.root.name,
-        builder: (BuildContext context, GoRouterState state) => const Root(),
-        routes: <RouteBase>[
-          GoRoute(
-            path: RouteConfigs.orderSelect.path,
-            name: RouteConfigs.orderSelect.name,
-            builder: (BuildContext context, GoRouterState state) =>
-                OrderSelectPage(
-              sceneName: state.extra as String,
-            ),
-          ),
-          GoRoute(
-            path: RouteConfigs.orderDisplay.path,
-            name: RouteConfigs.orderDisplay.name,
-            builder: (BuildContext context, GoRouterState state) {
-              final args = state.extra as Map<String, dynamic>;
-              return OrderDisplayPage(
-                sceneName: args['sceneName'] as String,
-                phrases: args['phrases'] as List<Phrase>,
-              );
-            },
-          ),
-          GoRoute(
-            path: RouteConfigs.phraseAdd.path,
-            name: RouteConfigs.phraseAdd.name,
-            builder: (BuildContext context, GoRouterState state) =>
-                const PhraseAddPage(),
-          ),
-          GoRoute(
-            path: RouteConfigs.sceneAdd.path,
-            name: RouteConfigs.sceneAdd.name,
-            builder: (BuildContext context, GoRouterState state) =>
-                const SceneAddPage(),
-          ),
-        ],
+        path: RouteConfigs.orderSelect.path,
+        name: RouteConfigs.orderSelect.name,
+        builder: (BuildContext context, GoRouterState state) {
+          final sceneName = state.extra as String? ?? defaultScene;
+          return OrderSelectPage(
+            sceneName: sceneName,
+          );
+        },
+      ),
+      GoRoute(
+        path: RouteConfigs.orderDisplay.path,
+        name: RouteConfigs.orderDisplay.name,
+        builder: (BuildContext context, GoRouterState state) {
+          final args = state.extra as Map<String, dynamic>;
+          return OrderDisplayPage(
+            sceneName: args['sceneName'] as String,
+            phrases: args['phrases'] as List<Phrase>,
+          );
+        },
+      ),
+      GoRoute(
+        path: RouteConfigs.phraseAdd.path,
+        name: RouteConfigs.phraseAdd.name,
+        builder: (BuildContext context, GoRouterState state) =>
+            const PhraseAddPage(),
+      ),
+      GoRoute(
+        path: RouteConfigs.sceneAdd.path,
+        name: RouteConfigs.sceneAdd.name,
+        builder: (BuildContext context, GoRouterState state) =>
+            const SceneAddPage(),
       ),
     ],
   ),

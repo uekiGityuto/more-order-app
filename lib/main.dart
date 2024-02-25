@@ -5,7 +5,6 @@ import 'package:smart_order_app/domain/repository/repository.dart';
 import 'package:smart_order_app/infrastructure/db/dao.dart';
 import 'package:smart_order_app/infrastructure/db/init/db.dart';
 import 'package:smart_order_app/theme.dart';
-import 'package:smart_order_app/ui/page/root.dart';
 import 'package:smart_order_app/ui/router_config.dart';
 
 void main() async {
