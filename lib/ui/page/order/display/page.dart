@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smart_order_app/domain/entity/phrase.dart';
+import 'package:smart_order_app/ui/component/base_drawer.dart';
 import 'package:smart_order_app/ui/component/simple_app_bar.dart';
+import 'package:smart_order_app/ui/component/simple_bottom_app_bar.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
 
 class OrderDisplayPage extends StatelessWidget {
@@ -14,6 +16,8 @@ class OrderDisplayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SimpleAppBar(title: sceneName),
+      drawer: const BaseDrawer(),
+      bottomNavigationBar: const SimpleBottomAppBar(),
       body: DefaultLayout(
         child: Column(
           children: [
