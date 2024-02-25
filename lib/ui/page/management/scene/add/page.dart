@@ -12,7 +12,6 @@ class SceneAddPage extends HookConsumerWidget with ErrorHandlerMixin {
     String scene = '';
     return DefaultLayout(
       title: "場面追加",
-      bodyOption: BodyOption(),
       body: Column(children: [
         Expanded(
           child: TextField(

@@ -13,7 +13,6 @@ class OrderDisplayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultLayout(
       title: sceneName,
-      bodyOption: BodyOption(),
       body: Column(
         children: [
           Expanded(
