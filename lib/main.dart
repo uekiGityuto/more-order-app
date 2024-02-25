@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:smart_order_app/constants.dart';
 import 'package:smart_order_app/domain/repository/repository.dart';
 import 'package:smart_order_app/infrastructure/db/dao.dart';
 import 'package:smart_order_app/infrastructure/db/init/db.dart';
 import 'package:smart_order_app/theme.dart';
-import 'package:smart_order_app/ui/router_config.dart';
+import 'package:smart_order_app/ui/page/order/select/page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,10 +26,10 @@ class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
 
   @override
-  Widget  build(BuildContext context, WidgetRef ref) {
-    return MaterialApp.router(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MaterialApp(
+      home: const OrderSelectPage(sceneName: defaultScene),
       title: 'SmartOrderApp',
-      routerConfig: ref.watch(routerConfigProvider),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
             backgroundColor: MaterialTheme.lightScheme().primaryContainer),

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:smart_order_app/ui/component/error.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
-import 'package:smart_order_app/ui/router_config.dart';
+import 'package:smart_order_app/ui/page/management/phrase/add/page.dart';
+import 'package:smart_order_app/ui/page/management/scene/add/page.dart';
+import 'package:smart_order_app/ui/page/order/select/page.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
 class BaseDrawer extends ConsumerWidget {
@@ -25,8 +26,12 @@ class BaseDrawer extends ConsumerWidget {
                   return ListTile(
                     title: Text(scene.scene),
                     onTap: () {
-                      context.goNamed(RouteConfigs.orderSelect.name,
-                          extra: scene.scene);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                OrderSelectPage(sceneName: scene.scene)),
+                      );
                     },
                   );
                 }).toList(),
@@ -36,13 +41,19 @@ class BaseDrawer extends ConsumerWidget {
           ListTile(
             title: const Text("◼️フレーズ登録"),
             onTap: () {
-              context.goNamed(RouteConfigs.phraseAdd.name);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const PhraseAddPage()),
+              );
             },
           ),
           ListTile(
             title: const Text("◼️場面登録"),
             onTap: () {
-              context.goNamed(RouteConfigs.sceneAdd.name);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const SceneAddPage()),
+              );
             },
           ),
         ],
