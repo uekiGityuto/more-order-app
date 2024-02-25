@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:smart_order_app/ui/component/error.dart';
+import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/list_tile_navigation.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/page/order/select/page.dart';

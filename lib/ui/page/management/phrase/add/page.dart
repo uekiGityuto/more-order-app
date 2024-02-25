@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
 import 'package:smart_order_app/ui/component/app_bar/simple_app_bar.dart';
 import 'package:smart_order_app/ui/component/app_bar/simple_bottom_app_bar.dart';
-import 'package:smart_order_app/ui/component/error.dart';
+import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/simple_drawer.dart';
 import 'package:smart_order_app/ui/error_handler_mixin.dart';
