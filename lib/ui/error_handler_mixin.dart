@@ -3,7 +3,6 @@ import 'package:smart_order_app/domain/errors/error.dart';
 import 'package:smart_order_app/ui/component/snackBar/failure_snackbar.dart';
 import 'package:smart_order_app/ui/component/snackBar/success_snackbar.dart';
 
-/// プレゼンテーション層の共通エラーハンドリングメソッドを備えたMixin
 mixin ErrorHandlerMixin {
   Future<void> execute(
     BuildContext context,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// 処理失敗(エラー)用のスナックバー
 class FailureSnackBar extends SnackBar {
   FailureSnackBar._({required String message})
       : super(

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-/// 処理成功用スナックバー
 class SuccessSnackBar extends SnackBar {
   SuccessSnackBar._({required String message})
       : super(
           content: Text(message),
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.brown,
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
