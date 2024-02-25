@@ -6,8 +6,8 @@ import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/page/order/select/page.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
-class BaseDrawer extends ConsumerWidget {
-  const BaseDrawer({super.key});
+class SimpleDrawer extends ConsumerWidget {
+  const SimpleDrawer({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

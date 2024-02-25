@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
-import 'package:smart_order_app/ui/component/base_drawer.dart';
+import 'package:smart_order_app/ui/component/app_bar/simple_app_bar.dart';
+import 'package:smart_order_app/ui/component/app_bar/simple_bottom_app_bar.dart';
 import 'package:smart_order_app/ui/component/error.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
-import 'package:smart_order_app/ui/component/simple_app_bar.dart';
-import 'package:smart_order_app/ui/component/simple_bottom_app_bar.dart';
+import 'package:smart_order_app/ui/component/simple_drawer.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/ui/page/order/display/page.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
@@ -22,7 +22,7 @@ class OrderSelectPage extends HookConsumerWidget {
     final scenesFuture = ref.watch(scenesNotifierProvider);
     return Scaffold(
       appBar: SimpleAppBar(title: sceneName),
-      drawer: const BaseDrawer(),
+      drawer: const SimpleDrawer(),
       bottomNavigationBar: const SimpleBottomAppBar(),
       body: DefaultLayout(
         child: scenesFuture.when(

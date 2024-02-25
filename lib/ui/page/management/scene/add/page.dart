@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:smart_order_app/ui/component/base_drawer.dart';
-import 'package:smart_order_app/ui/component/simple_app_bar.dart';
-import 'package:smart_order_app/ui/component/simple_bottom_app_bar.dart';
+import 'package:smart_order_app/ui/component/app_bar/simple_app_bar.dart';
+import 'package:smart_order_app/ui/component/app_bar/simple_bottom_app_bar.dart';
+import 'package:smart_order_app/ui/component/simple_drawer.dart';
 import 'package:smart_order_app/ui/error_handler_mixin.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
@@ -15,7 +15,7 @@ class SceneAddPage extends HookConsumerWidget with ErrorHandlerMixin {
     String scene = '';
     return Scaffold(
       appBar: const SimpleAppBar(title: '場面追加'),
-      drawer: const BaseDrawer(),
+      drawer: const SimpleDrawer(),
       bottomNavigationBar: const SimpleBottomAppBar(),
       body: DefaultLayout(
         child: Column(children: [
