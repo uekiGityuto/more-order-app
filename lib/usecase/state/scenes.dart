@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:smart_order_app/domain/entity/scene.dart';
 import 'package:smart_order_app/domain/repository/repository.dart';
-import 'package:smart_order_app/usecase/result.dart';
 
 part 'scenes.g.dart';
 
@@ -24,10 +23,9 @@ class ScenesNotifier extends _$ScenesNotifier {
     await updateState();
   }
 
-  Future<Result> addScene(String scene) async {
+  Future<void> addScene(String scene) async {
     final repository = ref.read(repositoryProvider);
     await repository.addScene(scene);
     await updateState();
-    return Result.success;
   }
 }

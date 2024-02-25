@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
+enum NavigationType { push, pushReplacement }
+
 class ListTileOption {
   final String title;
   final Widget nextPage;
+  final NavigationType navigateType;
 
-  ListTileOption({required this.title, required this.nextPage});
+  ListTileOption(
+      {required this.title,
+      required this.nextPage,
+      NavigationType? navigateType})
+      : navigateType = navigateType ?? NavigationType.push;
 }
 
 class ListTileNavigation extends StatelessWidget {
@@ -14,13 +21,20 @@ class ListTileNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(option.title),
-      trailing: const Icon(Icons.arrow_forward),
-      contentPadding: EdgeInsets.zero,
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => option.nextPage),
-      ),
-    );
+        title: Text(option.title),
+        trailing: const Icon(Icons.arrow_forward),
+        contentPadding: EdgeInsets.zero,
+        onTap: () {
+          switch (option.navigateType) {
+            case NavigationType.push:
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => option.nextPage));
+              break;
+            case NavigationType.pushReplacement:
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => option.nextPage));
+              break;
+          }
+        });
   }
 }
