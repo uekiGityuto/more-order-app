@@ -34,9 +34,9 @@ class App extends ConsumerWidget {
         appBarTheme: AppBarTheme(
             backgroundColor: MaterialTheme.lightScheme().primaryContainer),
         colorScheme: ColorScheme.fromSeed(
-          seedColor: MaterialTheme.lightScheme().primary,
-          error: MaterialTheme.lightScheme().error,
-        ),
+            seedColor: MaterialTheme.lightScheme().primary,
+            error: MaterialTheme.lightScheme().error,
+            surface: MaterialTheme.lightScheme().surface),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: MaterialTheme.lightScheme().primary,
@@ -59,9 +59,9 @@ class App extends ConsumerWidget {
         appBarTheme: AppBarTheme(
             backgroundColor: MaterialTheme.darkScheme().primaryContainer),
         colorScheme: ColorScheme.fromSeed(
-          seedColor: MaterialTheme.darkScheme().primary,
-          error: MaterialTheme.darkScheme().error,
-        ),
+            seedColor: MaterialTheme.darkScheme().primary,
+            error: MaterialTheme.darkScheme().error,
+            surface: MaterialTheme.darkScheme().surface),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: MaterialTheme.darkScheme().primary,

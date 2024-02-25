@@ -13,7 +13,6 @@ class SceneAddPage extends HookConsumerWidget with ErrorHandlerMixin {
   Widget build(BuildContext context, WidgetRef ref) {
     String scene = '';
     return Scaffold(
-      drawer: const BaseDrawer(),
       appBar: SimpleAppBar(title: '場面追加'),
       body: DefaultLayout(
         child: Column(children: [

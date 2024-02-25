@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
-import 'package:smart_order_app/ui/component/base_drawer.dart';
 import 'package:smart_order_app/ui/component/error.dart';
-import 'package:smart_order_app/ui/error_handler_mixin.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/simple_app_bar.dart';
+import 'package:smart_order_app/ui/error_handler_mixin.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
@@ -18,7 +17,6 @@ class PhraseAddPage extends HookConsumerWidget with ErrorHandlerMixin {
     final scenesFuture = ref.watch(scenesNotifierProvider);
     String phrase = '';
     return Scaffold(
-      drawer: const BaseDrawer(),
       appBar: SimpleAppBar(title: 'フレーズ追加'),
       body: DefaultLayout(
         child: scenesFuture.when(
