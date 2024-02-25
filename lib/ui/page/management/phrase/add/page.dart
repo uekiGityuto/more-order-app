@@ -21,7 +21,7 @@ class PhraseAddPage extends HookConsumerWidget with ErrorHandlerMixin {
       body: DefaultLayout(
         child: scenesFuture.when(
           error: (e, s) => buildErrorMessage(),
-          loading: () => buildProgressIndicator(context),
+          loading: () => const Loader(),
           data: (scenes) {
             final checkedStates = useState<Map<Id, bool>>(
               {for (var scene in scenes) scene.id: false},

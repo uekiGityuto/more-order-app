@@ -18,7 +18,7 @@ class BaseDrawer extends ConsumerWidget {
           const ListTile(title: Text("◼️場面選択")),
           scenesFuture.when(
             error: (e, s) => buildErrorMessage(),
-            loading: () => buildProgressIndicator(context),
+            loading: () => const Loader(),
             data: (scenes) {
               return Column(
                 children: scenes.map((scene) {

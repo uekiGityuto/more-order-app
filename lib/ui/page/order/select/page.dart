@@ -25,7 +25,7 @@ class OrderSelectPage extends HookConsumerWidget {
       body: DefaultLayout(
         child: scenesFuture.when(
             error: (e, s) => buildErrorMessage(),
-            loading: () => buildProgressIndicator(context),
+            loading: () => const Loader(),
             data: (scenes) {
               final scene =
                   scenes.firstWhereOrNull((scene) => scene.scene == sceneName);
