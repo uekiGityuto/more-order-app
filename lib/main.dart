@@ -6,6 +6,7 @@ import 'package:smart_order_app/infrastructure/db/dao.dart';
 import 'package:smart_order_app/infrastructure/db/init/db.dart';
 import 'package:smart_order_app/theme.dart';
 import 'package:smart_order_app/ui/page/root.dart';
+import 'package:smart_order_app/ui/router_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,14 +22,14 @@ void main() async {
   );
 }
 
-class App extends StatelessWidget {
+class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const Root(),
+  Widget  build(BuildContext context, WidgetRef ref) {
+    return MaterialApp.router(
       title: 'SmartOrderApp',
+      routerConfig: ref.watch(routerConfigProvider),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
             backgroundColor: MaterialTheme.lightScheme().primaryContainer),
