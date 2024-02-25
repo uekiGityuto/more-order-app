@@ -7,11 +7,11 @@ class ListTileOption {
   final Widget nextPage;
   final NavigationType navigateType;
 
-  ListTileOption(
-      {required this.title,
-      required this.nextPage,
-      NavigationType? navigateType})
-      : navigateType = navigateType ?? NavigationType.push;
+  ListTileOption({
+    required this.title,
+    required this.nextPage,
+    this.navigateType = NavigationType.push,
+  });
 }
 
 class ListTileNavigation extends StatelessWidget {
