@@ -57,7 +57,7 @@ class OrderSelectPage extends HookConsumerWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    context.goNamed(RouteConfigs.orderDisplay.name, extra: {
+                    context.push(RouteConfigs.orderDisplay.path, extra: {
                       "sceneName": sceneName,
                       "phrases": scene.phrases
                           .where((p) => checkedStates.value[p.id] == true)

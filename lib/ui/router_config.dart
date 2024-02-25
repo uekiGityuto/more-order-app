@@ -10,8 +10,8 @@ import 'package:smart_order_app/ui/page/order/select/page.dart';
 
 // TODO: orderDisplayはorderSelectの下にしたいがエラーになるので、一旦これで。
 enum RouteConfigs {
-  orderSelect('/', 'order-select'),
-  orderDisplay('/display', 'order-display'),
+  orderSelect('/order/select', 'order-select'),
+  orderDisplay('/order/display', 'order-display'),
   phraseAdd('/management/phrase/add', 'phrase-add'),
   sceneAdd('/management/scene/add', 'scene-add'),
   ;
@@ -24,6 +24,7 @@ enum RouteConfigs {
 // TODO: errorPageBuilderの設定した方が良いかも
 final routerConfigProvider = Provider<GoRouter>(
   (ref) => GoRouter(
+    initialLocation: RouteConfigs.orderSelect.path,
     routes: <RouteBase>[
       GoRoute(
         path: RouteConfigs.orderSelect.path,
@@ -35,6 +36,8 @@ final routerConfigProvider = Provider<GoRouter>(
           );
         },
       ),
+      // FIXME: orderSelectにネストさせたいけど、ネストさせると上手く遷移できない（orderDisplayとorderSelectの両方にマッチしてしまう？）
+      // 仕方ないので、フラットに書き、orderSelectから遷移するときに、context.goではなくて、context.pushして画面をスタックさせる。
       GoRoute(
         path: RouteConfigs.orderDisplay.path,
         name: RouteConfigs.orderDisplay.name,
