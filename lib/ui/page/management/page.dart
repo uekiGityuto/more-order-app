@@ -13,7 +13,6 @@ class ManagementPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultLayout(
       title: "管理メニュー",
-      bodyOption: BodyOption(),
       body: Column(
         children: [
           MenuItem(title: "フレーズ", options: [

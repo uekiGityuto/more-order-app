@@ -17,7 +17,6 @@ class PhraseAddPage extends HookConsumerWidget with ErrorHandlerMixin {
     String phrase = '';
     return DefaultLayout(
       title: "フレーズ追加",
-      bodyOption: BodyOption(),
       body: scenesFuture.when(
         error: (e, s) => const ErrorMessage(),
         loading: () => const Loader(),

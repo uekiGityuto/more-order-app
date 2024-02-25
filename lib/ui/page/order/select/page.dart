@@ -19,7 +19,6 @@ class OrderSelectPage extends HookConsumerWidget {
     final scenesFuture = ref.watch(scenesNotifierProvider);
     return DefaultLayout(
       title: sceneName,
-      bodyOption: BodyOption(),
       body: scenesFuture.when(
           error: (e, s) => const ErrorMessage(),
           loading: () => const Loader(),

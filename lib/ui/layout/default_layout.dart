@@ -12,23 +12,25 @@ class BodyOption {
 class DefaultLayout extends StatelessWidget {
   final Widget body;
   final String title;
-  final BodyOption bodyOption;
+  final BodyOption? bodyOption;
 
   const DefaultLayout({
     Key? key,
     required this.title,
     required this.body,
-    required this.bodyOption,
+    this.bodyOption,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final effectiveBodyOption = bodyOption ?? BodyOption();
+
     return Scaffold(
       appBar: SimpleAppBar(title: title),
       drawer: const SimpleDrawer(),
       body: SafeArea(
         child: Container(
-          padding: bodyOption.dense
+          padding: effectiveBodyOption.dense
               ? const EdgeInsets.all(0)
               : const EdgeInsets.all(16.0),
           child: body,
