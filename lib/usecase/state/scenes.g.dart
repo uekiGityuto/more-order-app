@@ -6,12 +6,12 @@ part of 'scenes.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$scenesNotifierHash() => r'a86ec3bf425b5e1eb5ad7754b2e0effc3bab2995';
+String _$scenesNotifierHash() => r'3b165e0db4d3c2bb81467422c775167b4464937b';
 
 /// See also [ScenesNotifier].
 @ProviderFor(ScenesNotifier)
 final scenesNotifierProvider =
-    AutoDisposeAsyncNotifierProvider<ScenesNotifier, List<Scene>>.internal(
+    AsyncNotifierProvider<ScenesNotifier, List<Scene>>.internal(
   ScenesNotifier.new,
   name: r'scenesNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,6 +21,6 @@ final scenesNotifierProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$ScenesNotifier = AutoDisposeAsyncNotifier<List<Scene>>;
+typedef _$ScenesNotifier = AsyncNotifier<List<Scene>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

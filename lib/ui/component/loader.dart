@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
-Widget buildProgressIndicator(BuildContext context) {
-  return Container(
-      alignment: Alignment.center,
-      child: CircularProgressIndicator(
-        color: Theme.of(context).colorScheme.primary,
-      ));
+class Loader extends StatelessWidget {
+  const Loader({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        alignment: Alignment.center,
+        child: CircularProgressIndicator(
+          color: Theme.of(context).colorScheme.primary,
+        ));
+  }
 }
