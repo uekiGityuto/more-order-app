@@ -7,7 +7,7 @@ part of 'phrase_form_controller.dart';
 // **************************************************************************
 
 String _$phraseFormControllerHash() =>
-    r'b80f4ea704cb2e20c37fdf96ff8c4b2b26c6ce64';
+    r'1233ddf41e0192a9eae0767287d9c95df81a3de2';
 
 /// See also [PhraseFormController].
 @ProviderFor(PhraseFormController)
