@@ -49,8 +49,9 @@ class PhraseAddPage extends ConsumerWidget with ErrorHandlerMixin {
                                 },
                               ).toList(),
                               FormErrorMessage(
-                                  errorMessage: phraseForm
-                                      .scenesInput.displayError?.errorMessage),
+                                errorMessage: phraseForm
+                                    .scenesInput.displayError?.errorMessage,
+                              ),
                             ],
                           ),
                           const SizedBox(
@@ -69,8 +70,9 @@ class PhraseAddPage extends ConsumerWidget with ErrorHandlerMixin {
                                     .onChangePhrase,
                               ),
                               FormErrorMessage(
-                                  errorMessage: phraseForm
-                                      .phraseInput.displayError?.errorMessage),
+                                errorMessage: phraseForm
+                                    .phraseInput.displayError?.errorMessage,
+                              ),
                             ],
                           ),
                         ],
