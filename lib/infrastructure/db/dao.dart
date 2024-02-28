@@ -144,14 +144,33 @@ class DAO implements Repository {
   }
 
   @override
-  Future<void> updatePhrase(Phrase phrase) async {
+  Future<void> updatePhrase(Phrase phrase,
+      {required List<Scene> deletedScenes,
+      required List<Scene> addedScenes}) async {
     try {
       await _updateById(
-          "phrases",
+        "phrases",
+        {
+          "phrase": phrase.phrase,
+        },
+        id: phrase.id,
+      );
+      for (final scene in deletedScenes) {
+        await db.delete(
+          'scenes_phrases',
+          where: "scene_id = ? AND phrase_id = ?",
+          whereArgs: [scene.id.value, phrase.id.value],
+        );
+      }
+      for (final scene in addedScenes) {
+        await _add(
+          "scenes_phrases",
           {
-            "phrase": phrase.phrase,
+            "scene_id": scene.id.value,
+            "phrase_id": phrase.id.value,
           },
-          id: phrase.id);
+        );
+      }
     } on DatabaseException catch (e) {
       if (e.isUniqueConstraintError()) {
         throw const DomainException(ErrorType.phraseDuplicate);
@@ -192,9 +211,11 @@ class DAO implements Repository {
   @override
   Future<void> updateReason(Reason reason) async {
     try {
-      await _updateById("reasons",
-          {"reason": reason.reason, "is_default": reason.isDefault ? 1 : 0},
-          id: reason.id);
+      await _updateById(
+        "reasons",
+        {"reason": reason.reason, "is_default": reason.isDefault ? 1 : 0},
+        id: reason.id,
+      );
     } on DatabaseException catch (e) {
       if (e.isUniqueConstraintError()) {
         throw const DomainException(ErrorType.reasonDuplicate);
@@ -229,11 +250,12 @@ class DAO implements Repository {
   Future<void> updateScene(Scene scene) async {
     try {
       await _updateById(
-          "scenes",
-          {
-            "scene": scene.scene,
-          },
-          id: scene.id);
+        "scenes",
+        {
+          "scene": scene.scene,
+        },
+        id: scene.id,
+      );
     } on DatabaseException catch (e) {
       if (e.isUniqueConstraintError()) {
         throw const DomainException(ErrorType.sceneDuplicate);
