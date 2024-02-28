@@ -1,6 +1,7 @@
 import 'package:formz/formz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
+import 'package:smart_order_app/ui/form/form_creation_status.dart';
 import 'package:smart_order_app/ui/page/management/phrase/add/form/phrase_form.dart';
 import 'package:smart_order_app/ui/page/management/phrase/add/form/phrase_validation.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
@@ -13,15 +14,15 @@ class PhraseFormController extends _$PhraseFormController {
   PhraseForm build() {
     final scenesFuture = ref.watch(scenesNotifierProvider);
     return scenesFuture.when(
-        // TODO: できればエラーとローディングを分けたい。
-        // ただ、既に非同期で取得し終わっている想定だからエラーになることもローディングになることもない想定。
         error: (e, s) => PhraseForm(
+              creationStatus: FormCreationStatus.failed,
               phraseInput: const PhraseInput.pure(),
               scenes: null,
               scenesInput: const ScenesInput.pure(),
               isValid: false,
             ),
         loading: () => PhraseForm(
+              creationStatus: FormCreationStatus.creating,
               phraseInput: const PhraseInput.pure(),
               scenes: null,
               scenesInput: const ScenesInput.pure(),
@@ -30,6 +31,7 @@ class PhraseFormController extends _$PhraseFormController {
         data: (scenes) {
           final initialScenesMap = {for (var scene in scenes) scene.id: false};
           return PhraseForm(
+            creationStatus: FormCreationStatus.created,
             phraseInput: const PhraseInput.pure(),
             scenes: scenes,
             scenesInput: ScenesInput.pure(value: initialScenesMap),

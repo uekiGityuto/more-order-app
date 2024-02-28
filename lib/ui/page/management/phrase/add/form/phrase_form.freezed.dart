@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PhraseForm {
+  FormCreationStatus get creationStatus => throw _privateConstructorUsedError;
   PhraseInput get phraseInput => throw _privateConstructorUsedError;
   List<Scene>? get scenes => throw _privateConstructorUsedError;
   ScenesInput get scenesInput => throw _privateConstructorUsedError;
@@ -33,7 +34,8 @@ abstract class $PhraseFormCopyWith<$Res> {
       _$PhraseFormCopyWithImpl<$Res, PhraseForm>;
   @useResult
   $Res call(
-      {PhraseInput phraseInput,
+      {FormCreationStatus creationStatus,
+      PhraseInput phraseInput,
       List<Scene>? scenes,
       ScenesInput scenesInput,
       bool isValid});
@@ -52,12 +54,17 @@ class _$PhraseFormCopyWithImpl<$Res, $Val extends PhraseForm>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? creationStatus = null,
     Object? phraseInput = null,
     Object? scenes = freezed,
     Object? scenesInput = null,
     Object? isValid = null,
   }) {
     return _then(_value.copyWith(
+      creationStatus: null == creationStatus
+          ? _value.creationStatus
+          : creationStatus // ignore: cast_nullable_to_non_nullable
+              as FormCreationStatus,
       phraseInput: null == phraseInput
           ? _value.phraseInput
           : phraseInput // ignore: cast_nullable_to_non_nullable
@@ -87,7 +94,8 @@ abstract class _$$PhraseFormImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PhraseInput phraseInput,
+      {FormCreationStatus creationStatus,
+      PhraseInput phraseInput,
       List<Scene>? scenes,
       ScenesInput scenesInput,
       bool isValid});
@@ -104,12 +112,17 @@ class __$$PhraseFormImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? creationStatus = null,
     Object? phraseInput = null,
     Object? scenes = freezed,
     Object? scenesInput = null,
     Object? isValid = null,
   }) {
     return _then(_$PhraseFormImpl(
+      creationStatus: null == creationStatus
+          ? _value.creationStatus
+          : creationStatus // ignore: cast_nullable_to_non_nullable
+              as FormCreationStatus,
       phraseInput: null == phraseInput
           ? _value.phraseInput
           : phraseInput // ignore: cast_nullable_to_non_nullable
@@ -134,12 +147,15 @@ class __$$PhraseFormImplCopyWithImpl<$Res>
 
 class _$PhraseFormImpl implements _PhraseForm {
   _$PhraseFormImpl(
-      {required this.phraseInput,
+      {required this.creationStatus,
+      required this.phraseInput,
       required final List<Scene>? scenes,
       required this.scenesInput,
       required this.isValid})
       : _scenes = scenes;
 
+  @override
+  final FormCreationStatus creationStatus;
   @override
   final PhraseInput phraseInput;
   final List<Scene>? _scenes;
@@ -159,7 +175,7 @@ class _$PhraseFormImpl implements _PhraseForm {
 
   @override
   String toString() {
-    return 'PhraseForm(phraseInput: $phraseInput, scenes: $scenes, scenesInput: $scenesInput, isValid: $isValid)';
+    return 'PhraseForm(creationStatus: $creationStatus, phraseInput: $phraseInput, scenes: $scenes, scenesInput: $scenesInput, isValid: $isValid)';
   }
 
   @override
@@ -167,6 +183,8 @@ class _$PhraseFormImpl implements _PhraseForm {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PhraseFormImpl &&
+            (identical(other.creationStatus, creationStatus) ||
+                other.creationStatus == creationStatus) &&
             (identical(other.phraseInput, phraseInput) ||
                 other.phraseInput == phraseInput) &&
             const DeepCollectionEquality().equals(other._scenes, _scenes) &&
@@ -176,7 +194,7 @@ class _$PhraseFormImpl implements _PhraseForm {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, phraseInput,
+  int get hashCode => Object.hash(runtimeType, creationStatus, phraseInput,
       const DeepCollectionEquality().hash(_scenes), scenesInput, isValid);
 
   @JsonKey(ignore: true)
@@ -188,11 +206,14 @@ class _$PhraseFormImpl implements _PhraseForm {
 
 abstract class _PhraseForm implements PhraseForm {
   factory _PhraseForm(
-      {required final PhraseInput phraseInput,
+      {required final FormCreationStatus creationStatus,
+      required final PhraseInput phraseInput,
       required final List<Scene>? scenes,
       required final ScenesInput scenesInput,
       required final bool isValid}) = _$PhraseFormImpl;
 
+  @override
+  FormCreationStatus get creationStatus;
   @override
   PhraseInput get phraseInput;
   @override
