@@ -20,34 +20,37 @@ class OrderSelectPage extends HookConsumerWidget {
     return DefaultLayout(
       title: sceneName,
       body: scenesFuture.when(
-          error: (e, s) => const ErrorMessage(),
-          loading: () => const Loader(),
-          data: (scenes) {
-            final scene =
-                scenes.firstWhereOrNull((scene) => scene.scene == sceneName);
-            if (scene == null) {
-              return const ErrorMessage();
-            }
-            final checkedStates = useState<Map<Id, bool>>(
-              {for (var phrase in scene.phrases) phrase.id: false},
-            );
-            return Column(children: [
+        error: (e, s) => const ErrorMessage(),
+        loading: () => const Loader(),
+        data: (scenes) {
+          final scene =
+              scenes.firstWhereOrNull((scene) => scene.scene == sceneName);
+          if (scene == null) {
+            return const ErrorMessage();
+          }
+          final checkedStates = useState<Map<Id, bool>>(
+            {for (var phrase in scene.phrases) phrase.id: false},
+          );
+          return Column(
+            children: [
               Expanded(
                 child: ListView(
-                  children: scene.phrases.map((phrase) {
-                    return CheckboxListTile(
-                      value: checkedStates.value[phrase.id],
-                      onChanged: (bool? newValue) {
-                        final newCheckedStates =
-                            Map<Id, bool>.from(checkedStates.value)
-                              ..[phrase.id] = newValue ?? false;
-                        checkedStates.value = newCheckedStates;
-                      },
-                      title: Text(phrase.phrase),
-                      contentPadding: EdgeInsets.zero,
-                      dense: true,
-                    );
-                  }).toList(),
+                  children: scene.phrases.map(
+                    (phrase) {
+                      return CheckboxListTile(
+                        value: checkedStates.value[phrase.id],
+                        onChanged: (bool? newValue) {
+                          final newCheckedStates =
+                              Map<Id, bool>.from(checkedStates.value)
+                                ..[phrase.id] = newValue ?? false;
+                          checkedStates.value = newCheckedStates;
+                        },
+                        title: Text(phrase.phrase),
+                        contentPadding: EdgeInsets.zero,
+                        dense: true,
+                      );
+                    },
+                  ).toList(),
                 ),
               ),
               ElevatedButton(
@@ -55,17 +58,21 @@ class OrderSelectPage extends HookConsumerWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => OrderDisplayPage(
-                            sceneName: sceneName,
-                            phrases: scene.phrases
-                                .where((p) => checkedStates.value[p.id] == true)
-                                .toList())),
+                      builder: (context) => OrderDisplayPage(
+                        sceneName: sceneName,
+                        phrases: scene.phrases
+                            .where((p) => checkedStates.value[p.id] == true)
+                            .toList(),
+                      ),
+                    ),
                   );
                 },
                 child: const Text('OK'),
               ),
-            ]);
-          }),
+            ],
+          );
+        },
+      ),
     );
   }
 }

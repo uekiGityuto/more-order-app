@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:smart_order_app/constants.dart';
 import 'package:smart_order_app/ui/page/management/page.dart';
+import 'package:smart_order_app/ui/page/order/select/page.dart';
 
 class SimpleBottomAppBar extends StatelessWidget {
   const SimpleBottomAppBar({Key? key}) : super(key: key);
@@ -18,6 +20,19 @@ class SimpleBottomAppBar extends StatelessWidget {
                 icon: Icons.menu,
                 label: '場面一覧',
                 onPressed: () => Scaffold.of(context).openDrawer(),
+              ),
+            ),
+            _buildBottomAppBarItem(
+              context: context,
+              icon: Icons.star,
+              label: defaultScene,
+              onPressed: () => Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      const OrderSelectPage(sceneName: defaultScene),
+                ),
+                (_) => false,
               ),
             ),
             _buildBottomAppBarItem(
