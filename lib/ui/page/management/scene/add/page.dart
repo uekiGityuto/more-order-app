@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/ui/component/form_error_message.dart';
 import 'package:smart_order_app/ui/error_handler_mixin.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/ui/page/management/scene/add/form/add_scene_form_controller.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
-class SceneAddPage extends HookConsumerWidget with ErrorHandlerMixin {
+class SceneAddPage extends ConsumerWidget with ErrorHandlerMixin {
   const SceneAddPage({Key? key}) : super(key: key);
 
   @override
