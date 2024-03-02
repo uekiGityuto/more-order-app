@@ -30,6 +30,7 @@ class SceneListPage extends ConsumerWidget with ErrorHandlerMixin {
                     (scene) {
                       return EditAndDeleteListTile(
                         title: scene.scene,
+                        disabled: scene.isDefault,
                         editPage: SceneEditPage(scene: scene),
                         onDeletePressed: () async {
                           action() => ref
