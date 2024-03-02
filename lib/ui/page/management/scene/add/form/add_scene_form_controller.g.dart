@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'scene_form_controller.dart';
+part of 'add_scene_form_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sceneFormControllerHash() =>
-    r'02aef38c5ed303a7d533321e8be200b0c150afd9';
+String _$addSceneFormControllerHash() =>
+    r'21e676986c3de4f8508e03cfd2847a103def997c';
 
-/// See also [SceneFormController].
-@ProviderFor(SceneFormController)
-final sceneFormControllerProvider =
-    AutoDisposeNotifierProvider<SceneFormController, SceneForm>.internal(
-  SceneFormController.new,
-  name: r'sceneFormControllerProvider',
+/// See also [AddSceneFormController].
+@ProviderFor(AddSceneFormController)
+final addSceneFormControllerProvider =
+    AutoDisposeNotifierProvider<AddSceneFormController, AddSceneForm>.internal(
+  AddSceneFormController.new,
+  name: r'addSceneFormControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$sceneFormControllerHash,
+      : _$addSceneFormControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SceneFormController = AutoDisposeNotifier<SceneForm>;
+typedef _$AddSceneFormController = AutoDisposeNotifier<AddSceneForm>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

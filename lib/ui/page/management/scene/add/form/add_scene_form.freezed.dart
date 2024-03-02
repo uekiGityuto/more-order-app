@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'scene_form.dart';
+part of 'add_scene_form.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,27 +15,28 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$SceneForm {
+mixin _$AddSceneForm {
   SceneInput get sceneInput => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SceneFormCopyWith<SceneForm> get copyWith =>
+  $AddSceneFormCopyWith<AddSceneForm> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SceneFormCopyWith<$Res> {
-  factory $SceneFormCopyWith(SceneForm value, $Res Function(SceneForm) then) =
-      _$SceneFormCopyWithImpl<$Res, SceneForm>;
+abstract class $AddSceneFormCopyWith<$Res> {
+  factory $AddSceneFormCopyWith(
+          AddSceneForm value, $Res Function(AddSceneForm) then) =
+      _$AddSceneFormCopyWithImpl<$Res, AddSceneForm>;
   @useResult
   $Res call({SceneInput sceneInput, bool isValid});
 }
 
 /// @nodoc
-class _$SceneFormCopyWithImpl<$Res, $Val extends SceneForm>
-    implements $SceneFormCopyWith<$Res> {
-  _$SceneFormCopyWithImpl(this._value, this._then);
+class _$AddSceneFormCopyWithImpl<$Res, $Val extends AddSceneForm>
+    implements $AddSceneFormCopyWith<$Res> {
+  _$AddSceneFormCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -62,22 +63,22 @@ class _$SceneFormCopyWithImpl<$Res, $Val extends SceneForm>
 }
 
 /// @nodoc
-abstract class _$$SceneFormImplCopyWith<$Res>
-    implements $SceneFormCopyWith<$Res> {
-  factory _$$SceneFormImplCopyWith(
-          _$SceneFormImpl value, $Res Function(_$SceneFormImpl) then) =
-      __$$SceneFormImplCopyWithImpl<$Res>;
+abstract class _$$AddSceneFormImplCopyWith<$Res>
+    implements $AddSceneFormCopyWith<$Res> {
+  factory _$$AddSceneFormImplCopyWith(
+          _$AddSceneFormImpl value, $Res Function(_$AddSceneFormImpl) then) =
+      __$$AddSceneFormImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({SceneInput sceneInput, bool isValid});
 }
 
 /// @nodoc
-class __$$SceneFormImplCopyWithImpl<$Res>
-    extends _$SceneFormCopyWithImpl<$Res, _$SceneFormImpl>
-    implements _$$SceneFormImplCopyWith<$Res> {
-  __$$SceneFormImplCopyWithImpl(
-      _$SceneFormImpl _value, $Res Function(_$SceneFormImpl) _then)
+class __$$AddSceneFormImplCopyWithImpl<$Res>
+    extends _$AddSceneFormCopyWithImpl<$Res, _$AddSceneFormImpl>
+    implements _$$AddSceneFormImplCopyWith<$Res> {
+  __$$AddSceneFormImplCopyWithImpl(
+      _$AddSceneFormImpl _value, $Res Function(_$AddSceneFormImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -86,7 +87,7 @@ class __$$SceneFormImplCopyWithImpl<$Res>
     Object? sceneInput = null,
     Object? isValid = null,
   }) {
-    return _then(_$SceneFormImpl(
+    return _then(_$AddSceneFormImpl(
       sceneInput: null == sceneInput
           ? _value.sceneInput
           : sceneInput // ignore: cast_nullable_to_non_nullable
@@ -101,8 +102,8 @@ class __$$SceneFormImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SceneFormImpl implements _SceneForm {
-  _$SceneFormImpl({required this.sceneInput, required this.isValid});
+class _$AddSceneFormImpl implements _AddSceneForm {
+  _$AddSceneFormImpl({required this.sceneInput, required this.isValid});
 
   @override
   final SceneInput sceneInput;
@@ -111,14 +112,14 @@ class _$SceneFormImpl implements _SceneForm {
 
   @override
   String toString() {
-    return 'SceneForm(sceneInput: $sceneInput, isValid: $isValid)';
+    return 'AddSceneForm(sceneInput: $sceneInput, isValid: $isValid)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SceneFormImpl &&
+            other is _$AddSceneFormImpl &&
             (identical(other.sceneInput, sceneInput) ||
                 other.sceneInput == sceneInput) &&
             (identical(other.isValid, isValid) || other.isValid == isValid));
@@ -130,14 +131,14 @@ class _$SceneFormImpl implements _SceneForm {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SceneFormImplCopyWith<_$SceneFormImpl> get copyWith =>
-      __$$SceneFormImplCopyWithImpl<_$SceneFormImpl>(this, _$identity);
+  _$$AddSceneFormImplCopyWith<_$AddSceneFormImpl> get copyWith =>
+      __$$AddSceneFormImplCopyWithImpl<_$AddSceneFormImpl>(this, _$identity);
 }
 
-abstract class _SceneForm implements SceneForm {
-  factory _SceneForm(
+abstract class _AddSceneForm implements AddSceneForm {
+  factory _AddSceneForm(
       {required final SceneInput sceneInput,
-      required final bool isValid}) = _$SceneFormImpl;
+      required final bool isValid}) = _$AddSceneFormImpl;
 
   @override
   SceneInput get sceneInput;
@@ -145,6 +146,6 @@ abstract class _SceneForm implements SceneForm {
   bool get isValid;
   @override
   @JsonKey(ignore: true)
-  _$$SceneFormImplCopyWith<_$SceneFormImpl> get copyWith =>
+  _$$AddSceneFormImplCopyWith<_$AddSceneFormImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
