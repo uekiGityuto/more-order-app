@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
 import 'package:smart_order_app/ui/form/form_creation_status.dart';
 import 'package:smart_order_app/ui/page/management/phrase/add/form/phrase_add_form.dart';
-import 'package:smart_order_app/ui/page/management/phrase/common/form/phrase_validation.dart';
+import 'package:smart_order_app/ui/page/management/phrase/form/phrase_validation.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
 part 'phrase_add_form_controller.g.dart';
