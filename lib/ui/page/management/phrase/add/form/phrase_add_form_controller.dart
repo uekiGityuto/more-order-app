@@ -2,26 +2,26 @@ import 'package:formz/formz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
 import 'package:smart_order_app/ui/form/form_creation_status.dart';
-import 'package:smart_order_app/ui/page/management/phrase/add/form/phrase_form.dart';
-import 'package:smart_order_app/ui/page/management/phrase/add/form/phrase_validation.dart';
+import 'package:smart_order_app/ui/page/management/phrase/add/form/phrase_add_form.dart';
+import 'package:smart_order_app/ui/page/management/phrase/common/form/phrase_validation.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
-part 'phrase_form_controller.g.dart';
+part 'phrase_add_form_controller.g.dart';
 
 @riverpod
-class PhraseFormController extends _$PhraseFormController {
+class PhraseAddFormController extends _$PhraseAddFormController {
   @override
-  PhraseForm build() {
+  PhraseAddForm build() {
     final scenesFuture = ref.watch(scenesNotifierProvider);
     return scenesFuture.when(
-        error: (e, s) => PhraseForm(
+        error: (e, s) => PhraseAddForm(
               creationStatus: FormCreationStatus.failed,
               phraseInput: const PhraseInput.pure(),
               scenes: null,
               scenesInput: const ScenesInput.pure(),
               isValid: false,
             ),
-        loading: () => PhraseForm(
+        loading: () => PhraseAddForm(
               creationStatus: FormCreationStatus.creating,
               phraseInput: const PhraseInput.pure(),
               scenes: null,
@@ -30,7 +30,7 @@ class PhraseFormController extends _$PhraseFormController {
             ),
         data: (scenes) {
           final initialScenesMap = {for (var scene in scenes) scene.id: false};
-          return PhraseForm(
+          return PhraseAddForm(
             creationStatus: FormCreationStatus.created,
             phraseInput: const PhraseInput.pure(),
             scenes: scenes,

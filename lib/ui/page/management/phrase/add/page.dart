@@ -6,7 +6,7 @@ import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/error_handler_mixin.dart';
 import 'package:smart_order_app/ui/form/form_creation_status.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
-import 'package:smart_order_app/ui/page/management/phrase/add/form/phrase_form_controller.dart';
+import 'package:smart_order_app/ui/page/management/phrase/add/form/phrase_add_form_controller.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
 class PhraseAddPage extends ConsumerWidget with ErrorHandlerMixin {
@@ -14,7 +14,7 @@ class PhraseAddPage extends ConsumerWidget with ErrorHandlerMixin {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final phraseForm = ref.watch(phraseFormControllerProvider);
+    final phraseForm = ref.watch(phraseAddFormControllerProvider);
     final scenes = phraseForm.scenes;
     final navigator = Navigator.of(context);
     return DefaultLayout(
@@ -39,7 +39,7 @@ class PhraseAddPage extends ConsumerWidget with ErrorHandlerMixin {
                                         phraseForm.scenesInput.value[scene.id],
                                     onChanged: (bool? newValue) {
                                       ref
-                                          .read(phraseFormControllerProvider
+                                          .read(phraseAddFormControllerProvider
                                               .notifier)
                                           .onChangeScenes(scene.id, newValue);
                                     },
@@ -67,7 +67,8 @@ class PhraseAddPage extends ConsumerWidget with ErrorHandlerMixin {
                                   hintText: 'フレーズを入力してください',
                                 ),
                                 onChanged: ref
-                                    .read(phraseFormControllerProvider.notifier)
+                                    .read(phraseAddFormControllerProvider
+                                        .notifier)
                                     .onChangePhrase,
                               ),
                               FormErrorMessage(

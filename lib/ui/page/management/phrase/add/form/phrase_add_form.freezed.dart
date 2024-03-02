@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'phrase_form.dart';
+part of 'phrase_add_form.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$PhraseForm {
+mixin _$PhraseAddForm {
   FormCreationStatus get creationStatus => throw _privateConstructorUsedError;
   PhraseInput get phraseInput => throw _privateConstructorUsedError;
   List<Scene>? get scenes => throw _privateConstructorUsedError;
@@ -23,15 +23,15 @@ mixin _$PhraseForm {
   bool get isValid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PhraseFormCopyWith<PhraseForm> get copyWith =>
+  $PhraseAddFormCopyWith<PhraseAddForm> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PhraseFormCopyWith<$Res> {
-  factory $PhraseFormCopyWith(
-          PhraseForm value, $Res Function(PhraseForm) then) =
-      _$PhraseFormCopyWithImpl<$Res, PhraseForm>;
+abstract class $PhraseAddFormCopyWith<$Res> {
+  factory $PhraseAddFormCopyWith(
+          PhraseAddForm value, $Res Function(PhraseAddForm) then) =
+      _$PhraseAddFormCopyWithImpl<$Res, PhraseAddForm>;
   @useResult
   $Res call(
       {FormCreationStatus creationStatus,
@@ -42,9 +42,9 @@ abstract class $PhraseFormCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PhraseFormCopyWithImpl<$Res, $Val extends PhraseForm>
-    implements $PhraseFormCopyWith<$Res> {
-  _$PhraseFormCopyWithImpl(this._value, this._then);
+class _$PhraseAddFormCopyWithImpl<$Res, $Val extends PhraseAddForm>
+    implements $PhraseAddFormCopyWith<$Res> {
+  _$PhraseAddFormCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -86,11 +86,11 @@ class _$PhraseFormCopyWithImpl<$Res, $Val extends PhraseForm>
 }
 
 /// @nodoc
-abstract class _$$PhraseFormImplCopyWith<$Res>
-    implements $PhraseFormCopyWith<$Res> {
-  factory _$$PhraseFormImplCopyWith(
-          _$PhraseFormImpl value, $Res Function(_$PhraseFormImpl) then) =
-      __$$PhraseFormImplCopyWithImpl<$Res>;
+abstract class _$$PhraseAddFormImplCopyWith<$Res>
+    implements $PhraseAddFormCopyWith<$Res> {
+  factory _$$PhraseAddFormImplCopyWith(
+          _$PhraseAddFormImpl value, $Res Function(_$PhraseAddFormImpl) then) =
+      __$$PhraseAddFormImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -102,11 +102,11 @@ abstract class _$$PhraseFormImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PhraseFormImplCopyWithImpl<$Res>
-    extends _$PhraseFormCopyWithImpl<$Res, _$PhraseFormImpl>
-    implements _$$PhraseFormImplCopyWith<$Res> {
-  __$$PhraseFormImplCopyWithImpl(
-      _$PhraseFormImpl _value, $Res Function(_$PhraseFormImpl) _then)
+class __$$PhraseAddFormImplCopyWithImpl<$Res>
+    extends _$PhraseAddFormCopyWithImpl<$Res, _$PhraseAddFormImpl>
+    implements _$$PhraseAddFormImplCopyWith<$Res> {
+  __$$PhraseAddFormImplCopyWithImpl(
+      _$PhraseAddFormImpl _value, $Res Function(_$PhraseAddFormImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -118,7 +118,7 @@ class __$$PhraseFormImplCopyWithImpl<$Res>
     Object? scenesInput = null,
     Object? isValid = null,
   }) {
-    return _then(_$PhraseFormImpl(
+    return _then(_$PhraseAddFormImpl(
       creationStatus: null == creationStatus
           ? _value.creationStatus
           : creationStatus // ignore: cast_nullable_to_non_nullable
@@ -145,8 +145,8 @@ class __$$PhraseFormImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PhraseFormImpl implements _PhraseForm {
-  _$PhraseFormImpl(
+class _$PhraseAddFormImpl implements _PhraseAddForm {
+  _$PhraseAddFormImpl(
       {required this.creationStatus,
       required this.phraseInput,
       required final List<Scene>? scenes,
@@ -175,14 +175,14 @@ class _$PhraseFormImpl implements _PhraseForm {
 
   @override
   String toString() {
-    return 'PhraseForm(creationStatus: $creationStatus, phraseInput: $phraseInput, scenes: $scenes, scenesInput: $scenesInput, isValid: $isValid)';
+    return 'PhraseAddForm(creationStatus: $creationStatus, phraseInput: $phraseInput, scenes: $scenes, scenesInput: $scenesInput, isValid: $isValid)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PhraseFormImpl &&
+            other is _$PhraseAddFormImpl &&
             (identical(other.creationStatus, creationStatus) ||
                 other.creationStatus == creationStatus) &&
             (identical(other.phraseInput, phraseInput) ||
@@ -200,17 +200,17 @@ class _$PhraseFormImpl implements _PhraseForm {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PhraseFormImplCopyWith<_$PhraseFormImpl> get copyWith =>
-      __$$PhraseFormImplCopyWithImpl<_$PhraseFormImpl>(this, _$identity);
+  _$$PhraseAddFormImplCopyWith<_$PhraseAddFormImpl> get copyWith =>
+      __$$PhraseAddFormImplCopyWithImpl<_$PhraseAddFormImpl>(this, _$identity);
 }
 
-abstract class _PhraseForm implements PhraseForm {
-  factory _PhraseForm(
+abstract class _PhraseAddForm implements PhraseAddForm {
+  factory _PhraseAddForm(
       {required final FormCreationStatus creationStatus,
       required final PhraseInput phraseInput,
       required final List<Scene>? scenes,
       required final ScenesInput scenesInput,
-      required final bool isValid}) = _$PhraseFormImpl;
+      required final bool isValid}) = _$PhraseAddFormImpl;
 
   @override
   FormCreationStatus get creationStatus;
@@ -224,6 +224,6 @@ abstract class _PhraseForm implements PhraseForm {
   bool get isValid;
   @override
   @JsonKey(ignore: true)
-  _$$PhraseFormImplCopyWith<_$PhraseFormImpl> get copyWith =>
+  _$$PhraseAddFormImplCopyWith<_$PhraseAddFormImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -7,7 +7,7 @@ part of 'phrase_edit_form_controller.dart';
 // **************************************************************************
 
 String _$phraseEditFormControllerHash() =>
-    r'a169c0936483105e3bcf2def4c3dac9ed156cfac';
+    r'647ac63fdbc31553c20526585bbdf1e4b2f2258e';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,10 +31,10 @@ class _SystemHash {
 }
 
 abstract class _$PhraseEditFormController
-    extends BuildlessAutoDisposeNotifier<PhraseForm> {
+    extends BuildlessAutoDisposeNotifier<PhraseEditForm> {
   late final Phrase phrase;
 
-  PhraseForm build(
+  PhraseEditForm build(
     Phrase phrase,
   );
 }
@@ -44,7 +44,7 @@ abstract class _$PhraseEditFormController
 const phraseEditFormControllerProvider = PhraseEditFormControllerFamily();
 
 /// See also [PhraseEditFormController].
-class PhraseEditFormControllerFamily extends Family<PhraseForm> {
+class PhraseEditFormControllerFamily extends Family<PhraseEditForm> {
   /// See also [PhraseEditFormController].
   const PhraseEditFormControllerFamily();
 
@@ -83,7 +83,7 @@ class PhraseEditFormControllerFamily extends Family<PhraseForm> {
 
 /// See also [PhraseEditFormController].
 class PhraseEditFormControllerProvider extends AutoDisposeNotifierProviderImpl<
-    PhraseEditFormController, PhraseForm> {
+    PhraseEditFormController, PhraseEditForm> {
   /// See also [PhraseEditFormController].
   PhraseEditFormControllerProvider(
     Phrase phrase,
@@ -114,7 +114,7 @@ class PhraseEditFormControllerProvider extends AutoDisposeNotifierProviderImpl<
   final Phrase phrase;
 
   @override
-  PhraseForm runNotifierBuild(
+  PhraseEditForm runNotifierBuild(
     covariant PhraseEditFormController notifier,
   ) {
     return notifier.build(
@@ -139,7 +139,7 @@ class PhraseEditFormControllerProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeNotifierProviderElement<PhraseEditFormController, PhraseForm>
+  AutoDisposeNotifierProviderElement<PhraseEditFormController, PhraseEditForm>
       createElement() {
     return _PhraseEditFormControllerProviderElement(this);
   }
@@ -159,14 +159,14 @@ class PhraseEditFormControllerProvider extends AutoDisposeNotifierProviderImpl<
 }
 
 mixin PhraseEditFormControllerRef
-    on AutoDisposeNotifierProviderRef<PhraseForm> {
+    on AutoDisposeNotifierProviderRef<PhraseEditForm> {
   /// The parameter `phrase` of this provider.
   Phrase get phrase;
 }
 
 class _PhraseEditFormControllerProviderElement
     extends AutoDisposeNotifierProviderElement<PhraseEditFormController,
-        PhraseForm> with PhraseEditFormControllerRef {
+        PhraseEditForm> with PhraseEditFormControllerRef {
   _PhraseEditFormControllerProviderElement(super.provider);
 
   @override
