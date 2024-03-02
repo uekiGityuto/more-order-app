@@ -14,7 +14,7 @@ enum PhraseInputError {
 }
 
 class PhraseInput extends FormzInput<String, PhraseInputError> {
-  const PhraseInput.pure() : super.pure('');
+  const PhraseInput.pure({String value = ''}) : super.pure('');
   const PhraseInput.dirty({String value = ''}) : super.dirty(value);
 
   @override
