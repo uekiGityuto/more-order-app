@@ -7,7 +7,7 @@ part of 'phrase_edit_form_controller.dart';
 // **************************************************************************
 
 String _$phraseEditFormControllerHash() =>
-    r'647ac63fdbc31553c20526585bbdf1e4b2f2258e';
+    r'23c6a5f9367e6a379847d3ef49783a8fb8dd9e84';
 
 /// Copied from Dart SDK
 class _SystemHash {
