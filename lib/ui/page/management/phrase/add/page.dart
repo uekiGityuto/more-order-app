@@ -16,6 +16,7 @@ class PhraseAddPage extends ConsumerWidget with ErrorHandlerMixin {
   Widget build(BuildContext context, WidgetRef ref) {
     final phraseForm = ref.watch(phraseFormControllerProvider);
     final scenes = phraseForm.scenes;
+    final navigator = Navigator.of(context);
     return DefaultLayout(
       title: "フレーズ追加",
       body: phraseForm.creationStatus == FormCreationStatus.failed
@@ -97,6 +98,7 @@ class PhraseAddPage extends ConsumerWidget with ErrorHandlerMixin {
                                 action,
                                 successMessage: "追加しました",
                               );
+                              navigator.pop();
                             }
                           : null,
                       child: const Text('登録'),

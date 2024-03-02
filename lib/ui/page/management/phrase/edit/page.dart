@@ -18,6 +18,7 @@ class PhraseEditPage extends ConsumerWidget with ErrorHandlerMixin {
   Widget build(BuildContext context, WidgetRef ref) {
     final phraseForm = ref.watch(phraseEditFormControllerProvider(phrase));
     final scenes = phraseForm.scenes;
+    final navigator = Navigator.of(context);
     return DefaultLayout(
       title: "フレーズ編集",
       body: phraseForm.creationStatus == FormCreationStatus.failed
@@ -110,6 +111,7 @@ class PhraseEditPage extends ConsumerWidget with ErrorHandlerMixin {
                                 action,
                                 successMessage: "編集しました",
                               );
+                              navigator.pop();
                             }
                           : null,
                       child: const Text('編集'),
