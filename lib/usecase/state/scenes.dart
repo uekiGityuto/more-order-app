@@ -24,8 +24,9 @@ class ScenesNotifier extends _$ScenesNotifier {
     await updateState();
   }
 
-  Future<void> editPhrase(
-      Phrase phrase, List<Scene> prevScenes, List<Scene> nextScenes) async {
+  Future<void> editPhrase(Phrase phrase,
+      {required List<Scene> prevScenes,
+      required List<Scene> nextScenes}) async {
     final deletedScenes = prevScenes
         .where((prevScene) => !nextScenes.contains(prevScene))
         .toList();

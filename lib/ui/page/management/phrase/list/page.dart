@@ -6,6 +6,7 @@ import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/error_handler_mixin.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
+import 'package:smart_order_app/ui/page/management/phrase/edit/page.dart';
 import 'package:smart_order_app/ui/page/management/phrase/list/component/delete_confirmation_dialog_content.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
@@ -38,10 +39,17 @@ class PhraseListPage extends ConsumerWidget with ErrorHandlerMixin {
                           children: [
                             Flexible(
                               child: IconButton(
-                                  icon: const Icon(Icons.edit),
-                                  onPressed: () => {
-                                        // TODO:
-                                      }),
+                                icon: const Icon(Icons.edit),
+                                onPressed: () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          PhraseEditPage(phrase: phrase),
+                                    ),
+                                  ),
+                                },
+                              ),
                             ),
                             Flexible(
                               child: IconButton(
