@@ -33,29 +33,44 @@ class PhraseListPage extends ConsumerWidget with ErrorHandlerMixin {
                     (phrase) {
                       return ListTile(
                         title: Text(phrase.phrase),
-                        trailing: IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () async {
-                            action() => ref
-                                .read(scenesNotifierProvider.notifier)
-                                .deletePhrase(phrase);
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return DeleteConfirmationDialog(
-                                  content: DeleteConfirmationDialogContent(
-                                      phrase: phrase),
-                                  onPressed: () async {
-                                    execute(
-                                      context,
-                                      action,
-                                      successMessage: "削除しました",
-                                    );
-                                  },
-                                );
-                              },
-                            );
-                          },
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Flexible(
+                              child: IconButton(
+                                  icon: const Icon(Icons.edit),
+                                  onPressed: () => {
+                                        // TODO:
+                                      }),
+                            ),
+                            Flexible(
+                              child: IconButton(
+                                icon: const Icon(Icons.delete),
+                                onPressed: () async {
+                                  action() => ref
+                                      .read(scenesNotifierProvider.notifier)
+                                      .deletePhrase(phrase);
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return DeleteConfirmationDialog(
+                                        content:
+                                            DeleteConfirmationDialogContent(
+                                                phrase: phrase),
+                                        onPressed: () async {
+                                          execute(
+                                            context,
+                                            action,
+                                            successMessage: "削除しました",
+                                          );
+                                        },
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
                         ),
                         contentPadding: EdgeInsets.zero,
                         dense: true,
