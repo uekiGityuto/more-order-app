@@ -7,7 +7,7 @@ part of 'reason_add_form_controller.dart';
 // **************************************************************************
 
 String _$reasonAddFormControllerHash() =>
-    r'0438c892ba085889c81c449f4915f7cca3381b4d';
+    r'0cadd3f7502ed86a43c2107bca236cd1086d2862';
 
 /// See also [ReasonAddFormController].
 @ProviderFor(ReasonAddFormController)
