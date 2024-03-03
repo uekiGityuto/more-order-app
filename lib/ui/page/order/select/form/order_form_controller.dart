@@ -16,12 +16,14 @@ class OrderFormController extends _$OrderFormController {
       error: (e, s) => OrderForm(
         creationStatus: FormCreationStatus.failed,
         reasons: null,
+        reasonInput: null,
         scene: null,
         phrasesInput: const {},
       ),
       loading: () => OrderForm(
         creationStatus: FormCreationStatus.creating,
         reasons: null,
+        reasonInput: null,
         scene: null,
         phrasesInput: const {},
       ),
@@ -32,6 +34,7 @@ class OrderFormController extends _$OrderFormController {
           return OrderForm(
             creationStatus: FormCreationStatus.failed,
             reasons: null,
+            reasonInput: null,
             scene: null,
             phrasesInput: const {},
           );
@@ -39,6 +42,7 @@ class OrderFormController extends _$OrderFormController {
           return OrderForm(
             creationStatus: FormCreationStatus.created,
             reasons: order.reasons,
+            reasonInput: order.reasons.firstWhereOrNull((r) => r.isDefault)?.id,
             scene: scene,
             phrasesInput: {for (var phrase in scene.phrases) phrase.id: false},
           );
@@ -52,6 +56,12 @@ class OrderFormController extends _$OrderFormController {
       ..[id] = isChecked ?? false;
     state = state.copyWith(
       phrasesInput: phrasesInput,
+    );
+  }
+
+  void onChangeReason(Id? id) {
+    state = state.copyWith(
+      reasonInput: id,
     );
   }
 }

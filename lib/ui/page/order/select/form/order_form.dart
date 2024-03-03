@@ -11,6 +11,7 @@ class OrderForm with _$OrderForm {
   factory OrderForm({
     required FormCreationStatus creationStatus,
     required List<Reason>? reasons,
+    required Id? reasonInput,
     required Scene? scene,
     required Map<Id, bool> phrasesInput,
   }) = _OrderForm;

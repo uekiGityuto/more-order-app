@@ -7,7 +7,7 @@ part of 'order_form_controller.dart';
 // **************************************************************************
 
 String _$orderFormControllerHash() =>
-    r'98847d7eb61a6813387568f9aaa1dd36ba50d2fb';
+    r'17584f213e5a5a7a566fc0d56aeb26a8e0d7f679';
 
 /// Copied from Dart SDK
 class _SystemHash {
