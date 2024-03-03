@@ -19,7 +19,7 @@ class SceneAddPage extends ConsumerWidget with ErrorHandlerMixin {
         Expanded(
           child: Column(
             children: [
-              TextField(
+              TextFormField(
                 decoration: const InputDecoration(
                   hintText: '場面を入力してください',
                 ),

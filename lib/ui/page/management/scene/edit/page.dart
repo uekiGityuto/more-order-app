@@ -52,7 +52,7 @@ class SceneEditPage extends ConsumerWidget with ErrorHandlerMixin {
                   navigator.pop();
                 }
               : null,
-          child: const Text('編集'),
+          child: const Text('確定'),
         ),
       ]),
     );

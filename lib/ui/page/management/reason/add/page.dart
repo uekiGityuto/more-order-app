@@ -19,7 +19,7 @@ class ReasonAddPage extends ConsumerWidget with ErrorHandlerMixin {
         Expanded(
           child: Column(
             children: [
-              TextField(
+              TextFormField(
                 decoration: const InputDecoration(
                   hintText: '理由を入力してください',
                 ),
