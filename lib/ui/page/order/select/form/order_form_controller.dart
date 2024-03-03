@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
 import 'package:smart_order_app/ui/form/form_creation_status.dart';
 import 'package:smart_order_app/ui/page/order/select/form/order_form.dart';
-import 'package:smart_order_app/usecase/state/scenes.dart';
+import 'package:smart_order_app/usecase/state/order.dart';
 
 part 'order_form_controller.g.dart';
 
@@ -11,30 +11,34 @@ part 'order_form_controller.g.dart';
 class OrderFormController extends _$OrderFormController {
   @override
   OrderForm build(String sceneName) {
-    final scenesFuture = ref.watch(scenesNotifierProvider);
-    return scenesFuture.when(
+    final orderFuture = ref.watch(orderProvider);
+    return orderFuture.when(
       error: (e, s) => OrderForm(
         creationStatus: FormCreationStatus.failed,
+        reasons: null,
         scene: null,
         phrasesInput: const {},
       ),
       loading: () => OrderForm(
         creationStatus: FormCreationStatus.creating,
+        reasons: null,
         scene: null,
         phrasesInput: const {},
       ),
-      data: (scenes) {
+      data: (order) {
         final scene =
-            scenes.firstWhereOrNull((scene) => scene.scene == sceneName);
+            order.scenes.firstWhereOrNull((scene) => scene.scene == sceneName);
         if (scene == null) {
           return OrderForm(
             creationStatus: FormCreationStatus.failed,
+            reasons: null,
             scene: null,
             phrasesInput: const {},
           );
         } else {
           return OrderForm(
             creationStatus: FormCreationStatus.created,
+            reasons: order.reasons,
             scene: scene,
             phrasesInput: {for (var phrase in scene.phrases) phrase.id: false},
           );

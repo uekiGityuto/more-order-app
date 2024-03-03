@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$OrderForm {
   FormCreationStatus get creationStatus => throw _privateConstructorUsedError;
+  List<Reason>? get reasons => throw _privateConstructorUsedError;
   Scene? get scene => throw _privateConstructorUsedError;
   Map<Id, bool> get phrasesInput => throw _privateConstructorUsedError;
 
@@ -32,6 +33,7 @@ abstract class $OrderFormCopyWith<$Res> {
   @useResult
   $Res call(
       {FormCreationStatus creationStatus,
+      List<Reason>? reasons,
       Scene? scene,
       Map<Id, bool> phrasesInput});
 
@@ -52,6 +54,7 @@ class _$OrderFormCopyWithImpl<$Res, $Val extends OrderForm>
   @override
   $Res call({
     Object? creationStatus = null,
+    Object? reasons = freezed,
     Object? scene = freezed,
     Object? phrasesInput = null,
   }) {
@@ -60,6 +63,10 @@ class _$OrderFormCopyWithImpl<$Res, $Val extends OrderForm>
           ? _value.creationStatus
           : creationStatus // ignore: cast_nullable_to_non_nullable
               as FormCreationStatus,
+      reasons: freezed == reasons
+          ? _value.reasons
+          : reasons // ignore: cast_nullable_to_non_nullable
+              as List<Reason>?,
       scene: freezed == scene
           ? _value.scene
           : scene // ignore: cast_nullable_to_non_nullable
@@ -94,6 +101,7 @@ abstract class _$$OrderFormImplCopyWith<$Res>
   @useResult
   $Res call(
       {FormCreationStatus creationStatus,
+      List<Reason>? reasons,
       Scene? scene,
       Map<Id, bool> phrasesInput});
 
@@ -113,6 +121,7 @@ class __$$OrderFormImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? creationStatus = null,
+    Object? reasons = freezed,
     Object? scene = freezed,
     Object? phrasesInput = null,
   }) {
@@ -121,6 +130,10 @@ class __$$OrderFormImplCopyWithImpl<$Res>
           ? _value.creationStatus
           : creationStatus // ignore: cast_nullable_to_non_nullable
               as FormCreationStatus,
+      reasons: freezed == reasons
+          ? _value._reasons
+          : reasons // ignore: cast_nullable_to_non_nullable
+              as List<Reason>?,
       scene: freezed == scene
           ? _value.scene
           : scene // ignore: cast_nullable_to_non_nullable
@@ -138,12 +151,24 @@ class __$$OrderFormImplCopyWithImpl<$Res>
 class _$OrderFormImpl implements _OrderForm {
   _$OrderFormImpl(
       {required this.creationStatus,
+      required final List<Reason>? reasons,
       required this.scene,
       required final Map<Id, bool> phrasesInput})
-      : _phrasesInput = phrasesInput;
+      : _reasons = reasons,
+        _phrasesInput = phrasesInput;
 
   @override
   final FormCreationStatus creationStatus;
+  final List<Reason>? _reasons;
+  @override
+  List<Reason>? get reasons {
+    final value = _reasons;
+    if (value == null) return null;
+    if (_reasons is EqualUnmodifiableListView) return _reasons;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final Scene? scene;
   final Map<Id, bool> _phrasesInput;
@@ -156,7 +181,7 @@ class _$OrderFormImpl implements _OrderForm {
 
   @override
   String toString() {
-    return 'OrderForm(creationStatus: $creationStatus, scene: $scene, phrasesInput: $phrasesInput)';
+    return 'OrderForm(creationStatus: $creationStatus, reasons: $reasons, scene: $scene, phrasesInput: $phrasesInput)';
   }
 
   @override
@@ -166,13 +191,18 @@ class _$OrderFormImpl implements _OrderForm {
             other is _$OrderFormImpl &&
             (identical(other.creationStatus, creationStatus) ||
                 other.creationStatus == creationStatus) &&
+            const DeepCollectionEquality().equals(other._reasons, _reasons) &&
             (identical(other.scene, scene) || other.scene == scene) &&
             const DeepCollectionEquality()
                 .equals(other._phrasesInput, _phrasesInput));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, creationStatus, scene,
+  int get hashCode => Object.hash(
+      runtimeType,
+      creationStatus,
+      const DeepCollectionEquality().hash(_reasons),
+      scene,
       const DeepCollectionEquality().hash(_phrasesInput));
 
   @JsonKey(ignore: true)
@@ -185,11 +215,14 @@ class _$OrderFormImpl implements _OrderForm {
 abstract class _OrderForm implements OrderForm {
   factory _OrderForm(
       {required final FormCreationStatus creationStatus,
+      required final List<Reason>? reasons,
       required final Scene? scene,
       required final Map<Id, bool> phrasesInput}) = _$OrderFormImpl;
 
   @override
   FormCreationStatus get creationStatus;
+  @override
+  List<Reason>? get reasons;
   @override
   Scene? get scene;
   @override

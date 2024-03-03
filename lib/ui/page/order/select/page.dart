@@ -17,11 +17,12 @@ class OrderSelectPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final orderForm = ref.watch(orderFormControllerProvider(sceneName));
     final scene = orderForm.scene;
+    final reasons = orderForm.reasons;
     return DefaultLayout(
       title: sceneName,
       body: orderForm.creationStatus == FormCreationStatus.failed
           ? const ErrorMessage()
-          : scene == null
+          : scene == null || reasons == null
               ? const Loader()
               : Column(
                   children: [
