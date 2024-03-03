@@ -20,7 +20,7 @@ class PhraseInput extends FormzInput<String, PhraseInputError> {
   @override
   PhraseInputError? validator(String value) {
     if (value.isEmpty) return PhraseInputError.empty;
-    if (value.length >= 30) return PhraseInputError.tooLonger;
+    if (value.length >= phraseLengthLimit) return PhraseInputError.tooLonger;
     return null;
   }
 }

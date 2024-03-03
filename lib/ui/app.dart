@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/constants.dart';
-import 'package:smart_order_app/ui/style/theme.dart';
 import 'package:smart_order_app/ui/page/order/select/page.dart';
+import 'package:smart_order_app/ui/style/theme.dart';
 
 class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
@@ -16,9 +16,10 @@ class App extends ConsumerWidget {
         appBarTheme: AppBarTheme(
             backgroundColor: MaterialTheme.lightScheme().primaryContainer),
         colorScheme: ColorScheme.fromSeed(
-            seedColor: MaterialTheme.lightScheme().primary,
-            error: MaterialTheme.lightScheme().error,
-            surface: MaterialTheme.lightScheme().surface),
+          seedColor: MaterialTheme.lightScheme().primary,
+          error: MaterialTheme.lightScheme().error,
+          surface: MaterialTheme.lightScheme().surface,
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: MaterialTheme.lightScheme().primary,
@@ -34,6 +35,10 @@ class App extends ConsumerWidget {
             ),
           ),
         ),
+        inputDecorationTheme: InputDecorationTheme(
+          fillColor: MaterialTheme.lightScheme().surface,
+          filled: true,
+        ),
         useMaterial3: true,
       ),
       // TODO: darkThemeはいらないかも
@@ -41,9 +46,10 @@ class App extends ConsumerWidget {
         appBarTheme: AppBarTheme(
             backgroundColor: MaterialTheme.darkScheme().primaryContainer),
         colorScheme: ColorScheme.fromSeed(
-            seedColor: MaterialTheme.darkScheme().primary,
-            error: MaterialTheme.darkScheme().error,
-            surface: MaterialTheme.darkScheme().surface),
+          seedColor: MaterialTheme.darkScheme().primary,
+          error: MaterialTheme.darkScheme().error,
+          surface: MaterialTheme.darkScheme().surface,
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: MaterialTheme.darkScheme().primary,
@@ -58,6 +64,10 @@ class App extends ConsumerWidget {
               borderRadius: BorderRadius.circular(20),
             ),
           ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          fillColor: MaterialTheme.darkScheme().surface,
+          filled: true,
         ),
         useMaterial3: true,
       ),

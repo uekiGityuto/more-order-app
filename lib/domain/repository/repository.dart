@@ -17,7 +17,8 @@ abstract interface class Repository {
       {required List<Scene> deletedScenes, required List<Scene> addedScenes});
   Future<void> deletePhrase(Phrase phrase);
 
-  Future<List<Reason>> getReasonList();
+  Future<List<Reason>> getReasons();
+  Future<Reason?> getDefaultReason();
   Future<void> addReason(String reason, bool isDefault);
   Future<void> updateReason(Reason reason);
   Future<void> deleteReason(Reason reason);

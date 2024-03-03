@@ -19,7 +19,7 @@ class SceneInput extends FormzInput<String, SceneInputError> {
   @override
   SceneInputError? validator(String value) {
     if (value.isEmpty) return SceneInputError.empty;
-    if (value.length >= 30) return SceneInputError.tooLonger;
+    if (value.length >= sceneLengthLimit) return SceneInputError.tooLonger;
     return null;
   }
 }

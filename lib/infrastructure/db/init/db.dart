@@ -17,7 +17,7 @@ class DB {
 
   static Future<Database> open() async {
     final path = join(await getDatabasesPath(), 'smart_order.db');
-    await _deleteDB(path);
+    // await _deleteDB(path);
     final db = await openDatabase(path,
         version: _version,
         onConfigure: _onConfigure, onCreate: (db, version) async {

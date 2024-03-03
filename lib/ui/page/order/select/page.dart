@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
 import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
+import 'package:smart_order_app/ui/component/simple_checkbox_list_tile.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/ui/page/order/display/page.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
@@ -37,7 +38,7 @@ class OrderSelectPage extends HookConsumerWidget {
                 child: ListView(
                   children: scene.phrases.map(
                     (phrase) {
-                      return CheckboxListTile(
+                      return SimpleCheckboxListTile(
                         value: checkedStates.value[phrase.id],
                         onChanged: (bool? newValue) {
                           final newCheckedStates =
@@ -45,9 +46,7 @@ class OrderSelectPage extends HookConsumerWidget {
                                 ..[phrase.id] = newValue ?? false;
                           checkedStates.value = newCheckedStates;
                         },
-                        title: Text(phrase.phrase),
-                        contentPadding: EdgeInsets.zero,
-                        dense: true,
+                        title: phrase.phrase,
                       );
                     },
                   ).toList(),
