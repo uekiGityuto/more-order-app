@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
@@ -82,6 +83,8 @@ class OrderSelectPage extends ConsumerWidget {
                           MaterialPageRoute(
                             builder: (context) => OrderDisplayPage(
                               sceneName: sceneName,
+                              reason: orderForm.reasons?.firstWhereOrNull(
+                                  (r) => r.id == orderForm.reasonInput),
                               phrases: scene.phrases
                                   .where((p) =>
                                       orderForm.phrasesInput[p.id] == true)
