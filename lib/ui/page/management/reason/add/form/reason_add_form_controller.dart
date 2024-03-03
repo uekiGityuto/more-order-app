@@ -1,15 +1,15 @@
 import 'package:formz/formz.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:smart_order_app/ui/page/management/reason/add/form/add_reason_form.dart';
+import 'package:smart_order_app/ui/page/management/reason/add/form/reason_add_form.dart';
 import 'package:smart_order_app/ui/page/management/reason/form/reason_validation.dart';
 
-part 'add_reason_form_controller.g.dart';
+part 'reason_add_form_controller.g.dart';
 
 @riverpod
-class AddReasonFormController extends _$AddReasonFormController {
+class ReasonAddFormController extends _$ReasonAddFormController {
   @override
-  AddReasonForm build() {
-    return AddReasonForm(
+  ReasonAddForm build() {
+    return ReasonAddForm(
       reasonInput: const ReasonInput.pure(),
       isDefault: false,
       isValid: false,

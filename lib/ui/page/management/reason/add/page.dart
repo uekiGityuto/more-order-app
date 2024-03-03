@@ -4,7 +4,7 @@ import 'package:smart_order_app/ui/component/form_error_message.dart';
 import 'package:smart_order_app/ui/component/simple_checkbox_list_tile.dart';
 import 'package:smart_order_app/ui/error_handler_mixin.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
-import 'package:smart_order_app/ui/page/management/reason/add/form/add_reason_form_controller.dart';
+import 'package:smart_order_app/ui/page/management/reason/add/form/reason_add_form_controller.dart';
 import 'package:smart_order_app/usecase/state/reasons.dart';
 
 class ReasonAddPage extends ConsumerWidget with ErrorHandlerMixin {
@@ -12,7 +12,7 @@ class ReasonAddPage extends ConsumerWidget with ErrorHandlerMixin {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final reasonForm = ref.watch(addReasonFormControllerProvider);
+    final reasonForm = ref.watch(reasonAddFormControllerProvider);
     final navigator = Navigator.of(context);
     return DefaultLayout(
       title: "理由登録",
@@ -27,7 +27,7 @@ class ReasonAddPage extends ConsumerWidget with ErrorHandlerMixin {
                       hintText: '理由を入力してください',
                     ),
                     onChanged: ref
-                        .read(addReasonFormControllerProvider.notifier)
+                        .read(reasonAddFormControllerProvider.notifier)
                         .onChangeReason,
                   ),
                   FormErrorMessage(
@@ -43,7 +43,7 @@ class ReasonAddPage extends ConsumerWidget with ErrorHandlerMixin {
                 value: reasonForm.isDefault,
                 onChanged: (bool? newValue) {
                   ref
-                      .read(addReasonFormControllerProvider.notifier)
+                      .read(reasonAddFormControllerProvider.notifier)
                       .onChangeIsDefault(newValue);
                 },
                 title: "デフォルトとして登録",
