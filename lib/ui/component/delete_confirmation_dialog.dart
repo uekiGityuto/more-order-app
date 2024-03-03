@@ -14,22 +14,20 @@ class DeleteConfirmationDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void closeDialog() {
-      Navigator.of(context, rootNavigator: true).pop();
-    }
+    final navigator = Navigator.of(context, rootNavigator: true);
 
     return AlertDialog(
       title: Text(title),
       content: content,
       actions: [
         TextButton(
-          onPressed: closeDialog,
+          onPressed: navigator.pop,
           child: const Text('キャンセル'),
         ),
         TextButton(
           onPressed: () async {
             await onPressed();
-            closeDialog();
+            navigator.pop();
           },
           child: const Text('削除'),
         ),

@@ -22,7 +22,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(title),
       actions: actions,
       automaticallyImplyLeading: automaticallyImplyLeading,
-      centerTitle: centerTitle, // この行を追加
+      centerTitle: centerTitle,
       leading: leading ??
           (Navigator.canPop(context)
               ? IconButton(

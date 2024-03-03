@@ -12,8 +12,9 @@ class SceneAddPage extends ConsumerWidget with ErrorHandlerMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sceneForm = ref.watch(addSceneFormControllerProvider);
+    final navigator = Navigator.of(context);
     return DefaultLayout(
-      title: "場面追加",
+      title: "場面登録",
       body: Column(children: [
         Expanded(
           child: Column(
@@ -41,8 +42,9 @@ class SceneAddPage extends ConsumerWidget with ErrorHandlerMixin {
                   await execute(
                     context,
                     action,
-                    successMessage: "追加しました",
+                    successMessage: "登録しました",
                   );
+                  navigator.pop();
                 }
               : null,
           child: const Text('登録'),
