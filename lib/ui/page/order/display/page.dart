@@ -14,7 +14,7 @@ class OrderDisplayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final reasonMessage = reason?.reason;
+    final reasonText = reason?.reason;
     return DefaultLayout(
       title: sceneName,
       body: Column(
@@ -22,7 +22,7 @@ class OrderDisplayPage extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                if (reasonMessage != null) ReasonField(reason: reasonMessage),
+                if (reasonText != null) ReasonField(reason: reasonText),
                 const SizedBox(
                   height: 24,
                 ),
