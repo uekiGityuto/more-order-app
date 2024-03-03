@@ -184,17 +184,41 @@ class DAO implements Repository {
     await _deleteById("phrases", id: phrase.id);
   }
 
-  // TODO: デフォルトを一番上にする
   @override
-  Future<List<Reason>> getReasonList() async {
-    List<Map<String, dynamic>> results = await db.query("reasons");
-    return results.map((r) => ReasonDTO.fromJson(r).toEntity()).toList();
+  Future<List<Reason>> getReasons() async {
+    List<Map<String, dynamic>> result =
+        await db.query("reasons", orderBy: "is_default DESC");
+    return result.map((r) => ReasonDTO.fromJson(r).toEntity()).toList();
   }
 
-  // TODO: 既にデフォルトがある場合はデフォルトを追加できないようにする
+  @override
+  Future<Reason?> getDefaultReason() async {
+    List<Map<String, dynamic>> result = await db.query(
+      "reasons",
+      where: "is_default = ?",
+      whereArgs: [1],
+    );
+    if (result.isEmpty) {
+      return null;
+    } else {
+      return ReasonDTO.fromJson(result.first).toEntity();
+    }
+  }
+
+  // TODO: トランザクション
   @override
   Future<void> addReason(String reason, bool isDefault) async {
     try {
+      if (isDefault) {
+        final existingDefaultReason = await getDefaultReason();
+        if (existingDefaultReason != null) {
+          await _updateById(
+            "reasons",
+            {"is_default": 0},
+            id: existingDefaultReason.id,
+          );
+        }
+      }
       await _add(
         "reasons",
         {"reason": reason, "is_default": isDefault ? 1 : 0},
@@ -207,10 +231,20 @@ class DAO implements Repository {
     }
   }
 
-  // TODO: 既にデフォルトがある場合はデフォルトに変更できないようにする
+  // TODO: トランザクション
   @override
   Future<void> updateReason(Reason reason) async {
     try {
+      if (reason.isDefault) {
+        final existingDefaultReason = await getDefaultReason();
+        if (existingDefaultReason != null) {
+          await _updateById(
+            "reasons",
+            {"is_default": 0},
+            id: existingDefaultReason.id,
+          );
+        }
+      }
       await _updateById(
         "reasons",
         {"reason": reason.reason, "is_default": reason.isDefault ? 1 : 0},
