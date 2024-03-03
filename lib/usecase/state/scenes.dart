@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:smart_order_app/domain/entity/phrase.dart';
 import 'package:smart_order_app/domain/entity/scene.dart';
+import 'package:smart_order_app/domain/errors/error.dart';
 import 'package:smart_order_app/domain/repository/repository.dart';
 
 part 'scenes.g.dart';
@@ -48,6 +49,24 @@ class ScenesNotifier extends _$ScenesNotifier {
   Future<void> addScene(String scene) async {
     final repository = ref.read(repositoryProvider);
     await repository.addScene(scene);
+    await updateState();
+  }
+
+  Future<void> editScene(Scene scene) async {
+    if (scene.isDefault) {
+      throw const DomainException(ErrorType.defaultSceneEdit);
+    }
+    final repository = ref.read(repositoryProvider);
+    await repository.updateScene(scene);
+    await updateState();
+  }
+
+  Future<void> deleteScene(Scene scene) async {
+    if (scene.isDefault) {
+      throw const DomainException(ErrorType.defaultSceneDelete);
+    }
+    final repository = ref.read(repositoryProvider);
+    await repository.deleteScene(scene);
     await updateState();
   }
 }
