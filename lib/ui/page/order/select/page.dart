@@ -35,37 +35,31 @@ class OrderSelectPage extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text("◼️理由"),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFECE8D5),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                padding: const EdgeInsets.fromLTRB(
-                                    8.0, 4.0, 8.0, 4.0),
-                                child: DropdownButton<Id?>(
-                                  value: orderForm.reasonInput,
-                                  isExpanded: true,
-                                  onChanged: (Id? newValue) {
-                                    ref
-                                        .read(orderFormControllerProvider(
-                                                sceneName)
-                                            .notifier)
-                                        .onChangeReason(newValue);
-                                  },
-                                  items: [
-                                    const DropdownMenuItem<Id?>(
-                                      value: null,
-                                      child: Text("選択して下さい。"),
-                                    ),
-                                    ...reasons.map<DropdownMenuItem<Id?>>(
-                                        (Reason reason) {
-                                      return DropdownMenuItem<Id?>(
-                                        value: reason.id,
-                                        child: Text(reason.reason),
-                                      );
-                                    }).toList(),
-                                  ],
-                                ),
+                              DropdownButtonFormField<Id?>(
+                                value: orderForm.reasonInput,
+                                isExpanded: true,
+                                iconSize: 32,
+                                elevation: 16,
+                                onChanged: (Id? newValue) {
+                                  ref
+                                      .read(
+                                          orderFormControllerProvider(sceneName)
+                                              .notifier)
+                                      .onChangeReason(newValue);
+                                },
+                                items: [
+                                  const DropdownMenuItem<Id?>(
+                                    value: null,
+                                    child: Text("表示しない"),
+                                  ),
+                                  ...reasons.map<DropdownMenuItem<Id?>>(
+                                      (Reason reason) {
+                                    return DropdownMenuItem<Id?>(
+                                      value: reason.id,
+                                      child: Text(reason.reason),
+                                    );
+                                  }).toList(),
+                                ],
                               ),
                             ],
                           ),
