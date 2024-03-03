@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'edit_scene_form_controller.dart';
+part of 'scene_edit_form_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$editSceneFormControllerHash() =>
-    r'0fa4596eaba491f50e1fc7620d2413f016bec7dc';
+String _$sceneEditFormControllerHash() =>
+    r'dd872ccd3f593581270647418cc0bbd24eceff21';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,36 +30,36 @@ class _SystemHash {
   }
 }
 
-abstract class _$EditSceneFormController
-    extends BuildlessAutoDisposeNotifier<EditSceneForm> {
+abstract class _$SceneEditFormController
+    extends BuildlessAutoDisposeNotifier<SceneEditForm> {
   late final Scene scene;
 
-  EditSceneForm build(
+  SceneEditForm build(
     Scene scene,
   );
 }
 
-/// See also [EditSceneFormController].
-@ProviderFor(EditSceneFormController)
-const editSceneFormControllerProvider = EditSceneFormControllerFamily();
+/// See also [SceneEditFormController].
+@ProviderFor(SceneEditFormController)
+const sceneEditFormControllerProvider = SceneEditFormControllerFamily();
 
-/// See also [EditSceneFormController].
-class EditSceneFormControllerFamily extends Family<EditSceneForm> {
-  /// See also [EditSceneFormController].
-  const EditSceneFormControllerFamily();
+/// See also [SceneEditFormController].
+class SceneEditFormControllerFamily extends Family<SceneEditForm> {
+  /// See also [SceneEditFormController].
+  const SceneEditFormControllerFamily();
 
-  /// See also [EditSceneFormController].
-  EditSceneFormControllerProvider call(
+  /// See also [SceneEditFormController].
+  SceneEditFormControllerProvider call(
     Scene scene,
   ) {
-    return EditSceneFormControllerProvider(
+    return SceneEditFormControllerProvider(
       scene,
     );
   }
 
   @override
-  EditSceneFormControllerProvider getProviderOverride(
-    covariant EditSceneFormControllerProvider provider,
+  SceneEditFormControllerProvider getProviderOverride(
+    covariant SceneEditFormControllerProvider provider,
   ) {
     return call(
       provider.scene,
@@ -78,30 +78,30 @@ class EditSceneFormControllerFamily extends Family<EditSceneForm> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'editSceneFormControllerProvider';
+  String? get name => r'sceneEditFormControllerProvider';
 }
 
-/// See also [EditSceneFormController].
-class EditSceneFormControllerProvider extends AutoDisposeNotifierProviderImpl<
-    EditSceneFormController, EditSceneForm> {
-  /// See also [EditSceneFormController].
-  EditSceneFormControllerProvider(
+/// See also [SceneEditFormController].
+class SceneEditFormControllerProvider extends AutoDisposeNotifierProviderImpl<
+    SceneEditFormController, SceneEditForm> {
+  /// See also [SceneEditFormController].
+  SceneEditFormControllerProvider(
     Scene scene,
   ) : this._internal(
-          () => EditSceneFormController()..scene = scene,
-          from: editSceneFormControllerProvider,
-          name: r'editSceneFormControllerProvider',
+          () => SceneEditFormController()..scene = scene,
+          from: sceneEditFormControllerProvider,
+          name: r'sceneEditFormControllerProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$editSceneFormControllerHash,
-          dependencies: EditSceneFormControllerFamily._dependencies,
+                  : _$sceneEditFormControllerHash,
+          dependencies: SceneEditFormControllerFamily._dependencies,
           allTransitiveDependencies:
-              EditSceneFormControllerFamily._allTransitiveDependencies,
+              SceneEditFormControllerFamily._allTransitiveDependencies,
           scene: scene,
         );
 
-  EditSceneFormControllerProvider._internal(
+  SceneEditFormControllerProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -114,8 +114,8 @@ class EditSceneFormControllerProvider extends AutoDisposeNotifierProviderImpl<
   final Scene scene;
 
   @override
-  EditSceneForm runNotifierBuild(
-    covariant EditSceneFormController notifier,
+  SceneEditForm runNotifierBuild(
+    covariant SceneEditFormController notifier,
   ) {
     return notifier.build(
       scene,
@@ -123,10 +123,10 @@ class EditSceneFormControllerProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  Override overrideWith(EditSceneFormController Function() create) {
+  Override overrideWith(SceneEditFormController Function() create) {
     return ProviderOverride(
       origin: this,
-      override: EditSceneFormControllerProvider._internal(
+      override: SceneEditFormControllerProvider._internal(
         () => create()..scene = scene,
         from: from,
         name: null,
@@ -139,14 +139,14 @@ class EditSceneFormControllerProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeNotifierProviderElement<EditSceneFormController, EditSceneForm>
+  AutoDisposeNotifierProviderElement<SceneEditFormController, SceneEditForm>
       createElement() {
-    return _EditSceneFormControllerProviderElement(this);
+    return _SceneEditFormControllerProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is EditSceneFormControllerProvider && other.scene == scene;
+    return other is SceneEditFormControllerProvider && other.scene == scene;
   }
 
   @override
@@ -158,19 +158,19 @@ class EditSceneFormControllerProvider extends AutoDisposeNotifierProviderImpl<
   }
 }
 
-mixin EditSceneFormControllerRef
-    on AutoDisposeNotifierProviderRef<EditSceneForm> {
+mixin SceneEditFormControllerRef
+    on AutoDisposeNotifierProviderRef<SceneEditForm> {
   /// The parameter `scene` of this provider.
   Scene get scene;
 }
 
-class _EditSceneFormControllerProviderElement
-    extends AutoDisposeNotifierProviderElement<EditSceneFormController,
-        EditSceneForm> with EditSceneFormControllerRef {
-  _EditSceneFormControllerProviderElement(super.provider);
+class _SceneEditFormControllerProviderElement
+    extends AutoDisposeNotifierProviderElement<SceneEditFormController,
+        SceneEditForm> with SceneEditFormControllerRef {
+  _SceneEditFormControllerProviderElement(super.provider);
 
   @override
-  Scene get scene => (origin as EditSceneFormControllerProvider).scene;
+  Scene get scene => (origin as SceneEditFormControllerProvider).scene;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
