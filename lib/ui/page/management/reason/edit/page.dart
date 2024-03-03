@@ -54,19 +54,24 @@ class ReasonEditPage extends ConsumerWidget with ErrorHandlerMixin {
               const SizedBox(
                 height: 24,
               ),
-              SimpleCheckboxListTile(
-                value: reasonForm.isDefault,
-                onChanged: (bool? newValue) {
-                  ref
-                      .read(reasonEditFormControllerProvider(reason).notifier)
-                      .onChangeIsDefault(newValue);
-                },
-                title: "デフォルトとして登録",
-              ),
-              FormAdditionalMessage(
-                message: getIsDefaultAdditionalMessage(
-                    existingIsDefault: reason.isDefault,
-                    isDefault: reasonForm.isDefault),
+              Column(
+                children: [
+                  SimpleCheckboxListTile(
+                    value: reasonForm.isDefault,
+                    onChanged: (bool? newValue) {
+                      ref
+                          .read(
+                              reasonEditFormControllerProvider(reason).notifier)
+                          .onChangeIsDefault(newValue);
+                    },
+                    title: "デフォルトとして登録",
+                  ),
+                  FormAdditionalMessage(
+                    message: getIsDefaultAdditionalMessage(
+                        existingIsDefault: reason.isDefault,
+                        isDefault: reasonForm.isDefault),
+                  ),
+                ],
               ),
             ],
           ),
