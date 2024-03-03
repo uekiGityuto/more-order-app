@@ -1,77 +1,67 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:smart_order_app/domain/valueObject/id.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/simple_checkbox_list_tile.dart';
+import 'package:smart_order_app/ui/form/form_creation_status.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/ui/page/order/display/page.dart';
-import 'package:smart_order_app/usecase/state/scenes.dart';
+import 'package:smart_order_app/ui/page/order/select/form/order_form_controller.dart';
 
-class OrderSelectPage extends HookConsumerWidget {
+class OrderSelectPage extends ConsumerWidget {
   final String sceneName;
 
   const OrderSelectPage({Key? key, required this.sceneName}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final scenesFuture = ref.watch(scenesNotifierProvider);
+    final orderForm = ref.watch(orderFormControllerProvider(sceneName));
+    final scene = orderForm.scene;
     return DefaultLayout(
       title: sceneName,
-      body: scenesFuture.when(
-        error: (e, s) => const ErrorMessage(),
-        loading: () => const Loader(),
-        data: (scenes) {
-          final scene =
-              scenes.firstWhereOrNull((scene) => scene.scene == sceneName);
-          if (scene == null) {
-            return const ErrorMessage();
-          }
-          final checkedStates = useState<Map<Id, bool>>(
-            {for (var phrase in scene.phrases) phrase.id: false},
-          );
-          return Column(
-            children: [
-              Expanded(
-                child: ListView(
-                  children: scene.phrases.map(
-                    (phrase) {
-                      return SimpleCheckboxListTile(
-                        value: checkedStates.value[phrase.id],
-                        onChanged: (bool? newValue) {
-                          final newCheckedStates =
-                              Map<Id, bool>.from(checkedStates.value)
-                                ..[phrase.id] = newValue ?? false;
-                          checkedStates.value = newCheckedStates;
-                        },
-                        title: phrase.phrase,
-                      );
-                    },
-                  ).toList(),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => OrderDisplayPage(
-                        sceneName: sceneName,
-                        phrases: scene.phrases
-                            .where((p) => checkedStates.value[p.id] == true)
-                            .toList(),
+      body: orderForm.creationStatus == FormCreationStatus.failed
+          ? const ErrorMessage()
+          : scene == null
+              ? const Loader()
+              : Column(
+                  children: [
+                    Expanded(
+                      child: ListView(
+                        children: scene.phrases.map(
+                          (phrase) {
+                            return SimpleCheckboxListTile(
+                              value: orderForm.phrasesInput[phrase.id],
+                              onChanged: (bool? newValue) {
+                                ref
+                                    .read(orderFormControllerProvider(sceneName)
+                                        .notifier)
+                                    .onChangePhrases(phrase.id, newValue);
+                              },
+                              title: phrase.phrase,
+                            );
+                          },
+                        ).toList(),
                       ),
                     ),
-                  );
-                },
-                child: const Text('OK'),
-              ),
-            ],
-          );
-        },
-      ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OrderDisplayPage(
+                              sceneName: sceneName,
+                              phrases: scene.phrases
+                                  .where((p) =>
+                                      orderForm.phrasesInput[p.id] == true)
+                                  .toList(),
+                            ),
+                          ),
+                        );
+                      },
+                      child: const Text('OK'),
+                    ),
+                  ],
+                ),
     );
   }
 }
