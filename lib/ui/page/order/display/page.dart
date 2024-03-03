@@ -32,7 +32,15 @@ class OrderDisplay extends StatelessWidget {
             const SizedBox(
               height: 24,
             ),
-            const Text("お願いします"),
+            const TextField(
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                decoration: InputDecoration(
+                  hintText: '文字を入力できます',
+                  fillColor: Color.fromARGB(255, 240, 233, 172),
+                  filled: true,
+                  border: OutlineInputBorder(),
+                )),
           ],
         ),
       ),
