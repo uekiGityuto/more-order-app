@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SimpleCheckboxListTile extends StatelessWidget {
   final bool? value;
   final void Function(bool?)? onChanged;
-  final Widget title;
+  final String title;
   final Color? tileColor;
   final bool? dense;
 
@@ -21,7 +21,7 @@ class SimpleCheckboxListTile extends StatelessWidget {
     return CheckboxListTile(
         value: value,
         onChanged: onChanged,
-        title: title,
+        title: Text(title),
         tileColor: tileColor ?? Theme.of(context).colorScheme.surface,
         dense: dense);
   }

@@ -18,10 +18,19 @@ class AddReasonFormController extends _$AddReasonFormController {
 
   void onChangeReason(String value) {
     final reasonInput = ReasonInput.dirty(value: value);
+    print(reasonInput.isValid);
     state = state.copyWith(
         reasonInput: reasonInput,
         isValid: Formz.validate([
           reasonInput,
+        ]));
+  }
+
+  void onChangeIsDefault(bool? value) {
+    state = state.copyWith(
+        isDefault: value ?? false,
+        isValid: Formz.validate([
+          state.reasonInput,
         ]));
   }
 }

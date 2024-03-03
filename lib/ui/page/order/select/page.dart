@@ -46,7 +46,7 @@ class OrderSelectPage extends HookConsumerWidget {
                                 ..[phrase.id] = newValue ?? false;
                           checkedStates.value = newCheckedStates;
                         },
-                        title: Text(phrase.phrase),
+                        title: phrase.phrase,
                       );
                     },
                   ).toList(),

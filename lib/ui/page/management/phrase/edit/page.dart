@@ -48,7 +48,7 @@ class PhraseEditPage extends ConsumerWidget with ErrorHandlerMixin {
                                                   .notifier)
                                           .onChangeScenes(scene.id, newValue);
                                     },
-                                    title: Text(scene.scene),
+                                    title: scene.scene,
                                   );
                                 },
                               ).toList(),
