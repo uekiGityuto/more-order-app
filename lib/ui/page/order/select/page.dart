@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:smart_order_app/domain/entity/reason.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
 import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
@@ -8,6 +7,7 @@ import 'package:smart_order_app/ui/component/simple_checkbox_list_tile.dart';
 import 'package:smart_order_app/ui/form/form_creation_status.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/ui/page/order/display/page.dart';
+import 'package:smart_order_app/ui/page/order/select/component/reason_select_form.dart';
 import 'package:smart_order_app/ui/page/order/select/form/order_form_controller.dart';
 
 class OrderSelectPage extends ConsumerWidget {
@@ -35,11 +35,9 @@ class OrderSelectPage extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text("◼️理由"),
-                              DropdownButtonFormField<Id?>(
+                              ReasonSelectForm(
                                 value: orderForm.reasonInput,
-                                isExpanded: true,
-                                iconSize: 32,
-                                elevation: 16,
+                                reasons: reasons,
                                 onChanged: (Id? newValue) {
                                   ref
                                       .read(
@@ -47,19 +45,6 @@ class OrderSelectPage extends ConsumerWidget {
                                               .notifier)
                                       .onChangeReason(newValue);
                                 },
-                                items: [
-                                  const DropdownMenuItem<Id?>(
-                                    value: null,
-                                    child: Text("表示しない"),
-                                  ),
-                                  ...reasons.map<DropdownMenuItem<Id?>>(
-                                      (Reason reason) {
-                                    return DropdownMenuItem<Id?>(
-                                      value: reason.id,
-                                      child: Text(reason.reason),
-                                    );
-                                  }).toList(),
-                                ],
                               ),
                             ],
                           ),
