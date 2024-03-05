@@ -83,7 +83,6 @@ class OrderSelectPage extends ConsumerWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => OrderDisplayPage(
-                              sceneName: sceneName,
                               reason: orderForm.reasons?.firstWhereOrNull(
                                   (r) => r.id == orderForm.reasonInput),
                               phrases: scene.phrases
