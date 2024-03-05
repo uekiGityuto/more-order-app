@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/list_tile_navigation.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
+import "package:smart_order_app/ui/component/typography.dart";
 import 'package:smart_order_app/ui/page/order/select/page.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
@@ -18,7 +19,7 @@ class SimpleDrawer extends ConsumerWidget {
           padding: const EdgeInsets.fromLTRB(12.0, 32.0, 12.0, 16.0),
           child: ListView(
             children: [
-              const Text("◼️場面選択"),
+              const SectionTitle(text: "場面選択"),
               scenesFuture.when(
                 error: (e, s) => const ErrorMessage(),
                 loading: () => const Loader(),

@@ -25,10 +25,27 @@ class App extends ConsumerWidget {
             backgroundColor: MaterialTheme.lightScheme().primary,
             textStyle: TextStyle(
               color: MaterialTheme.lightScheme().onPrimary,
-              fontSize: 20,
+              fontSize: 16 * MediaQuery.of(context).textScaleFactor,
               fontWeight: FontWeight.bold,
             ),
             foregroundColor: MaterialTheme.lightScheme().onPrimary,
+            minimumSize: const Size(double.infinity, 50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            textStyle: TextStyle(
+              color: MaterialTheme.lightScheme().primary,
+              fontSize: 16 * MediaQuery.of(context).textScaleFactor,
+              fontWeight: FontWeight.bold,
+            ),
+            foregroundColor: MaterialTheme.lightScheme().primary,
+            side: BorderSide(
+              color: MaterialTheme.lightScheme().primary,
+            ),
             minimumSize: const Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -55,10 +72,27 @@ class App extends ConsumerWidget {
             backgroundColor: MaterialTheme.darkScheme().primary,
             textStyle: TextStyle(
               color: MaterialTheme.darkScheme().onPrimary,
-              fontSize: 20,
+              fontSize: 16 * MediaQuery.of(context).textScaleFactor,
               fontWeight: FontWeight.bold,
             ),
             foregroundColor: MaterialTheme.darkScheme().onPrimary,
+            minimumSize: const Size(double.infinity, 50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            textStyle: TextStyle(
+              color: MaterialTheme.darkScheme().primary,
+              fontSize: 16 * MediaQuery.of(context).textScaleFactor,
+              fontWeight: FontWeight.bold,
+            ),
+            foregroundColor: MaterialTheme.darkScheme().primary,
+            side: BorderSide(
+              color: MaterialTheme.darkScheme().primary,
+            ),
             minimumSize: const Size(double.infinity, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),

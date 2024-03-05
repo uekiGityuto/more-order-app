@@ -5,6 +5,7 @@ import 'package:smart_order_app/domain/valueObject/id.dart';
 import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/simple_checkbox_list_tile.dart';
+import 'package:smart_order_app/ui/component/typography.dart';
 import 'package:smart_order_app/ui/form/form_creation_status.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/ui/page/order/display/page.dart';
@@ -35,7 +36,7 @@ class OrderSelectPage extends ConsumerWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("◼️理由"),
+                              const SectionTitle(text: "理由"),
                               ReasonSelectForm(
                                 value: orderForm.reasonInput,
                                 reasons: reasons,
@@ -55,7 +56,7 @@ class OrderSelectPage extends ConsumerWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("◼️フレーズ"),
+                              const SectionTitle(text: "フレーズ"),
                               ...scene.phrases.map(
                                 (phrase) {
                                   return SimpleCheckboxListTile(
@@ -82,7 +83,6 @@ class OrderSelectPage extends ConsumerWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => OrderDisplayPage(
-                              sceneName: sceneName,
                               reason: orderForm.reasons?.firstWhereOrNull(
                                   (r) => r.id == orderForm.reasonInput),
                               phrases: scene.phrases

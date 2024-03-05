@@ -5,18 +5,16 @@ import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/ui/page/order/display/component/reason_field.dart';
 
 class OrderDisplayPage extends StatelessWidget {
-  final String sceneName;
   final Reason? reason;
   final List<Phrase> phrases;
-  const OrderDisplayPage(
-      {Key? key, required this.sceneName, this.reason, required this.phrases})
+  const OrderDisplayPage({Key? key, this.reason, required this.phrases})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final reasonText = reason?.reason;
     return DefaultLayout(
-      title: sceneName,
+      title: "表示画面",
       body: Column(
         children: [
           Expanded(
@@ -30,7 +28,13 @@ class OrderDisplayPage extends StatelessWidget {
                     .map(
                       (phrase) => ListTile(
                         leading: const Icon(Icons.fiber_manual_record),
-                        title: Text(phrase.phrase),
+                        title: Text(
+                          phrase.phrase,
+                          style: TextStyle(
+                            fontSize:
+                                24 * MediaQuery.of(context).textScaleFactor,
+                          ),
+                        ),
                         contentPadding: EdgeInsets.zero,
                       ),
                     )
@@ -38,7 +42,12 @@ class OrderDisplayPage extends StatelessWidget {
                 const SizedBox(
                   height: 24,
                 ),
-                const Text("お願いします"),
+                Text(
+                  "以上、宜しくお願いします",
+                  style: TextStyle(
+                    fontSize: 24 * MediaQuery.of(context).textScaleFactor,
+                  ),
+                ),
               ],
             ),
           ),

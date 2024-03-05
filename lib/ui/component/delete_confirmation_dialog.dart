@@ -20,16 +20,25 @@ class DeleteConfirmationDialog extends StatelessWidget {
       title: Text(title),
       content: content,
       actions: [
-        TextButton(
-          onPressed: navigator.pop,
-          child: const Text('キャンセル'),
-        ),
-        TextButton(
-          onPressed: () async {
-            await onPressed();
-            navigator.pop();
-          },
-          child: const Text('削除'),
+        Row(
+          children: [
+            Expanded(
+              child: OutlinedButton(
+                onPressed: navigator.pop,
+                child: const Text('戻る'),
+              ),
+            ),
+            const SizedBox(width: 8.0),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () async {
+                  await onPressed();
+                  navigator.pop();
+                },
+                child: const Text('削除'),
+              ),
+            ),
+          ],
         ),
       ],
     );
