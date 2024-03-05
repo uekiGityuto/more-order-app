@@ -9,9 +9,11 @@ class SectionTitle extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 12.0),
       child: Text(
-        "◼️ $text",
+        text,
         style: TextStyle(
           fontSize: 16 * MediaQuery.of(context).textScaleFactor,
+          color: Theme.of(context).colorScheme.primary,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
