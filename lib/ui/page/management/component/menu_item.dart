@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_order_app/ui/component/list_tile_navigation.dart';
+import 'package:smart_order_app/ui/component/typography.dart';
 
 class MenuItem extends StatelessWidget {
   final String title;
@@ -12,7 +13,7 @@ class MenuItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("◼️$title"),
+        SectionTitle(text: title),
         Container(
           decoration:
               BoxDecoration(color: Theme.of(context).colorScheme.surface),

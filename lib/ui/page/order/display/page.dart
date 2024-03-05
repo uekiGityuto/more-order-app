@@ -30,7 +30,13 @@ class OrderDisplayPage extends StatelessWidget {
                     .map(
                       (phrase) => ListTile(
                         leading: const Icon(Icons.fiber_manual_record),
-                        title: Text(phrase.phrase),
+                        title: Text(
+                          phrase.phrase,
+                          style: TextStyle(
+                            fontSize:
+                                24 * MediaQuery.of(context).textScaleFactor,
+                          ),
+                        ),
                         contentPadding: EdgeInsets.zero,
                       ),
                     )
@@ -38,7 +44,12 @@ class OrderDisplayPage extends StatelessWidget {
                 const SizedBox(
                   height: 24,
                 ),
-                const Text("お願いします"),
+                Text(
+                  "以上、宜しくお願いします",
+                  style: TextStyle(
+                    fontSize: 24 * MediaQuery.of(context).textScaleFactor,
+                  ),
+                ),
               ],
             ),
           ),

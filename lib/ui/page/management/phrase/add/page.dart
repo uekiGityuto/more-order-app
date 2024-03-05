@@ -4,6 +4,7 @@ import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/form_error_message.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/simple_checkbox_list_tile.dart';
+import 'package:smart_order_app/ui/component/typography.dart';
 import 'package:smart_order_app/ui/error_handler_mixin.dart';
 import 'package:smart_order_app/ui/form/form_creation_status.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
@@ -32,7 +33,7 @@ class PhraseAddPage extends ConsumerWidget with ErrorHandlerMixin {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("◼️場面"),
+                              const SectionTitle(text: "場面"),
                               ...scenes.map(
                                 (scene) {
                                   return SimpleCheckboxListTile(
@@ -60,7 +61,7 @@ class PhraseAddPage extends ConsumerWidget with ErrorHandlerMixin {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("◼️フレーズ"),
+                              const SectionTitle(text: "フレーズ"),
                               TextFormField(
                                 decoration: const InputDecoration(
                                   hintText: 'フレーズを入力してください',

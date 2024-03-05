@@ -4,11 +4,13 @@ enum NavigationType { push, pushReplacement, pushAndRemoveUntil }
 
 class ListTileOption {
   final String title;
+  final bool isContentPaddingZero;
   final Widget nextPage;
   final NavigationType navigateType;
 
   ListTileOption({
     required this.title,
+    this.isContentPaddingZero = false,
     required this.nextPage,
     this.navigateType = NavigationType.push,
   });
@@ -23,7 +25,7 @@ class ListTileNavigation extends StatelessWidget {
     return ListTile(
         title: Text(option.title),
         trailing: const Icon(Icons.arrow_forward),
-        contentPadding: EdgeInsets.zero,
+        contentPadding: option.isContentPaddingZero ? EdgeInsets.zero : null,
         onTap: () {
           switch (option.navigateType) {
             case NavigationType.push:
