@@ -17,7 +17,7 @@ class ManagementPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultLayout(
       title: "管理メニュー",
-      body: Column(
+      body: ListView(
         children: [
           MenuItem(title: "フレーズ", options: [
             ListTileOption(title: "登録", nextPage: const PhraseAddPage()),
