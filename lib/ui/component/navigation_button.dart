@@ -14,7 +14,7 @@ class NavigationButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void _navigate() {
+    void navigate() {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => nextPage),
@@ -28,12 +28,12 @@ class NavigationButton extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: isSecondary
           ? OutlinedButton.icon(
-              onPressed: _navigate,
+              onPressed: navigate,
               label: label,
               icon: icon,
             )
           : ElevatedButton.icon(
-              onPressed: _navigate,
+              onPressed: navigate,
               label: label,
               icon: icon,
             ),
