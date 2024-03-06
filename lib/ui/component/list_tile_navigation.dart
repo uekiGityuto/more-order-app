@@ -29,12 +29,16 @@ class ListTileNavigation extends StatelessWidget {
         onTap: () {
           switch (option.navigateType) {
             case NavigationType.push:
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => option.nextPage));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => option.nextPage),
+              );
               break;
             case NavigationType.pushReplacement:
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => option.nextPage));
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => option.nextPage),
+              );
               break;
             case NavigationType.pushAndRemoveUntil:
               Navigator.pushAndRemoveUntil(
