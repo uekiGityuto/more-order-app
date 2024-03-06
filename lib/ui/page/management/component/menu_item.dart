@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_order_app/ui/component/list_tile_navigation.dart';
-import 'package:smart_order_app/ui/component/typography.dart';
+import 'package:smart_order_app/ui/component/typography/section_title.dart';
 
 class MenuItem extends StatelessWidget {
   final String title;
