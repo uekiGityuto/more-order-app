@@ -4,11 +4,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
 import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
+import 'package:smart_order_app/ui/component/navigation_button.dart';
 import 'package:smart_order_app/ui/component/simple_checkbox_list_tile.dart';
 import 'package:smart_order_app/ui/component/typography.dart';
 import 'package:smart_order_app/ui/form/form_creation_status.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/ui/page/order/display/page.dart';
+import 'package:smart_order_app/ui/page/order/select/component/no_phrase.dart';
+import 'package:smart_order_app/ui/page/order/select/component/no_reason.dart';
 import 'package:smart_order_app/ui/page/order/select/component/reason_select_form.dart';
 import 'package:smart_order_app/ui/page/order/select/form/order_form_controller.dart';
 
@@ -37,17 +40,19 @@ class OrderSelectPage extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const SectionTitle(text: "理由"),
-                              ReasonSelectForm(
-                                value: orderForm.reasonInput,
-                                reasons: reasons,
-                                onChanged: (Id? newValue) {
-                                  ref
-                                      .read(
-                                          orderFormControllerProvider(sceneName)
-                                              .notifier)
-                                      .onChangeReason(newValue);
-                                },
-                              ),
+                              reasons.isEmpty
+                                  ? const NoReason()
+                                  : ReasonSelectForm(
+                                      value: orderForm.reasonInput,
+                                      reasons: reasons,
+                                      onChanged: (Id? newValue) {
+                                        ref
+                                            .read(orderFormControllerProvider(
+                                                    sceneName)
+                                                .notifier)
+                                            .onChangeReason(newValue);
+                                      },
+                                    ),
                             ],
                           ),
                           const SizedBox(
@@ -57,6 +62,7 @@ class OrderSelectPage extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const SectionTitle(text: "フレーズ"),
+                              if (scene.phrases.isEmpty) const NoPhrase(),
                               ...scene.phrases.map(
                                 (phrase) {
                                   return SimpleCheckboxListTile(
@@ -77,23 +83,15 @@ class OrderSelectPage extends ConsumerWidget {
                         ],
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => OrderDisplayPage(
-                              reason: orderForm.reasons?.firstWhereOrNull(
-                                  (r) => r.id == orderForm.reasonInput),
-                              phrases: scene.phrases
-                                  .where((p) =>
-                                      orderForm.phrasesInput[p.id] == true)
-                                  .toList(),
-                            ),
-                          ),
-                        );
-                      },
-                      child: const Text('OK'),
+                    NavigationButton(
+                      nextPage: OrderDisplayPage(
+                        reason: orderForm.reasons?.firstWhereOrNull(
+                            (r) => r.id == orderForm.reasonInput),
+                        phrases: scene.phrases
+                            .where((p) => orderForm.phrasesInput[p.id] == true)
+                            .toList(),
+                      ),
+                      text: '表示する',
                     ),
                   ],
                 ),
