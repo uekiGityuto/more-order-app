@@ -10,7 +10,7 @@ lint:
 	flutter analyze
 test:
 	flutter test
-# update_icon:
-# 	flutter pub run flutter_launcher_icons:main
+update_icon:
+	flutter pub run flutter_launcher_icons:main
 # update_splash:
 # 	flutter pub run flutter_native_splash:create
