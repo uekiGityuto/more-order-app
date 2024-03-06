@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_order_app/ui/component/navigation_button.dart';
+import 'package:smart_order_app/ui/component/button/navigation_button.dart';
 import 'package:smart_order_app/ui/component/no_registered_data.dart';
 import 'package:smart_order_app/ui/page/management/phrase/add/page.dart';
 

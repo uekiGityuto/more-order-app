@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/list_tile_navigation.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
-import "package:smart_order_app/ui/component/typography.dart";
+import 'package:smart_order_app/ui/component/typography/section_title.dart';
 import 'package:smart_order_app/ui/page/order/select/page.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 

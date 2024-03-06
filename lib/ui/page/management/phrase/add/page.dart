@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/ui/component/error_message.dart';
-import 'package:smart_order_app/ui/component/form_error_message.dart';
+import 'package:smart_order_app/ui/component/form/form_error_message.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
-import 'package:smart_order_app/ui/component/simple_checkbox_list_tile.dart';
-import 'package:smart_order_app/ui/component/typography.dart';
+import 'package:smart_order_app/ui/component/form/simple_checkbox_list_tile.dart';
+import 'package:smart_order_app/ui/component/typography/section_title.dart';
 import 'package:smart_order_app/ui/error_handler_mixin.dart';
 import 'package:smart_order_app/ui/form/form_creation_status.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
