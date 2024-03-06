@@ -113,3 +113,9 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/images/app_icon.png"
+
+# TODO: ダークモード考慮する？
+flutter_native_splash:
+  image: "assets/images/splash_icon.png"
+  color: "#ffffff"
+  fullscreen: true
