@@ -1,7 +1,12 @@
-.PHONY: setup generate generate-watch test
+.PHONY: setup setup_ios setup_all gen gen-watch lint test update_icon update_splash
 setup:
 	flutter clean
 	flutter pub get
+setup_ios:
+	cd ios && pod install && cd ..
+setup_all:
+	make setup
+	make setup_ios
 gen:
 	flutter pub run build_runner build --delete-conflicting-outputs
 gen_watch:
