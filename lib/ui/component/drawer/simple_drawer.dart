@@ -30,7 +30,7 @@ class SimpleDrawer extends ConsumerWidget {
                         option: ListTileOption(
                           title: scene.scene,
                           nextPage: OrderSelectPage(sceneName: scene.scene),
-                          navigateType: NavigationType.pushAndRemoveUntil,
+                          navigationType: NavigationType.pushAndRemoveUntil,
                         ),
                       );
                     }).toList(),

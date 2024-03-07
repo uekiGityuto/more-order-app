@@ -31,6 +31,23 @@ class ManagementPage extends StatelessWidget {
             ListTileOption(title: "登録", nextPage: const ReasonAddPage()),
             ListTileOption(title: "編集/削除", nextPage: const ReasonListPage()),
           ]),
+          MenuItem(
+            title: "その他",
+            options: [
+              ListTileOption(
+                title: "利用規約",
+                navigationType: NavigationType.webView,
+                webURL:
+                    "https://www.notion.so/4740156fca0c4969ada7921076b37558?pvs=4",
+              ),
+              ListTileOption(
+                title: "プライバシーポリシー",
+                navigationType: NavigationType.webView,
+                webURL:
+                    "https://www.notion.so/a639ca1a37f84d719f84a873e604041c?pvs=4",
+              ),
+            ],
+          ),
         ].withSpaceBetween(height: 16.0),
       ),
     );
