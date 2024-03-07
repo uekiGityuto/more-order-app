@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_order_app/ui/component/snackBar/failure_snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 enum NavigationType { push, pushReplacement, pushAndRemoveUntil, webView }
@@ -16,7 +17,8 @@ class NavigationAction {
     switch (type) {
       case NavigationType.webView:
         if (webURL != null) {
-          await _openWebView(webURL);
+          final scaffoldMessenger = ScaffoldMessenger.of(context);
+          await _openWebView(webURL, scaffoldMessenger);
         }
         break;
       case NavigationType.push:
@@ -47,12 +49,18 @@ class NavigationAction {
     }
   }
 
-  Future<void> _openWebView(String webURL) async {
+  Future<void> _openWebView(
+    String webURL,
+    ScaffoldMessengerState scaffoldMessenger,
+  ) async {
     final url = Uri.parse(webURL);
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
-      print("Can't launch $url");
+      FailureSnackBar.show(
+        scaffoldMessenger,
+        message: "ページを開けませんでした。",
+      );
     }
   }
 }
