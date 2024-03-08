@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:smart_order_app/domain/entity/phrase.dart';
 import 'package:smart_order_app/domain/entity/reason.dart';
 import 'package:smart_order_app/domain/entity/scene.dart';
