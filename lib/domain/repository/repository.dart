@@ -18,7 +18,6 @@ abstract interface class Repository {
   Future<void> deletePhrase(Phrase phrase);
 
   Future<List<Reason>> getReasons();
-  Future<Reason?> getDefaultReason();
   Future<void> addReason(String reason, bool isDefault);
   Future<void> updateReason(Reason reason);
   Future<void> deleteReason(Reason reason);

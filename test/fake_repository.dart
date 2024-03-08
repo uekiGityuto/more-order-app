@@ -37,11 +37,6 @@ class FakeRepository implements Repository {
   }
 
   @override
-  Future<Reason?> getDefaultReason() async {
-    return reasons.firstWhereOrNull((reason) => reason.isDefault);
-  }
-
-  @override
   Future<void> addReason(String reason, bool isDefault) async {
     await Future.delayed(const Duration(seconds: 0));
   }
