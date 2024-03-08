@@ -18,21 +18,19 @@ class DAO implements Repository {
     return formatFromDateTime(DateTime.now(), DateFormatType.dbFormat);
   }
 
-  Future<int> _add(String table, Map<String, Object?> values) async {
+  Future<int> _add(
+    String table,
+    Map<String, Object?> values, {
+    Transaction? txn,
+  }) async {
     final now = _getNow();
     values.remove("id");
     values.addAll({"created_at": now, "updated_at": now});
-    return await db.insert(
+    final database = txn ?? db;
+    return await database.insert(
       table,
       values,
     );
-  }
-
-  Map<String, Object?> _getUpdateValues(Map<String, Object?> values) {
-    final now = _getNow();
-    values.remove("created_at");
-    values.addAll({"updated_at": now});
-    return values;
   }
 
   Future<int> _update(
@@ -40,27 +38,42 @@ class DAO implements Repository {
     Map<String, Object?> values, {
     String? where,
     List<Object?>? whereArgs,
+    Transaction? txn,
   }) async {
-    return await db.update(
+    final now = _getNow();
+    values.remove("created_at");
+    values.addAll({"updated_at": now});
+    final database = txn ?? db;
+    return await database.update(
       table,
-      _getUpdateValues(values),
+      values,
       where: where,
       whereArgs: whereArgs,
     );
   }
 
-  Future<int> _updateById(String table, Map<String, Object?> values,
-      {required Id id}) async {
+  Future<int> _updateById(
+    String table,
+    Map<String, Object?> values, {
+    required Id id,
+    Transaction? txn,
+  }) async {
     return await _update(
       table,
       values,
       where: "id = ?",
       whereArgs: [id.value],
+      txn: txn,
     );
   }
 
-  Future<int> _deleteById(String table, {required Id id}) async {
-    return await db.delete(
+  Future<int> _deleteById(
+    String table, {
+    required Id id,
+    Transaction? txn,
+  }) async {
+    final database = txn ?? db;
+    return await database.delete(
       table,
       where: "id = ?",
       whereArgs: [id.value],
@@ -116,25 +129,30 @@ class DAO implements Repository {
     return scenesDTOs.map((dto) => dto.toEntity()).toList();
   }
 
-  // TODO: トランザクション
   @override
   Future<void> addPhrase(String phrase, List<Scene> scenes) async {
     try {
-      final phraseId = await _add(
-        "phrases",
-        {
-          "phrase": phrase,
+      await db.transaction(
+        (txn) async {
+          final phraseId = await _add(
+            "phrases",
+            {
+              "phrase": phrase,
+            },
+            txn: txn,
+          );
+          for (final scene in scenes) {
+            await _add(
+              "scenes_phrases",
+              {
+                "scene_id": scene.id.value,
+                "phrase_id": phraseId,
+              },
+              txn: txn,
+            );
+          }
         },
       );
-      for (final scene in scenes) {
-        await _add(
-          "scenes_phrases",
-          {
-            "scene_id": scene.id.value,
-            "phrase_id": phraseId,
-          },
-        );
-      }
     } on DatabaseException catch (e) {
       if (e.isUniqueConstraintError()) {
         throw const DomainException(ErrorType.phraseDuplicate);
@@ -144,33 +162,41 @@ class DAO implements Repository {
   }
 
   @override
-  Future<void> updatePhrase(Phrase phrase,
-      {required List<Scene> deletedScenes,
-      required List<Scene> addedScenes}) async {
+  Future<void> updatePhrase(
+    Phrase phrase, {
+    required List<Scene> deletedScenes,
+    required List<Scene> addedScenes,
+  }) async {
     try {
-      await _updateById(
-        "phrases",
-        {
-          "phrase": phrase.phrase,
+      await db.transaction(
+        (txn) async {
+          await _updateById(
+            "phrases",
+            {
+              "phrase": phrase.phrase,
+            },
+            id: phrase.id,
+            txn: txn,
+          );
+          for (final scene in deletedScenes) {
+            await txn.delete(
+              'scenes_phrases',
+              where: "scene_id = ? AND phrase_id = ?",
+              whereArgs: [scene.id.value, phrase.id.value],
+            );
+          }
+          for (final scene in addedScenes) {
+            await _add(
+              "scenes_phrases",
+              {
+                "scene_id": scene.id.value,
+                "phrase_id": phrase.id.value,
+              },
+              txn: txn,
+            );
+          }
         },
-        id: phrase.id,
       );
-      for (final scene in deletedScenes) {
-        await db.delete(
-          'scenes_phrases',
-          where: "scene_id = ? AND phrase_id = ?",
-          whereArgs: [scene.id.value, phrase.id.value],
-        );
-      }
-      for (final scene in addedScenes) {
-        await _add(
-          "scenes_phrases",
-          {
-            "scene_id": scene.id.value,
-            "phrase_id": phrase.id.value,
-          },
-        );
-      }
     } on DatabaseException catch (e) {
       if (e.isUniqueConstraintError()) {
         throw const DomainException(ErrorType.phraseDuplicate);
@@ -191,9 +217,9 @@ class DAO implements Repository {
     return result.map((r) => ReasonDTO.fromJson(r).toEntity()).toList();
   }
 
-  @override
-  Future<Reason?> getDefaultReason() async {
-    List<Map<String, dynamic>> result = await db.query(
+  Future<Reason?> _getDefaultReason({required Transaction txn}) async {
+    final database = txn;
+    List<Map<String, dynamic>> result = await database.query(
       "reasons",
       where: "is_default = ?",
       whereArgs: [1],
@@ -205,23 +231,28 @@ class DAO implements Repository {
     }
   }
 
-  // TODO: トランザクション
   @override
   Future<void> addReason(String reason, bool isDefault) async {
     try {
-      if (isDefault) {
-        final existingDefaultReason = await getDefaultReason();
-        if (existingDefaultReason != null) {
-          await _updateById(
+      await db.transaction(
+        (txn) async {
+          if (isDefault) {
+            final existingDefaultReason = await _getDefaultReason(txn: txn);
+            if (existingDefaultReason != null) {
+              await _updateById(
+                "reasons",
+                {"is_default": 0},
+                id: existingDefaultReason.id,
+                txn: txn,
+              );
+            }
+          }
+          await _add(
             "reasons",
-            {"is_default": 0},
-            id: existingDefaultReason.id,
+            {"reason": reason, "is_default": isDefault ? 1 : 0},
+            txn: txn,
           );
-        }
-      }
-      await _add(
-        "reasons",
-        {"reason": reason, "is_default": isDefault ? 1 : 0},
+        },
       );
     } on DatabaseException catch (e) {
       if (e.isUniqueConstraintError()) {
@@ -231,24 +262,29 @@ class DAO implements Repository {
     }
   }
 
-  // TODO: トランザクション
   @override
   Future<void> updateReason(Reason reason) async {
     try {
-      if (reason.isDefault) {
-        final existingDefaultReason = await getDefaultReason();
-        if (existingDefaultReason != null) {
+      await db.transaction(
+        (txn) async {
+          if (reason.isDefault) {
+            final existingDefaultReason = await _getDefaultReason(txn: txn);
+            if (existingDefaultReason != null) {
+              await _updateById(
+                "reasons",
+                {"is_default": 0},
+                id: existingDefaultReason.id,
+                txn: txn,
+              );
+            }
+          }
           await _updateById(
             "reasons",
-            {"is_default": 0},
-            id: existingDefaultReason.id,
+            {"reason": reason.reason, "is_default": reason.isDefault ? 1 : 0},
+            id: reason.id,
+            txn: txn,
           );
-        }
-      }
-      await _updateById(
-        "reasons",
-        {"reason": reason.reason, "is_default": reason.isDefault ? 1 : 0},
-        id: reason.id,
+        },
       );
     } on DatabaseException catch (e) {
       if (e.isUniqueConstraintError()) {
