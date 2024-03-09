@@ -276,7 +276,7 @@ class DAO implements Repository {
       await db.transaction(
         (txn) async {
           if (isDefault) {
-            _updateExistingDefaultReasonToFalse(txn);
+            await _updateExistingDefaultReasonToFalse(txn);
           }
           await _add(
             "reasons",
@@ -299,7 +299,7 @@ class DAO implements Repository {
       await db.transaction(
         (txn) async {
           if (reason.isDefault) {
-            _updateExistingDefaultReasonToFalse(txn);
+            await _updateExistingDefaultReasonToFalse(txn);
           }
           await _updateById(
             "reasons",
@@ -379,7 +379,7 @@ class DAO implements Repository {
     } else {
       await _updateDefaultFalseById(
         "payment_methods",
-        id: ReasonDTO.fromJson(result.first).toEntity().id,
+        id: PaymentMethodDTO.fromJson(result.first).toEntity().id,
         txn: txn,
       );
     }
@@ -403,7 +403,7 @@ class DAO implements Repository {
       await db.transaction(
         (txn) async {
           if (isDefault) {
-            _updateExistingDefaultPaymentMethodToFalse(txn);
+            await _updateExistingDefaultPaymentMethodToFalse(txn);
           }
           await _add(
             "payment_methods",
@@ -426,7 +426,7 @@ class DAO implements Repository {
       await db.transaction(
         (txn) async {
           if (paymentMethod.isDefault) {
-            _updateExistingDefaultReasonToFalse(txn);
+            await _updateExistingDefaultPaymentMethodToFalse(txn);
           }
           await _updateById(
             "payment_methods",
