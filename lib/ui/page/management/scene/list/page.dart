@@ -16,6 +16,7 @@ class SceneListPage extends ConsumerWidget with ErrorHandlerMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scenesFuture = ref.watch(scenesNotifierProvider);
+    final navigator = Navigator.of(context);
     return DefaultLayout(
       title: "場面編集/削除",
       body: scenesFuture.when(
@@ -33,9 +34,13 @@ class SceneListPage extends ConsumerWidget with ErrorHandlerMixin {
                         disabled: scene.isDefault,
                         editPage: SceneEditPage(scene: scene),
                         onDeletePressed: () async {
-                          action() => ref
-                              .read(scenesNotifierProvider.notifier)
-                              .deleteScene(scene);
+                          action() async {
+                            await ref
+                                .read(scenesNotifierProvider.notifier)
+                                .deleteScene(scene);
+                            navigator.pop();
+                          }
+
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {

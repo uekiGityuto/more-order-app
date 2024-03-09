@@ -67,15 +67,17 @@ class ReasonAddPage extends ConsumerWidget with ErrorHandlerMixin {
         ElevatedButton(
           onPressed: reasonForm.isValid
               ? () async {
-                  action() =>
-                      ref.read(reasonsNotifierProvider.notifier).addReason(
-                          reasonForm.reasonInput.value, reasonForm.isDefault);
+                  action() async {
+                    await ref.read(reasonsNotifierProvider.notifier).addReason(
+                        reasonForm.reasonInput.value, reasonForm.isDefault);
+                    navigator.pop();
+                  }
+
                   await execute(
                     context,
                     action,
                     successMessage: "登録しました",
                   );
-                  navigator.pop();
                 }
               : null,
           child: const Text('登録'),

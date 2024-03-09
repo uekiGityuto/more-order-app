@@ -36,15 +36,18 @@ class SceneAddPage extends ConsumerWidget with ErrorHandlerMixin {
         ElevatedButton(
           onPressed: sceneForm.isValid
               ? () async {
-                  action() => ref
-                      .read(scenesNotifierProvider.notifier)
-                      .addScene(sceneForm.sceneInput.value);
+                  action() async {
+                    await ref
+                        .read(scenesNotifierProvider.notifier)
+                        .addScene(sceneForm.sceneInput.value);
+                    navigator.pop();
+                  }
+
                   await execute(
                     context,
                     action,
                     successMessage: "登録しました",
                   );
-                  navigator.pop();
                 }
               : null,
           child: const Text('登録'),

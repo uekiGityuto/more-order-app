@@ -69,18 +69,21 @@ class PaymentMethodAddPage extends ConsumerWidget with ErrorHandlerMixin {
         ElevatedButton(
           onPressed: paymentMethodForm.isValid
               ? () async {
-                  action() => ref
-                      .read(paymentMethodsNotifierProvider.notifier)
-                      .addPaymentMethod(
-                        paymentMethodForm.methodInput.value,
-                        paymentMethodForm.isDefault,
-                      );
+                  action() async {
+                    await ref
+                        .read(paymentMethodsNotifierProvider.notifier)
+                        .addPaymentMethod(
+                          paymentMethodForm.methodInput.value,
+                          paymentMethodForm.isDefault,
+                        );
+                    navigator.pop();
+                  }
+
                   await execute(
                     context,
                     action,
                     successMessage: "登録しました",
                   );
-                  navigator.pop();
                 }
               : null,
           child: const Text('登録'),

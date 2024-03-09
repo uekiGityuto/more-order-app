@@ -16,6 +16,7 @@ class ReasonListPage extends ConsumerWidget with ErrorHandlerMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final reasonsFuture = ref.watch(reasonsNotifierProvider);
+    final navigator = Navigator.of(context);
     return DefaultLayout(
       title: "理由編集/削除",
       body: reasonsFuture.when(
@@ -32,9 +33,13 @@ class ReasonListPage extends ConsumerWidget with ErrorHandlerMixin {
                         title: reason.reason,
                         editPage: ReasonEditPage(reason: reason),
                         onDeletePressed: () async {
-                          action() => ref
-                              .read(reasonsNotifierProvider.notifier)
-                              .deleteReason(reason);
+                          action() async {
+                            await ref
+                                .read(reasonsNotifierProvider.notifier)
+                                .deleteReason(reason);
+                            navigator.pop();
+                          }
+
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {

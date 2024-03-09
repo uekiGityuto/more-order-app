@@ -40,16 +40,18 @@ class SceneEditPage extends ConsumerWidget with ErrorHandlerMixin {
         ElevatedButton(
           onPressed: sceneForm.isValid
               ? () async {
-                  action() =>
-                      ref.read(scenesNotifierProvider.notifier).editScene(
-                            scene.copyWith(scene: sceneForm.sceneInput.value),
-                          );
+                  action() async {
+                    await ref.read(scenesNotifierProvider.notifier).editScene(
+                          scene.copyWith(scene: sceneForm.sceneInput.value),
+                        );
+                    navigator.pop();
+                  }
+
                   await execute(
                     context,
                     action,
                     successMessage: "編集しました",
                   );
-                  navigator.pop();
                 }
               : null,
           child: const Text('確定'),

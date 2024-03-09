@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/domain/entity/phrase.dart';
 import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/form/form_error_message.dart';
-import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/form/simple_checkbox_list_tile.dart';
+import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/typography/section_title.dart';
 import 'package:smart_order_app/ui/error_handler_mixin.dart';
 import 'package:smart_order_app/ui/form/form_creation_status.dart';
@@ -92,26 +92,29 @@ class PhraseEditPage extends ConsumerWidget with ErrorHandlerMixin {
                     ElevatedButton(
                       onPressed: phraseForm.isValid
                           ? () async {
-                              action() => ref
-                                  .read(scenesNotifierProvider.notifier)
-                                  .editPhrase(
-                                    phrase.copyWith(
-                                        phrase: phraseForm.phraseInput.value),
-                                    prevScenes:
-                                        phrase.getScenesOfBelonging(scenes),
-                                    nextScenes: scenes
-                                        .where((s) =>
-                                            phraseForm
-                                                .scenesInput.value[s.id] ==
-                                            true)
-                                        .toList(),
-                                  );
+                              action() async {
+                                await ref
+                                    .read(scenesNotifierProvider.notifier)
+                                    .editPhrase(
+                                      phrase.copyWith(
+                                          phrase: phraseForm.phraseInput.value),
+                                      prevScenes:
+                                          phrase.getScenesOfBelonging(scenes),
+                                      nextScenes: scenes
+                                          .where((s) =>
+                                              phraseForm
+                                                  .scenesInput.value[s.id] ==
+                                              true)
+                                          .toList(),
+                                    );
+                                navigator.pop();
+                              }
+
                               await execute(
                                 context,
                                 action,
                                 successMessage: "編集しました",
                               );
-                              navigator.pop();
                             }
                           : null,
                       child: const Text('確定'),
