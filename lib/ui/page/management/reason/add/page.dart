@@ -18,7 +18,6 @@ class ReasonAddPage extends ConsumerWidget with ErrorHandlerMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final reasonForm = ref.watch(reasonAddFormControllerProvider);
-    final navigator = Navigator.of(context);
     return DefaultLayout(
       title: "理由登録",
       body: Column(children: [
@@ -70,7 +69,6 @@ class ReasonAddPage extends ConsumerWidget with ErrorHandlerMixin {
                   action() async {
                     await ref.read(reasonsNotifierProvider.notifier).addReason(
                         reasonForm.reasonInput.value, reasonForm.isDefault);
-                    navigator.pop();
                   }
 
                   await execute(

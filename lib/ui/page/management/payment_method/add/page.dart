@@ -20,7 +20,6 @@ class PaymentMethodAddPage extends ConsumerWidget with ErrorHandlerMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final paymentMethodForm = ref.watch(paymentMethodAddFormControllerProvider);
-    final navigator = Navigator.of(context);
     return DefaultLayout(
       title: "支払方法の登録",
       body: Column(children: [
@@ -76,7 +75,6 @@ class PaymentMethodAddPage extends ConsumerWidget with ErrorHandlerMixin {
                           paymentMethodForm.methodInput.value,
                           paymentMethodForm.isDefault,
                         );
-                    navigator.pop();
                   }
 
                   await execute(

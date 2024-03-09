@@ -12,7 +12,6 @@ class SceneAddPage extends ConsumerWidget with ErrorHandlerMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sceneForm = ref.watch(sceneAddFormControllerProvider);
-    final navigator = Navigator.of(context);
     return DefaultLayout(
       title: "場面登録",
       body: Column(children: [
@@ -40,7 +39,6 @@ class SceneAddPage extends ConsumerWidget with ErrorHandlerMixin {
                     await ref
                         .read(scenesNotifierProvider.notifier)
                         .addScene(sceneForm.sceneInput.value);
-                    navigator.pop();
                   }
 
                   await execute(
