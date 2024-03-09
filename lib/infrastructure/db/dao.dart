@@ -1,9 +1,11 @@
+import 'package:smart_order_app/domain/entity/payment_method.dart';
 import 'package:smart_order_app/domain/entity/phrase.dart';
 import 'package:smart_order_app/domain/entity/reason.dart';
 import 'package:smart_order_app/domain/entity/scene.dart';
 import 'package:smart_order_app/domain/errors/error.dart';
 import 'package:smart_order_app/domain/repository/repository.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
+import 'package:smart_order_app/infrastructure/db/dto/payment_method.dart';
 import "package:smart_order_app/infrastructure/db/dto/reason.dart";
 import 'package:smart_order_app/infrastructure/db/dto/scene.dart';
 import 'package:smart_order_app/util/date.dart';
@@ -63,6 +65,19 @@ class DAO implements Repository {
       values,
       where: "id = ?",
       whereArgs: [id.value],
+      txn: txn,
+    );
+  }
+
+  Future<int> _updateDefaultFalseById(
+    String table, {
+    required Id id,
+    required Transaction txn,
+  }) async {
+    return await _updateById(
+      table,
+      {"is_default": 0},
+      id: id,
       txn: txn,
     );
   }
@@ -217,17 +232,20 @@ class DAO implements Repository {
     return result.map((r) => ReasonDTO.fromJson(r).toEntity()).toList();
   }
 
-  Future<Reason?> _getDefaultReason({required Transaction txn}) async {
-    final database = txn;
-    List<Map<String, dynamic>> result = await database.query(
+  Future<void> _updateExistingDefaultReasonToFalse(Transaction txn) async {
+    List<Map<String, dynamic>> result = await txn.query(
       "reasons",
       where: "is_default = ?",
       whereArgs: [1],
     );
     if (result.isEmpty) {
-      return null;
+      return;
     } else {
-      return ReasonDTO.fromJson(result.first).toEntity();
+      await _updateDefaultFalseById(
+        "reasons",
+        id: ReasonDTO.fromJson(result.first).toEntity().id,
+        txn: txn,
+      );
     }
   }
 
@@ -237,15 +255,7 @@ class DAO implements Repository {
       await db.transaction(
         (txn) async {
           if (isDefault) {
-            final existingDefaultReason = await _getDefaultReason(txn: txn);
-            if (existingDefaultReason != null) {
-              await _updateById(
-                "reasons",
-                {"is_default": 0},
-                id: existingDefaultReason.id,
-                txn: txn,
-              );
-            }
+            _updateExistingDefaultReasonToFalse(txn);
           }
           await _add(
             "reasons",
@@ -268,15 +278,7 @@ class DAO implements Repository {
       await db.transaction(
         (txn) async {
           if (reason.isDefault) {
-            final existingDefaultReason = await _getDefaultReason(txn: txn);
-            if (existingDefaultReason != null) {
-              await _updateById(
-                "reasons",
-                {"is_default": 0},
-                id: existingDefaultReason.id,
-                txn: txn,
-              );
-            }
+            _updateExistingDefaultReasonToFalse(txn);
           }
           await _updateById(
             "reasons",
@@ -337,5 +339,85 @@ class DAO implements Repository {
   @override
   Future<void> deleteScene(Scene scene) async {
     await _deleteById("scenes", id: scene.id);
+  }
+
+  Future<void> _updateExistingDefaultPaymentMethodToFalse(
+      Transaction txn) async {
+    List<Map<String, dynamic>> result = await txn.query(
+      "payment_methods",
+      where: "is_default = ?",
+      whereArgs: [1],
+    );
+    if (result.isEmpty) {
+      return;
+    } else {
+      await _updateDefaultFalseById(
+        "payment_methods",
+        id: ReasonDTO.fromJson(result.first).toEntity().id,
+        txn: txn,
+      );
+    }
+  }
+
+  @override
+  Future<List<PaymentMethod>> getPaymentMethods() async {
+    List<Map<String, dynamic>> result =
+        await db.query("payment_methods", orderBy: "is_default DESC");
+    return result.map((r) => PaymentMethodDTO.fromJson(r).toEntity()).toList();
+  }
+
+  @override
+  Future<void> addPaymentMethod(String method, bool isDefault) async {
+    try {
+      await db.transaction(
+        (txn) async {
+          if (isDefault) {
+            _updateExistingDefaultPaymentMethodToFalse(txn);
+          }
+          await _add(
+            "payment_methods",
+            {"method": method, "is_default": isDefault ? 1 : 0},
+            txn: txn,
+          );
+        },
+      );
+    } on DatabaseException catch (e) {
+      if (e.isUniqueConstraintError()) {
+        throw const DomainException(ErrorType.paymentMethodDuplicate);
+      }
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> updatePaymentMethod(PaymentMethod paymentMethod) async {
+    try {
+      await db.transaction(
+        (txn) async {
+          if (paymentMethod.isDefault) {
+            _updateExistingDefaultReasonToFalse(txn);
+          }
+          await _updateById(
+            "payment_methods",
+            {
+              "method": paymentMethod.method,
+              "is_default": paymentMethod.isDefault ? 1 : 0
+            },
+            id: paymentMethod.id,
+            txn: txn,
+          );
+        },
+      );
+    } on DatabaseException catch (e) {
+      if (e.isUniqueConstraintError()) {
+        throw const DomainException(ErrorType.paymentMethodDuplicate);
+      }
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> deletePaymentMethod(PaymentMethod paymentMethod) async {
+    await _deleteById("payment_methods", id: paymentMethod.id);
   }
 }

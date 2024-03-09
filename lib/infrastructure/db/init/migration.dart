@@ -43,6 +43,16 @@ const _migrationScripts = {
       );
     ''',
     '''
+      CREATE TABLE payment_methods (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        method TEXT NOT NULL UNIQUE,
+        is_default INTEGER NOT NULL DEFAULT 0,
+        created_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime')),
+        updated_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime')),
+        CONSTRAINT is_default_check CHECK (is_default IN (0, 1))
+      );
+    ''',
+    '''
       INSERT INTO scenes(scene, is_default) VALUES('$defaultScene', 1);
     ''',
   ],

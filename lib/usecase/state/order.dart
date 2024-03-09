@@ -1,6 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:smart_order_app/domain/entity/payment_method.dart';
 import 'package:smart_order_app/domain/entity/reason.dart';
 import 'package:smart_order_app/domain/entity/scene.dart';
+import 'package:smart_order_app/usecase/state/payment_methods.dart';
 import 'package:smart_order_app/usecase/state/reasons.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
@@ -9,12 +11,14 @@ part 'order.g.dart';
 typedef Order = ({
   List<Scene> scenes,
   List<Reason> reasons,
+  List<PaymentMethod> paymentMethods,
 });
 
 @riverpod
 Future<Order> order(OrderRef ref) async {
   late List<Scene> scenes;
   late List<Reason> reasons;
+  late List<PaymentMethod> paymentMethods;
 
   await Future.wait([
     ref.watch(scenesNotifierProvider.future).then(
@@ -23,9 +27,13 @@ Future<Order> order(OrderRef ref) async {
     ref.watch(reasonsNotifierProvider.future).then(
           (value) => reasons = value,
         ),
+    ref.watch(paymentMethodsNotifierProvider.future).then(
+          (value) => paymentMethods = value,
+        ),
   ]);
   return (
     scenes: scenes,
     reasons: reasons,
+    paymentMethods: paymentMethods,
   );
 }

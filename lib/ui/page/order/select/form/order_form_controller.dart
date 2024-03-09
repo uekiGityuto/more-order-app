@@ -19,6 +19,8 @@ class OrderFormController extends _$OrderFormController {
         reasonInput: null,
         scene: null,
         phrasesInput: const {},
+        paymentMethods: null,
+        paymentMethodInput: null,
       ),
       loading: () => OrderForm(
         creationStatus: FormCreationStatus.creating,
@@ -26,6 +28,8 @@ class OrderFormController extends _$OrderFormController {
         reasonInput: null,
         scene: null,
         phrasesInput: const {},
+        paymentMethods: null,
+        paymentMethodInput: null,
       ),
       data: (order) {
         final scene =
@@ -37,6 +41,8 @@ class OrderFormController extends _$OrderFormController {
             reasonInput: null,
             scene: null,
             phrasesInput: const {},
+            paymentMethods: null,
+            paymentMethodInput: null,
           );
         } else {
           return OrderForm(
@@ -45,9 +51,18 @@ class OrderFormController extends _$OrderFormController {
             reasonInput: order.reasons.firstWhereOrNull((r) => r.isDefault)?.id,
             scene: scene,
             phrasesInput: {for (var phrase in scene.phrases) phrase.id: false},
+            paymentMethods: order.paymentMethods,
+            paymentMethodInput:
+                order.paymentMethods.firstWhereOrNull((p) => p.isDefault)?.id,
           );
         }
       },
+    );
+  }
+
+  void onChangeReason(Id? id) {
+    state = state.copyWith(
+      reasonInput: id,
     );
   }
 
@@ -59,9 +74,9 @@ class OrderFormController extends _$OrderFormController {
     );
   }
 
-  void onChangeReason(Id? id) {
+  void onChangePaymentMethod(Id? id) {
     state = state.copyWith(
-      reasonInput: id,
+      paymentMethodInput: id,
     );
   }
 }

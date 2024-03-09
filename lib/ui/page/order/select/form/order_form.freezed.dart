@@ -21,6 +21,8 @@ mixin _$OrderForm {
   Id? get reasonInput => throw _privateConstructorUsedError;
   Scene? get scene => throw _privateConstructorUsedError;
   Map<Id, bool> get phrasesInput => throw _privateConstructorUsedError;
+  List<PaymentMethod>? get paymentMethods => throw _privateConstructorUsedError;
+  Id? get paymentMethodInput => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OrderFormCopyWith<OrderForm> get copyWith =>
@@ -37,10 +39,13 @@ abstract class $OrderFormCopyWith<$Res> {
       List<Reason>? reasons,
       Id? reasonInput,
       Scene? scene,
-      Map<Id, bool> phrasesInput});
+      Map<Id, bool> phrasesInput,
+      List<PaymentMethod>? paymentMethods,
+      Id? paymentMethodInput});
 
   $IdCopyWith<$Res>? get reasonInput;
   $SceneCopyWith<$Res>? get scene;
+  $IdCopyWith<$Res>? get paymentMethodInput;
 }
 
 /// @nodoc
@@ -61,6 +66,8 @@ class _$OrderFormCopyWithImpl<$Res, $Val extends OrderForm>
     Object? reasonInput = freezed,
     Object? scene = freezed,
     Object? phrasesInput = null,
+    Object? paymentMethods = freezed,
+    Object? paymentMethodInput = freezed,
   }) {
     return _then(_value.copyWith(
       creationStatus: null == creationStatus
@@ -83,6 +90,14 @@ class _$OrderFormCopyWithImpl<$Res, $Val extends OrderForm>
           ? _value.phrasesInput
           : phrasesInput // ignore: cast_nullable_to_non_nullable
               as Map<Id, bool>,
+      paymentMethods: freezed == paymentMethods
+          ? _value.paymentMethods
+          : paymentMethods // ignore: cast_nullable_to_non_nullable
+              as List<PaymentMethod>?,
+      paymentMethodInput: freezed == paymentMethodInput
+          ? _value.paymentMethodInput
+          : paymentMethodInput // ignore: cast_nullable_to_non_nullable
+              as Id?,
     ) as $Val);
   }
 
@@ -109,6 +124,18 @@ class _$OrderFormCopyWithImpl<$Res, $Val extends OrderForm>
       return _then(_value.copyWith(scene: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $IdCopyWith<$Res>? get paymentMethodInput {
+    if (_value.paymentMethodInput == null) {
+      return null;
+    }
+
+    return $IdCopyWith<$Res>(_value.paymentMethodInput!, (value) {
+      return _then(_value.copyWith(paymentMethodInput: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -124,12 +151,16 @@ abstract class _$$OrderFormImplCopyWith<$Res>
       List<Reason>? reasons,
       Id? reasonInput,
       Scene? scene,
-      Map<Id, bool> phrasesInput});
+      Map<Id, bool> phrasesInput,
+      List<PaymentMethod>? paymentMethods,
+      Id? paymentMethodInput});
 
   @override
   $IdCopyWith<$Res>? get reasonInput;
   @override
   $SceneCopyWith<$Res>? get scene;
+  @override
+  $IdCopyWith<$Res>? get paymentMethodInput;
 }
 
 /// @nodoc
@@ -148,6 +179,8 @@ class __$$OrderFormImplCopyWithImpl<$Res>
     Object? reasonInput = freezed,
     Object? scene = freezed,
     Object? phrasesInput = null,
+    Object? paymentMethods = freezed,
+    Object? paymentMethodInput = freezed,
   }) {
     return _then(_$OrderFormImpl(
       creationStatus: null == creationStatus
@@ -170,6 +203,14 @@ class __$$OrderFormImplCopyWithImpl<$Res>
           ? _value._phrasesInput
           : phrasesInput // ignore: cast_nullable_to_non_nullable
               as Map<Id, bool>,
+      paymentMethods: freezed == paymentMethods
+          ? _value._paymentMethods
+          : paymentMethods // ignore: cast_nullable_to_non_nullable
+              as List<PaymentMethod>?,
+      paymentMethodInput: freezed == paymentMethodInput
+          ? _value.paymentMethodInput
+          : paymentMethodInput // ignore: cast_nullable_to_non_nullable
+              as Id?,
     ));
   }
 }
@@ -182,9 +223,12 @@ class _$OrderFormImpl implements _OrderForm {
       required final List<Reason>? reasons,
       required this.reasonInput,
       required this.scene,
-      required final Map<Id, bool> phrasesInput})
+      required final Map<Id, bool> phrasesInput,
+      required final List<PaymentMethod>? paymentMethods,
+      required this.paymentMethodInput})
       : _reasons = reasons,
-        _phrasesInput = phrasesInput;
+        _phrasesInput = phrasesInput,
+        _paymentMethods = paymentMethods;
 
   @override
   final FormCreationStatus creationStatus;
@@ -210,9 +254,22 @@ class _$OrderFormImpl implements _OrderForm {
     return EqualUnmodifiableMapView(_phrasesInput);
   }
 
+  final List<PaymentMethod>? _paymentMethods;
+  @override
+  List<PaymentMethod>? get paymentMethods {
+    final value = _paymentMethods;
+    if (value == null) return null;
+    if (_paymentMethods is EqualUnmodifiableListView) return _paymentMethods;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final Id? paymentMethodInput;
+
   @override
   String toString() {
-    return 'OrderForm(creationStatus: $creationStatus, reasons: $reasons, reasonInput: $reasonInput, scene: $scene, phrasesInput: $phrasesInput)';
+    return 'OrderForm(creationStatus: $creationStatus, reasons: $reasons, reasonInput: $reasonInput, scene: $scene, phrasesInput: $phrasesInput, paymentMethods: $paymentMethods, paymentMethodInput: $paymentMethodInput)';
   }
 
   @override
@@ -227,7 +284,11 @@ class _$OrderFormImpl implements _OrderForm {
                 other.reasonInput == reasonInput) &&
             (identical(other.scene, scene) || other.scene == scene) &&
             const DeepCollectionEquality()
-                .equals(other._phrasesInput, _phrasesInput));
+                .equals(other._phrasesInput, _phrasesInput) &&
+            const DeepCollectionEquality()
+                .equals(other._paymentMethods, _paymentMethods) &&
+            (identical(other.paymentMethodInput, paymentMethodInput) ||
+                other.paymentMethodInput == paymentMethodInput));
   }
 
   @override
@@ -237,7 +298,9 @@ class _$OrderFormImpl implements _OrderForm {
       const DeepCollectionEquality().hash(_reasons),
       reasonInput,
       scene,
-      const DeepCollectionEquality().hash(_phrasesInput));
+      const DeepCollectionEquality().hash(_phrasesInput),
+      const DeepCollectionEquality().hash(_paymentMethods),
+      paymentMethodInput);
 
   @JsonKey(ignore: true)
   @override
@@ -252,7 +315,9 @@ abstract class _OrderForm implements OrderForm {
       required final List<Reason>? reasons,
       required final Id? reasonInput,
       required final Scene? scene,
-      required final Map<Id, bool> phrasesInput}) = _$OrderFormImpl;
+      required final Map<Id, bool> phrasesInput,
+      required final List<PaymentMethod>? paymentMethods,
+      required final Id? paymentMethodInput}) = _$OrderFormImpl;
 
   @override
   FormCreationStatus get creationStatus;
@@ -264,6 +329,10 @@ abstract class _OrderForm implements OrderForm {
   Scene? get scene;
   @override
   Map<Id, bool> get phrasesInput;
+  @override
+  List<PaymentMethod>? get paymentMethods;
+  @override
+  Id? get paymentMethodInput;
   @override
   @JsonKey(ignore: true)
   _$$OrderFormImplCopyWith<_$OrderFormImpl> get copyWith =>
