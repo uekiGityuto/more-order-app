@@ -16,6 +16,7 @@ class PaymentMethodListPage extends ConsumerWidget with ErrorHandlerMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final paymentMethodsFuture = ref.watch(paymentMethodsNotifierProvider);
+    final navigator = Navigator.of(context);
     return DefaultLayout(
       title: "支払方法の編集/削除",
       body: paymentMethodsFuture.when(
@@ -30,11 +31,16 @@ class PaymentMethodListPage extends ConsumerWidget with ErrorHandlerMixin {
                     (paymentMethod) {
                       return EditAndDeleteListTile(
                         title: paymentMethod.method,
-                        editPage: PaymentMethodEditPage(paymentMethod: paymentMethod),
+                        editPage:
+                            PaymentMethodEditPage(paymentMethod: paymentMethod),
                         onDeletePressed: () async {
-                          action() => ref
-                              .read(paymentMethodsNotifierProvider.notifier)
-                              .deletePaymentMethod(paymentMethod);
+                          action() async {
+                            await ref
+                                .read(paymentMethodsNotifierProvider.notifier)
+                                .deletePaymentMethod(paymentMethod);
+                            navigator.pop();
+                          }
+
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {

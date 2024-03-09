@@ -2,6 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:smart_order_app/domain/entity/phrase.dart';
 import 'package:smart_order_app/domain/entity/scene.dart';
 import 'package:smart_order_app/domain/errors/error.dart';
+import 'package:smart_order_app/domain/errors/max_add_count.dart';
 import 'package:smart_order_app/domain/repository/repository.dart';
 
 part 'scenes.g.dart';
@@ -21,6 +22,10 @@ class ScenesNotifier extends _$ScenesNotifier {
 
   Future<void> addPhrase(String phrase, List<Scene> scenes) async {
     final repository = ref.read(repositoryProvider);
+    final count = await repository.countPhrases();
+    if (MaxAddCount.phrase.isOver(count)) {
+      throw const DomainException(ErrorType.phraseCountOver);
+    }
     await repository.addPhrase(phrase, scenes);
     await updateState();
   }
@@ -48,6 +53,10 @@ class ScenesNotifier extends _$ScenesNotifier {
 
   Future<void> addScene(String scene) async {
     final repository = ref.read(repositoryProvider);
+    final count = await repository.countScenes();
+    if (MaxAddCount.scene.isOver(count)) {
+      throw const DomainException(ErrorType.sceneCountOver);
+    }
     await repository.addScene(scene);
     await updateState();
   }

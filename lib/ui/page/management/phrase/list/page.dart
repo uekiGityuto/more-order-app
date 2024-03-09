@@ -17,6 +17,7 @@ class PhraseListPage extends ConsumerWidget with ErrorHandlerMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scenesFuture = ref.watch(scenesNotifierProvider);
+    final navigator = Navigator.of(context);
     return DefaultLayout(
       title: "フレーズ編集/削除",
       body: scenesFuture.when(
@@ -37,9 +38,13 @@ class PhraseListPage extends ConsumerWidget with ErrorHandlerMixin {
                         title: phrase.phrase,
                         editPage: PhraseEditPage(phrase: phrase),
                         onDeletePressed: () async {
-                          action() => ref
-                              .read(scenesNotifierProvider.notifier)
-                              .deletePhrase(phrase);
+                          action() async {
+                            await ref
+                                .read(scenesNotifierProvider.notifier)
+                                .deletePhrase(phrase);
+                            navigator.pop();
+                          }
+
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {

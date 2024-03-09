@@ -79,18 +79,20 @@ class ReasonEditPage extends ConsumerWidget with ErrorHandlerMixin {
         ElevatedButton(
           onPressed: reasonForm.isValid
               ? () async {
-                  action() =>
-                      ref.read(reasonsNotifierProvider.notifier).editReason(
-                            reason.copyWith(
-                                reason: reasonForm.reasonInput.value,
-                                isDefault: reasonForm.isDefault),
-                          );
+                  action() async {
+                    await ref.read(reasonsNotifierProvider.notifier).editReason(
+                          reason.copyWith(
+                              reason: reasonForm.reasonInput.value,
+                              isDefault: reasonForm.isDefault),
+                        );
+                    navigator.pop();
+                  }
+
                   await execute(
                     context,
                     action,
                     successMessage: "編集しました",
                   );
-                  navigator.pop();
                 }
               : null,
           child: const Text('確定'),

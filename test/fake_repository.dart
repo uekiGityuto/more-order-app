@@ -20,6 +20,15 @@ class FakeRepository implements Repository {
   }
 
   @override
+  Future<int> countPhrases() async {
+    var phraseSet = <Phrase>{};
+    for (var s in scenes) {
+      phraseSet.addAll(s.phrases.toSet());
+    }
+    return phraseSet.length;
+  }
+
+  @override
   Future<void> addPhrase(String phrase, List<Scene> scenes) async {
     await Future.delayed(const Duration(seconds: 0));
   }
@@ -42,6 +51,11 @@ class FakeRepository implements Repository {
   }
 
   @override
+  Future<int> countReasons() async {
+    return reasons.length;
+  }
+
+  @override
   Future<void> addReason(String reason, bool isDefault) async {
     await Future.delayed(const Duration(seconds: 0));
   }
@@ -54,6 +68,11 @@ class FakeRepository implements Repository {
   @override
   Future<void> deleteReason(Reason reason) async {
     await Future.delayed(const Duration(seconds: 0));
+  }
+
+  @override
+  Future<int> countScenes() async {
+    return scenes.length;
   }
 
   @override
@@ -74,6 +93,11 @@ class FakeRepository implements Repository {
   @override
   Future<List<PaymentMethod>> getPaymentMethods() async {
     return paymentMethods;
+  }
+
+  @override
+  Future<int> countPaymentMethods() async {
+    return paymentMethods.length;
   }
 
   @override

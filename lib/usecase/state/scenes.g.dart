@@ -6,7 +6,7 @@ part of 'scenes.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$scenesNotifierHash() => r'7da8739eb092306c844331943a3a5d77da40ee5c';
+String _$scenesNotifierHash() => r'244333e97e37d1b521e94ca6d48303c177292865';
 
 /// See also [ScenesNotifier].
 @ProviderFor(ScenesNotifier)

@@ -1,10 +1,10 @@
 import 'package:formz/formz.dart';
 
-const methodLengthLimit = 30;
+const maxMethodLength = 30;
 
 enum MethodInputError {
   empty(errorMessage: '未入力です'),
-  tooLonger(errorMessage: '$methodLengthLimit文字以下で入力してください'),
+  tooLonger(errorMessage: '$maxMethodLength文字以下で入力してください'),
   ;
 
   const MethodInputError({required this.errorMessage});
@@ -19,7 +19,7 @@ class MethodInput extends FormzInput<String, MethodInputError> {
   @override
   MethodInputError? validator(String value) {
     if (value.isEmpty) return MethodInputError.empty;
-    if (value.length >= methodLengthLimit) {
+    if (value.length >= maxMethodLength) {
       return MethodInputError.tooLonger;
     }
     return null;

@@ -95,6 +95,17 @@ class DAO implements Repository {
     );
   }
 
+  Future<int> _getRowCount(
+    String table, {
+    Transaction? txn,
+  }) async {
+    final database = txn ?? db;
+    final data = await database.rawQuery('SELECT COUNT(*) FROM $table');
+    // rawQueryはList<Map<String, dynamic>>を返すので、最初の行の最初のカラムの値をintとして取得
+    int count = Sqflite.firstIntValue(data) ?? 0;
+    return count;
+  }
+
   @override
   Future<List<Scene>> getScenesAndPhrases() async {
     final List<Map<String, dynamic>> result = await db.rawQuery('''
@@ -142,6 +153,11 @@ class DAO implements Repository {
         .map((sceneMap) => SceneDTO.fromJson(sceneMap))
         .toList();
     return scenesDTOs.map((dto) => dto.toEntity()).toList();
+  }
+
+  @override
+  Future<int> countPhrases() async {
+    return await _getRowCount("phrases");
   }
 
   @override
@@ -250,12 +266,17 @@ class DAO implements Repository {
   }
 
   @override
+  Future<int> countReasons() async {
+    return await _getRowCount("reasons");
+  }
+
+  @override
   Future<void> addReason(String reason, bool isDefault) async {
     try {
       await db.transaction(
         (txn) async {
           if (isDefault) {
-            _updateExistingDefaultReasonToFalse(txn);
+            await _updateExistingDefaultReasonToFalse(txn);
           }
           await _add(
             "reasons",
@@ -278,7 +299,7 @@ class DAO implements Repository {
       await db.transaction(
         (txn) async {
           if (reason.isDefault) {
-            _updateExistingDefaultReasonToFalse(txn);
+            await _updateExistingDefaultReasonToFalse(txn);
           }
           await _updateById(
             "reasons",
@@ -299,6 +320,11 @@ class DAO implements Repository {
   @override
   Future<void> deleteReason(Reason reason) async {
     await _deleteById("reasons", id: reason.id);
+  }
+
+  @override
+  Future<int> countScenes() async {
+    return await _getRowCount("scenes");
   }
 
   @override
@@ -353,7 +379,7 @@ class DAO implements Repository {
     } else {
       await _updateDefaultFalseById(
         "payment_methods",
-        id: ReasonDTO.fromJson(result.first).toEntity().id,
+        id: PaymentMethodDTO.fromJson(result.first).toEntity().id,
         txn: txn,
       );
     }
@@ -367,12 +393,17 @@ class DAO implements Repository {
   }
 
   @override
+  Future<int> countPaymentMethods() async {
+    return await _getRowCount("payment_methods");
+  }
+
+  @override
   Future<void> addPaymentMethod(String method, bool isDefault) async {
     try {
       await db.transaction(
         (txn) async {
           if (isDefault) {
-            _updateExistingDefaultPaymentMethodToFalse(txn);
+            await _updateExistingDefaultPaymentMethodToFalse(txn);
           }
           await _add(
             "payment_methods",
@@ -395,7 +426,7 @@ class DAO implements Repository {
       await db.transaction(
         (txn) async {
           if (paymentMethod.isDefault) {
-            _updateExistingDefaultReasonToFalse(txn);
+            await _updateExistingDefaultPaymentMethodToFalse(txn);
           }
           await _updateById(
             "payment_methods",

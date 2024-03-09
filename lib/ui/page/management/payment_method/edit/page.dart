@@ -84,19 +84,22 @@ class PaymentMethodEditPage extends ConsumerWidget with ErrorHandlerMixin {
         ElevatedButton(
           onPressed: paymentMethodForm.isValid
               ? () async {
-                  action() => ref
-                      .read(paymentMethodsNotifierProvider.notifier)
-                      .editPaymentMethod(
-                        paymentMethod.copyWith(
-                            method: paymentMethodForm.methodInput.value,
-                            isDefault: paymentMethodForm.isDefault),
-                      );
+                  action() async {
+                    await ref
+                        .read(paymentMethodsNotifierProvider.notifier)
+                        .editPaymentMethod(
+                          paymentMethod.copyWith(
+                              method: paymentMethodForm.methodInput.value,
+                              isDefault: paymentMethodForm.isDefault),
+                        );
+                    navigator.pop();
+                  }
+
                   await execute(
                     context,
                     action,
                     successMessage: "編集しました",
                   );
-                  navigator.pop();
                 }
               : null,
           child: const Text('確定'),

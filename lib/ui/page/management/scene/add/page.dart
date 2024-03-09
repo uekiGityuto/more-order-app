@@ -12,7 +12,6 @@ class SceneAddPage extends ConsumerWidget with ErrorHandlerMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sceneForm = ref.watch(sceneAddFormControllerProvider);
-    final navigator = Navigator.of(context);
     return DefaultLayout(
       title: "場面登録",
       body: Column(children: [
@@ -36,15 +35,17 @@ class SceneAddPage extends ConsumerWidget with ErrorHandlerMixin {
         ElevatedButton(
           onPressed: sceneForm.isValid
               ? () async {
-                  action() => ref
-                      .read(scenesNotifierProvider.notifier)
-                      .addScene(sceneForm.sceneInput.value);
+                  action() async {
+                    await ref
+                        .read(scenesNotifierProvider.notifier)
+                        .addScene(sceneForm.sceneInput.value);
+                  }
+
                   await execute(
                     context,
                     action,
                     successMessage: "登録しました",
                   );
-                  navigator.pop();
                 }
               : null,
           child: const Text('登録'),
