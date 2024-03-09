@@ -19,7 +19,7 @@ class ReasonsNotifier extends _$ReasonsNotifier {
 
   Future<void> addReason(String reason, bool isDefault) async {
     final repository = ref.read(repositoryProvider);
-    await repository.addReason(reason, isDefault);
+    await repository.addMethod(reason, isDefault);
     await updateState();
   }
 

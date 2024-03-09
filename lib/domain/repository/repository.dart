@@ -1,4 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:smart_order_app/domain/entity/payment_method.dart';
 import 'package:smart_order_app/domain/entity/phrase.dart';
 import 'package:smart_order_app/domain/entity/reason.dart';
 import 'package:smart_order_app/domain/entity/scene.dart';
@@ -18,11 +19,16 @@ abstract interface class Repository {
   Future<void> deletePhrase(Phrase phrase);
 
   Future<List<Reason>> getReasons();
-  Future<void> addReason(String reason, bool isDefault);
+  Future<void> addMethod(String reason, bool isDefault);
   Future<void> updateReason(Reason reason);
   Future<void> deleteReason(Reason reason);
 
   Future<void> addScene(String scene);
   Future<void> updateScene(Scene scene);
   Future<void> deleteScene(Scene scene);
+
+  Future<List<PaymentMethod>> getPaymentMethods();
+  Future<void> addPaymentMethod(String method, bool isDefault);
+  Future<void> updatePaymentMethod(PaymentMethod paymentMethod);
+  Future<void> deletePaymentMethod(PaymentMethod paymentMethod);
 }
