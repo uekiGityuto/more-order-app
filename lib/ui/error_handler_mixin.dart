@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_order_app/domain/errors/error.dart';
-import 'package:smart_order_app/ui/component/snackBar/failure_snackbar.dart';
-import 'package:smart_order_app/ui/component/snackBar/success_snackbar.dart';
+import 'package:smart_order_app/ui/component/snackBar/simple_snackbar.dart';
 
 mixin ErrorHandlerMixin {
   Future<void> execute(
@@ -12,19 +11,22 @@ mixin ErrorHandlerMixin {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     try {
       await action();
-      SuccessSnackBar.show(
+      SimpleSnackBar.show(
         scaffoldMessenger,
         message: successMessage,
+        type: SnackBarType.success,
       );
     } on DomainException catch (e) {
-      FailureSnackBar.show(
+      SimpleSnackBar.show(
         scaffoldMessenger,
         message: e.toString(),
+        type: SnackBarType.failure,
       );
     } catch (_) {
-      FailureSnackBar.show(
+      SimpleSnackBar.show(
         scaffoldMessenger,
         message: ErrorType.unexpected.message,
+        type: SnackBarType.failure,
       );
     }
   }

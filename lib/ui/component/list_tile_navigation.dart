@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_order_app/ui/component/snackBar/failure_snackbar.dart';
+import 'package:smart_order_app/ui/component/snackBar/simple_snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 enum NavigationType { push, pushReplacement, pushAndRemoveUntil, webView }
@@ -57,9 +57,10 @@ class NavigationAction {
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
-      FailureSnackBar.show(
+      SimpleSnackBar.show(
         scaffoldMessenger,
         message: "ページを開けませんでした。",
+        type: SnackBarType.failure,
       );
     }
   }
