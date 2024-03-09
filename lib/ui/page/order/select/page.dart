@@ -5,6 +5,7 @@ import 'package:smart_order_app/domain/valueObject/id.dart';
 import 'package:smart_order_app/ui/component/button/navigation_button.dart';
 import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/form/simple_checkbox_list_tile.dart';
+import 'package:smart_order_app/ui/component/form/simple_select_form.dart';
 import 'package:smart_order_app/ui/component/loader.dart';
 import 'package:smart_order_app/ui/component/typography/section_title.dart';
 import 'package:smart_order_app/ui/form/form_creation_status.dart';
@@ -13,8 +14,6 @@ import 'package:smart_order_app/ui/page/order/display/page.dart';
 import 'package:smart_order_app/ui/page/order/select/component/no_payment_method.dart';
 import 'package:smart_order_app/ui/page/order/select/component/no_phrase.dart';
 import 'package:smart_order_app/ui/page/order/select/component/no_reason.dart';
-import 'package:smart_order_app/ui/page/order/select/component/payment_method_select_form.dart';
-import 'package:smart_order_app/ui/page/order/select/component/reason_select_form.dart';
 import 'package:smart_order_app/ui/page/order/select/form/order_form_controller.dart';
 import 'package:smart_order_app/ui/style/extension/list_space_between.dart';
 
@@ -46,9 +45,14 @@ class OrderSelectPage extends ConsumerWidget {
                               const SectionTitle(text: "理由"),
                               reasons.isEmpty
                                   ? const NoReason()
-                                  : ReasonSelectForm(
+                                  : SimpleSelectForm(
                                       value: orderForm.reasonInput,
-                                      reasons: reasons,
+                                      options: reasons
+                                          .map(
+                                            (r) => Option(
+                                                value: r.id, label: r.reason),
+                                          )
+                                          .toList(),
                                       onChanged: (Id? newValue) {
                                         ref
                                             .read(orderFormControllerProvider(
@@ -87,9 +91,14 @@ class OrderSelectPage extends ConsumerWidget {
                               const SectionTitle(text: "支払方法"),
                               paymentMethods.isEmpty
                                   ? const NoPaymentMethod()
-                                  : PaymentMethodSelectForm(
+                                  : SimpleSelectForm(
                                       value: orderForm.paymentMethodInput,
-                                      paymentMethods: paymentMethods,
+                                      options: paymentMethods
+                                          .map(
+                                            (p) => Option(
+                                                value: p.id, label: p.method),
+                                          )
+                                          .toList(),
                                       onChanged: (Id? newValue) {
                                         ref
                                             .read(orderFormControllerProvider(
