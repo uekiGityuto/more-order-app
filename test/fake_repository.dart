@@ -42,7 +42,7 @@ class FakeRepository implements Repository {
   }
 
   @override
-  Future<void> addMethod(String reason, bool isDefault) async {
+  Future<void> addReason(String reason, bool isDefault) async {
     await Future.delayed(const Duration(seconds: 0));
   }
 

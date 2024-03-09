@@ -3,6 +3,7 @@ import 'package:smart_order_app/ui/component/list_tile_navigation.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/ui/page/management/component/menu_item.dart';
 import 'package:smart_order_app/ui/page/management/payment_method/add/page.dart';
+import 'package:smart_order_app/ui/page/management/payment_method/list/page.dart';
 import 'package:smart_order_app/ui/page/management/phrase/add/page.dart';
 import 'package:smart_order_app/ui/page/management/phrase/list/page.dart';
 import 'package:smart_order_app/ui/page/management/reason/add/page.dart';
@@ -34,7 +35,8 @@ class ManagementPage extends StatelessWidget {
           ]),
           MenuItem(title: "支払方法", options: [
             ListTileOption(title: "登録", nextPage: const PaymentMethodAddPage()),
-            // ListTileOption(title: "編集/削除", nextPage: const ReasonListPage()),
+            ListTileOption(
+                title: "編集/削除", nextPage: const PaymentMethodListPage()),
           ]),
           MenuItem(
             title: "その他",

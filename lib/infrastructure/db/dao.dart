@@ -250,7 +250,7 @@ class DAO implements Repository {
   }
 
   @override
-  Future<void> addMethod(String reason, bool isDefault) async {
+  Future<void> addReason(String reason, bool isDefault) async {
     try {
       await db.transaction(
         (txn) async {

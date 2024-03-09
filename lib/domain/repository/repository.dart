@@ -19,7 +19,7 @@ abstract interface class Repository {
   Future<void> deletePhrase(Phrase phrase);
 
   Future<List<Reason>> getReasons();
-  Future<void> addMethod(String reason, bool isDefault);
+  Future<void> addReason(String reason, bool isDefault);
   Future<void> updateReason(Reason reason);
   Future<void> deleteReason(Reason reason);
 

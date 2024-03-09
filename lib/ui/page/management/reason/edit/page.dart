@@ -29,7 +29,7 @@ class ReasonEditPage extends ConsumerWidget with ErrorHandlerMixin {
     final reasonForm = ref.watch(reasonEditFormControllerProvider(reason));
     final navigator = Navigator.of(context);
     return DefaultLayout(
-      title: "理由登録",
+      title: "理由編集",
       body: Column(children: [
         Expanded(
           child: ListView(

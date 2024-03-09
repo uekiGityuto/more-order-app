@@ -19,7 +19,7 @@ class PaymentMethodsNotifier extends _$PaymentMethodsNotifier {
 
   Future<void> addPaymentMethod(String method, bool isDefault) async {
     final repository = ref.read(repositoryProvider);
-    await repository.addMethod(method, isDefault);
+    await repository.addPaymentMethod(method, isDefault);
     await updateState();
   }
 
