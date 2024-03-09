@@ -1,5 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:smart_order_app/domain/entity/payment_method.dart';
+import 'package:smart_order_app/domain/errors/error.dart';
+import 'package:smart_order_app/domain/errors/max_add_count.dart';
 import 'package:smart_order_app/domain/repository/repository.dart';
 
 part 'payment_methods.g.dart';
@@ -19,6 +21,10 @@ class PaymentMethodsNotifier extends _$PaymentMethodsNotifier {
 
   Future<void> addPaymentMethod(String method, bool isDefault) async {
     final repository = ref.read(repositoryProvider);
+    final count = await repository.countPaymentMethods();
+    if (MaxAddCount.paymentMethod.isOver(count)) {
+      throw const DomainException(ErrorType.paymentMethodCountOver);
+    }
     await repository.addPaymentMethod(method, isDefault);
     await updateState();
   }

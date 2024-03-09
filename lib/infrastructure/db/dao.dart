@@ -95,6 +95,17 @@ class DAO implements Repository {
     );
   }
 
+  Future<int> _getRowCount(
+    String table, {
+    Transaction? txn,
+  }) async {
+    final database = txn ?? db;
+    final data = await database.rawQuery('SELECT COUNT(*) FROM $table');
+    // rawQueryはList<Map<String, dynamic>>を返すので、最初の行の最初のカラムの値をintとして取得
+    int count = Sqflite.firstIntValue(data) ?? 0;
+    return count;
+  }
+
   @override
   Future<List<Scene>> getScenesAndPhrases() async {
     final List<Map<String, dynamic>> result = await db.rawQuery('''
@@ -142,6 +153,11 @@ class DAO implements Repository {
         .map((sceneMap) => SceneDTO.fromJson(sceneMap))
         .toList();
     return scenesDTOs.map((dto) => dto.toEntity()).toList();
+  }
+
+  @override
+  Future<int> countPhrases() async {
+    return await _getRowCount("phrases");
   }
 
   @override
@@ -250,6 +266,11 @@ class DAO implements Repository {
   }
 
   @override
+  Future<int> countReasons() async {
+    return await _getRowCount("reasons");
+  }
+
+  @override
   Future<void> addReason(String reason, bool isDefault) async {
     try {
       await db.transaction(
@@ -299,6 +320,11 @@ class DAO implements Repository {
   @override
   Future<void> deleteReason(Reason reason) async {
     await _deleteById("reasons", id: reason.id);
+  }
+
+  @override
+  Future<int> countScenes() async {
+    return await _getRowCount("scenes");
   }
 
   @override
@@ -364,6 +390,11 @@ class DAO implements Repository {
     List<Map<String, dynamic>> result =
         await db.query("payment_methods", orderBy: "is_default DESC");
     return result.map((r) => PaymentMethodDTO.fromJson(r).toEntity()).toList();
+  }
+
+  @override
+  Future<int> countPaymentMethods() async {
+    return await _getRowCount("payment_methods");
   }
 
   @override

@@ -1,10 +1,10 @@
 import 'package:formz/formz.dart';
 
-const sceneLengthLimit = 30;
+const maxSceneLength = 30;
 
 enum SceneInputError {
   empty(errorMessage: '未入力です'),
-  tooLonger(errorMessage: '$sceneLengthLimit文字以下で入力してください'),
+  tooLonger(errorMessage: '$maxSceneLength文字以下で入力してください'),
   ;
 
   const SceneInputError({required this.errorMessage});
@@ -19,7 +19,7 @@ class SceneInput extends FormzInput<String, SceneInputError> {
   @override
   SceneInputError? validator(String value) {
     if (value.isEmpty) return SceneInputError.empty;
-    if (value.length >= sceneLengthLimit) return SceneInputError.tooLonger;
+    if (value.length >= maxSceneLength) return SceneInputError.tooLonger;
     return null;
   }
 }

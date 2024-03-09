@@ -1,10 +1,10 @@
 import 'package:formz/formz.dart';
 
-const reasonLengthLimit = 30;
+const maxReasonLength = 30;
 
 enum ReasonInputError {
   empty(errorMessage: '未入力です'),
-  tooLonger(errorMessage: '$reasonLengthLimit文字以下で入力してください'),
+  tooLonger(errorMessage: '$maxReasonLength文字以下で入力してください'),
   ;
 
   const ReasonInputError({required this.errorMessage});
@@ -19,7 +19,7 @@ class ReasonInput extends FormzInput<String, ReasonInputError> {
   @override
   ReasonInputError? validator(String value) {
     if (value.isEmpty) return ReasonInputError.empty;
-    if (value.length >= reasonLengthLimit) return ReasonInputError.tooLonger;
+    if (value.length >= maxReasonLength) return ReasonInputError.tooLonger;
     return null;
   }
 }

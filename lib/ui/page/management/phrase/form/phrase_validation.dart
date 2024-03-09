@@ -1,11 +1,11 @@
 import 'package:formz/formz.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
 
-const phraseLengthLimit = 30;
+const maxPhraseLength = 30;
 
 enum PhraseInputError {
   empty(errorMessage: '未入力です'),
-  tooLonger(errorMessage: '$phraseLengthLimit文字以下で入力してください'),
+  tooLonger(errorMessage: '$maxPhraseLength文字以下で入力してください'),
   ;
 
   const PhraseInputError({required this.errorMessage});
@@ -20,7 +20,7 @@ class PhraseInput extends FormzInput<String, PhraseInputError> {
   @override
   PhraseInputError? validator(String value) {
     if (value.isEmpty) return PhraseInputError.empty;
-    if (value.length >= phraseLengthLimit) return PhraseInputError.tooLonger;
+    if (value.length >= maxPhraseLength) return PhraseInputError.tooLonger;
     return null;
   }
 }

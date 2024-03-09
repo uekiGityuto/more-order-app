@@ -6,7 +6,7 @@ part of 'reasons.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$reasonsNotifierHash() => r'b9bf89d1300d0669145ca0c8aa08ac3e2b2a05b5';
+String _$reasonsNotifierHash() => r'ae3333b712b73de2bb2a8b4e0a0e8b2690ba30da';
 
 /// See also [ReasonsNotifier].
 @ProviderFor(ReasonsNotifier)
