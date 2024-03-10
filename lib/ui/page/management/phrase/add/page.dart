@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:smart_order_app/ui/component/error_message.dart';
 import 'package:smart_order_app/ui/component/form/form_error_message.dart';
 import 'package:smart_order_app/ui/component/form/simple_checkbox_list_tile.dart';
@@ -11,11 +12,13 @@ import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/ui/page/management/phrase/add/form/phrase_add_form_controller.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
-class PhraseAddPage extends ConsumerWidget with ErrorHandlerMixin {
+class PhraseAddPage extends HookConsumerWidget with ErrorHandlerMixin {
   const PhraseAddPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // 登録後にTextFieldをクリアするためだけに使う。それ以外で使わないこと。
+    final phraseEditingController = useTextEditingController();
     final phraseForm = ref.watch(phraseAddFormControllerProvider);
     final scenes = phraseForm.scenes;
     return DefaultLayout(
@@ -62,6 +65,7 @@ class PhraseAddPage extends ConsumerWidget with ErrorHandlerMixin {
                             children: [
                               const SectionTitle(text: "フレーズ"),
                               TextFormField(
+                                controller: phraseEditingController,
                                 decoration: const InputDecoration(
                                   hintText: 'フレーズを入力してください',
                                 ),
@@ -94,6 +98,7 @@ class PhraseAddPage extends ConsumerWidget with ErrorHandlerMixin {
                                               true)
                                           .toList(),
                                     );
+                                phraseEditingController.clear();
                               }
 
                               await execute(

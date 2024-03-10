@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:smart_order_app/ui/component/form/form_additional_message.dart';
 import 'package:smart_order_app/ui/component/form/form_error_message.dart';
 import 'package:smart_order_app/ui/component/form/simple_checkbox_list_tile.dart';
@@ -12,11 +13,14 @@ String getIsDefaultAdditionalMessage(bool isDefault) {
   return isDefault ? "既にデフォルトとして登録されている理由がある場合、その理由は、自動的にデフォルトではなくなります。" : "";
 }
 
-class ReasonAddPage extends ConsumerWidget with ErrorHandlerMixin {
+class ReasonAddPage extends HookConsumerWidget with ErrorHandlerMixin {
   const ReasonAddPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // 登録後にTextFieldをクリアするためだけに使う。それ以外で使わないこと。
+    final reasonEditingController = useTextEditingController();
+
     final reasonForm = ref.watch(reasonAddFormControllerProvider);
     return DefaultLayout(
       title: "理由登録",
@@ -27,6 +31,7 @@ class ReasonAddPage extends ConsumerWidget with ErrorHandlerMixin {
               Column(
                 children: [
                   TextFormField(
+                    controller: reasonEditingController,
                     decoration: const InputDecoration(
                       hintText: '理由を入力してください',
                     ),
@@ -69,6 +74,7 @@ class ReasonAddPage extends ConsumerWidget with ErrorHandlerMixin {
                   action() async {
                     await ref.read(reasonsNotifierProvider.notifier).addReason(
                         reasonForm.reasonInput.value, reasonForm.isDefault);
+                    reasonEditingController.clear();
                   }
 
                   await execute(
