@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:smart_order_app/ui/component/form/form_error_message.dart';
 import 'package:smart_order_app/ui/error_handler_mixin.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
 import 'package:smart_order_app/ui/page/management/scene/add/form/scene_add_form_controller.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
-class SceneAddPage extends ConsumerWidget with ErrorHandlerMixin {
+class SceneAddPage extends HookConsumerWidget with ErrorHandlerMixin {
   const SceneAddPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // 登録後にTextFieldをクリアするためだけに使う。それ以外で使わないこと。
+    final sceneEditingController = useTextEditingController();
+
     final sceneForm = ref.watch(sceneAddFormControllerProvider);
     return DefaultLayout(
       title: "場面登録",
@@ -19,6 +23,7 @@ class SceneAddPage extends ConsumerWidget with ErrorHandlerMixin {
           child: Column(
             children: [
               TextFormField(
+                controller: sceneEditingController,
                 decoration: const InputDecoration(
                   hintText: '場面を入力してください',
                 ),
@@ -39,6 +44,7 @@ class SceneAddPage extends ConsumerWidget with ErrorHandlerMixin {
                     await ref
                         .read(scenesNotifierProvider.notifier)
                         .addScene(sceneForm.sceneInput.value);
+                    sceneEditingController.clear();
                   }
 
                   await execute(
