@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
 import 'package:smart_order_app/ui/component/button/navigation_button.dart';
 import 'package:smart_order_app/ui/component/error_message.dart';
@@ -15,6 +16,7 @@ import 'package:smart_order_app/ui/page/order/select/component/no_payment_method
 import 'package:smart_order_app/ui/page/order/select/component/no_phrase.dart';
 import 'package:smart_order_app/ui/page/order/select/component/no_reason.dart';
 import 'package:smart_order_app/ui/page/order/select/form/order_form_controller.dart';
+import 'package:smart_order_app/ui/page/tutorial/page.dart';
 import 'package:smart_order_app/ui/style/extension/list_space_between.dart';
 
 class OrderSelectPage extends ConsumerWidget {
@@ -24,6 +26,8 @@ class OrderSelectPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    WidgetsBinding.instance.addPostFrameCallback((_) => _showTutorial(context));
+
     final orderForm = ref.watch(orderFormControllerProvider(sceneName));
     final scene = orderForm.scene;
     final reasons = orderForm.reasons;
@@ -128,5 +132,19 @@ class OrderSelectPage extends ConsumerWidget {
                   ],
                 ),
     );
+  }
+
+  void _showTutorial(BuildContext context) {
+    SharedPreferences.getInstance().then((prefs) {
+      // prefs.clear();
+      if (prefs.getBool('isFirst') != true) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const TutorialPage(),
+          ),
+        );
+      }
+    });
   }
 }
