@@ -61,10 +61,13 @@ class OrderDisplayPage extends StatelessWidget {
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                   minLines: 3,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: '店員さんとの会話でご利用ください',
+                    hintStyle: TextStyle(
+                      fontSize: 16 * MediaQuery.of(context).textScaleFactor,
+                    ),
                     filled: true,
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                   ),
                 ),
               ],
