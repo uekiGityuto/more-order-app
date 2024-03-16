@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
 import 'package:smart_order_app/ui/component/button/navigation_button.dart';
 import 'package:smart_order_app/ui/component/error_message.dart';
@@ -18,6 +17,7 @@ import 'package:smart_order_app/ui/page/order/select/component/no_reason.dart';
 import 'package:smart_order_app/ui/page/order/select/form/order_form_controller.dart';
 import 'package:smart_order_app/ui/page/tutorial/page.dart';
 import 'package:smart_order_app/ui/style/extension/list_space_between.dart';
+import 'package:smart_order_app/usecase/controller/shared_preferences.dart';
 
 class OrderSelectPage extends ConsumerWidget {
   final String sceneName;
@@ -26,7 +26,8 @@ class OrderSelectPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    WidgetsBinding.instance.addPostFrameCallback((_) => _showTutorial(context));
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) async => await _showTutorial(context));
 
     final orderForm = ref.watch(orderFormControllerProvider(sceneName));
     final scene = orderForm.scene;
@@ -134,17 +135,18 @@ class OrderSelectPage extends ConsumerWidget {
     );
   }
 
-  void _showTutorial(BuildContext context) {
-    SharedPreferences.getInstance().then((prefs) {
-      // prefs.clear();
-      if (prefs.getBool('isFirst') != true) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const TutorialPage(),
-          ),
-        );
-      }
-    });
+  Future<void> _showTutorial(BuildContext context) async {
+    final navigator = Navigator.of(context, rootNavigator: true);
+    // 開発用。チュートリアルを表示したいときに使う。
+    // await SharedPreferencesController.clear();
+    final isTutorialDisplayed =
+        await SharedPreferencesController.isTutorialDisplayed();
+    if (!isTutorialDisplayed) {
+      navigator.push(
+        MaterialPageRoute(
+          builder: (context) => const TutorialPage(),
+        ),
+      );
+    }
   }
 }

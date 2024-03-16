@@ -3,6 +3,7 @@ import 'package:flutter_overboard/flutter_overboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_order_app/constants.dart';
 import 'package:smart_order_app/ui/page/order/select/page.dart';
+import 'package:smart_order_app/usecase/controller/shared_preferences.dart';
 
 class TutorialPage extends StatefulWidget {
   const TutorialPage({Key? key}) : super(key: key);
@@ -23,6 +24,7 @@ class TutorialPageState extends State<TutorialPage>
   // TODO: デザイン修正。特に画像をつくる。
   @override
   Widget build(BuildContext context) {
+    final navigator = Navigator.of(context, rootNavigator: true);
     final List<SimplePageModel> pages = [
       SimplePageModel(
         title: '生活するとは\n"注文する"こと',
@@ -88,12 +90,11 @@ PayPayで払います。
         skipText: "SKIP",
         nextText: "NEXT",
         finishText: "FINISH",
-        skipCallback: () {
-          _setTutorialDone();
+        skipCallback: () async {
+          await SharedPreferencesController.setTutorialDone();
           // OrderSelectPage以外のページから遷移するようにする場合は、popにする。
           // （popにするとWidget Stackが積み重なって開発しづらいのでpushAndRemoveUntilにしている）
-          Navigator.pushAndRemoveUntil(
-            context,
+          navigator.pushAndRemoveUntil(
             MaterialPageRoute(
               builder: (context) => const OrderSelectPage(
                 sceneName: defaultScene,
@@ -102,12 +103,11 @@ PayPayで払います。
             (_) => false,
           );
         },
-        finishCallback: () {
-          _setTutorialDone();
+        finishCallback: () async {
+          await SharedPreferencesController.setTutorialDone();
           // OrderSelectPage以外のページから遷移するようにする場合は、popにする。
           // （popにするとWidget Stackが積み重なって開発しづらいのでpushAndRemoveUntilにしている）
-          Navigator.pushAndRemoveUntil(
-            context,
+          navigator.pushAndRemoveUntil(
             MaterialPageRoute(
               builder: (context) => const OrderSelectPage(
                 sceneName: defaultScene,
