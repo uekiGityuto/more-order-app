@@ -138,7 +138,7 @@ class OrderSelectPage extends ConsumerWidget {
   Future<void> _showTutorial(BuildContext context) async {
     final navigator = Navigator.of(context, rootNavigator: true);
     // 開発用。チュートリアルを表示したいときに使う。
-    await SharedPreferencesController.clear();
+    // await SharedPreferencesController.clear();
     final isTutorialDisplayed =
         await SharedPreferencesController.isTutorialDisplayed();
     if (!isTutorialDisplayed) {

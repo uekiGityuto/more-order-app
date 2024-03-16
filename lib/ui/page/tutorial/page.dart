@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_overboard/flutter_overboard.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_order_app/constants.dart';
 import 'package:smart_order_app/ui/page/order/select/page.dart';
 import 'package:smart_order_app/ui/page/tutorial/component/page_model_child.dart';
@@ -129,9 +128,4 @@ PayPayで払います。
       ),
     );
   }
-}
-
-void _setTutorialDone() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setBool('isFirst', true);
 }
