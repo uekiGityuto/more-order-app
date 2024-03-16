@@ -6,11 +6,29 @@ class LastMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      paymentMethod == null ? "以上、宜しくお願いします" : "支払いは$paymentMethodでお願いします",
-      style: TextStyle(
-        fontSize: 24 * MediaQuery.of(context).textScaleFactor,
-      ),
-    );
+    return paymentMethod == null
+        ? Text(
+            "以上、宜しくお願いします",
+            style: TextStyle(
+              fontSize: 20 * MediaQuery.of(context).textScaleFactor,
+            ),
+          )
+        : RichText(
+            text: TextSpan(
+              text: "支払いは",
+              style: DefaultTextStyle.of(context).style.copyWith(
+                    fontSize: 20 * MediaQuery.of(context).textScaleFactor,
+                  ),
+              children: [
+                TextSpan(
+                  text: "「$paymentMethod」",
+                  style: TextStyle(
+                    fontSize: 24 * MediaQuery.of(context).textScaleFactor,
+                  ),
+                ),
+                const TextSpan(text: 'でお願いします'),
+              ],
+            ),
+          );
   }
 }

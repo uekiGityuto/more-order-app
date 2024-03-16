@@ -51,6 +51,22 @@ class OrderDisplayPage extends StatelessWidget {
                   height: 24,
                 ),
                 LastMessage(paymentMethod: paymentMethodText),
+                const SizedBox(
+                  height: 64,
+                ),
+                TextField(
+                  style: TextStyle(
+                    fontSize: 20 * MediaQuery.of(context).textScaleFactor,
+                  ),
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  minLines: 3,
+                  decoration: const InputDecoration(
+                    hintText: '店員さんとの会話でご利用ください',
+                    filled: true,
+                    border: OutlineInputBorder(),
+                  ),
+                ),
               ],
             ),
           ),

@@ -15,7 +15,7 @@ class ReasonField extends StatelessWidget {
       child: Text(
         reason,
         style: TextStyle(
-          fontSize: 16 * MediaQuery.of(context).textScaleFactor,
+          fontSize: 20 * MediaQuery.of(context).textScaleFactor,
         ),
       ),
     );
