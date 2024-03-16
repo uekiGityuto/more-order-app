@@ -15,7 +15,9 @@ import 'package:smart_order_app/ui/page/order/select/component/no_payment_method
 import 'package:smart_order_app/ui/page/order/select/component/no_phrase.dart';
 import 'package:smart_order_app/ui/page/order/select/component/no_reason.dart';
 import 'package:smart_order_app/ui/page/order/select/form/order_form_controller.dart';
+import 'package:smart_order_app/ui/page/tutorial/page.dart';
 import 'package:smart_order_app/ui/style/extension/list_space_between.dart';
+import 'package:smart_order_app/usecase/controller/shared_preferences.dart';
 
 class OrderSelectPage extends ConsumerWidget {
   final String sceneName;
@@ -24,6 +26,9 @@ class OrderSelectPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) async => await _showTutorial(context));
+
     final orderForm = ref.watch(orderFormControllerProvider(sceneName));
     final scene = orderForm.scene;
     final reasons = orderForm.reasons;
@@ -128,5 +133,20 @@ class OrderSelectPage extends ConsumerWidget {
                   ],
                 ),
     );
+  }
+
+  Future<void> _showTutorial(BuildContext context) async {
+    final navigator = Navigator.of(context, rootNavigator: true);
+    // 開発用。チュートリアルを表示したいときに使う。
+    // await SharedPreferencesController.clear();
+    final isTutorialDisplayed =
+        await SharedPreferencesController.isTutorialDisplayed();
+    if (!isTutorialDisplayed) {
+      navigator.push(
+        MaterialPageRoute(
+          builder: (context) => const TutorialPage(),
+        ),
+      );
+    }
   }
 }

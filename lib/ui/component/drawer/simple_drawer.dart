@@ -16,7 +16,7 @@ class SimpleDrawer extends ConsumerWidget {
     return Drawer(
       child: SafeArea(
         child: Container(
-          padding: const EdgeInsets.fromLTRB(12.0, 32.0, 12.0, 16.0),
+          padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 12.0),
           child: ListView(
             children: [
               const SectionTitle(text: "場面選択"),
