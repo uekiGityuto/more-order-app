@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nil/nil.dart';
 
 class LastMessage extends StatelessWidget {
-  final bool hasPhrases;
   final String? paymentMethod;
-  const LastMessage({Key? key, required this.hasPhrases, this.paymentMethod})
-      : super(key: key);
+  const LastMessage({Key? key, this.paymentMethod}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +24,11 @@ class LastMessage extends StatelessWidget {
               ],
             ),
           )
-        : hasPhrases
-            ? Text(
-                "お願いします",
-                style: TextStyle(
-                  fontSize: 20 * MediaQuery.of(context).textScaleFactor,
-                ),
-              )
-            : nil;
+        : Text(
+            "お願いします",
+            style: TextStyle(
+              fontSize: 20 * MediaQuery.of(context).textScaleFactor,
+            ),
+          );
   }
 }
