@@ -3,8 +3,11 @@ import 'package:smart_order_app/domain/entity/payment_method.dart';
 import 'package:smart_order_app/domain/entity/phrase.dart';
 import 'package:smart_order_app/domain/entity/reason.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
+import 'package:smart_order_app/ui/page/order/display/component/free_text_field.dart';
 import 'package:smart_order_app/ui/page/order/display/component/last_message.dart';
+import 'package:smart_order_app/ui/page/order/display/component/phrases.dart';
 import 'package:smart_order_app/ui/page/order/display/component/reason_field.dart';
+import 'package:smart_order_app/ui/style/extension/list_space_between.dart';
 
 class OrderDisplayPage extends StatelessWidget {
   final Reason? reason;
@@ -29,48 +32,12 @@ class OrderDisplayPage extends StatelessWidget {
             child: ListView(
               children: [
                 if (reasonText != null) ReasonField(reason: reasonText),
-                const SizedBox(
-                  height: 24,
-                ),
-                ...phrases
-                    .map(
-                      (phrase) => ListTile(
-                        leading: const Icon(Icons.fiber_manual_record),
-                        title: Text(
-                          phrase.phrase,
-                          style: TextStyle(
-                            fontSize:
-                                24 * MediaQuery.of(context).textScaleFactor,
-                          ),
-                        ),
-                        contentPadding: EdgeInsets.zero,
-                      ),
-                    )
-                    .toList(),
-                const SizedBox(
-                  height: 24,
-                ),
-                LastMessage(hasPhrases: phrases.isNotEmpty, paymentMethod: paymentMethodText),
-                const SizedBox(
-                  height: 64,
-                ),
-                TextField(
-                  style: TextStyle(
-                    fontSize: 20 * MediaQuery.of(context).textScaleFactor,
-                  ),
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  minLines: 3,
-                  decoration: InputDecoration(
-                    hintText: '店員さんとの会話でご利用ください',
-                    hintStyle: TextStyle(
-                      fontSize: 16 * MediaQuery.of(context).textScaleFactor,
-                    ),
-                    filled: true,
-                    border: const OutlineInputBorder(),
-                  ),
-                ),
-              ],
+                Phrases(phrases: phrases),
+                LastMessage(
+                    hasPhrases: phrases.isNotEmpty,
+                    paymentMethod: paymentMethodText),
+                const FreeTextField(),
+              ].withSpaceBetween(height: 24.0),
             ),
           ),
         ],
