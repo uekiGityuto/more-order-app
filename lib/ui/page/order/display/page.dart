@@ -32,10 +32,9 @@ class OrderDisplayPage extends StatelessWidget {
             child: ListView(
               children: [
                 if (reasonText != null) ReasonField(reason: reasonText),
-                Phrases(phrases: phrases),
-                LastMessage(
-                    hasPhrases: phrases.isNotEmpty,
-                    paymentMethod: paymentMethodText),
+                if (phrases.isNotEmpty) Phrases(phrases: phrases),
+                if (phrases.isNotEmpty || paymentMethodText != null)
+                  LastMessage(paymentMethod: paymentMethodText),
                 const FreeTextField(),
               ].withSpaceBetween(height: 24.0),
             ),

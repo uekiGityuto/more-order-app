@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_order_app/ui/component/snackBar/simple_snackbar.dart';
+import 'package:smart_order_app/ui/component/snack_bar/simple_snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 enum NavigationType { push, pushReplacement, pushAndRemoveUntil, webView }

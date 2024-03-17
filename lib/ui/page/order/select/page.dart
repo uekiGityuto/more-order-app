@@ -129,6 +129,9 @@ class OrderSelectPage extends ConsumerWidget {
                                 (p) => p.id == orderForm.paymentMethodInput),
                       ),
                       text: '表示する',
+                      disabled: scene.phrases.isEmpty &&
+                          reasons.isEmpty &&
+                          paymentMethods.isEmpty,
                     ),
                   ],
                 ),
