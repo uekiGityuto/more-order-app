@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smart_order_app/domain/entity/scene.dart';
-import 'package:smart_order_app/ui/component/form/form_error_message.dart';
 import 'package:smart_order_app/ui/error_handler_mixin.dart';
 import 'package:smart_order_app/ui/layout/default_layout.dart';
+import 'package:smart_order_app/ui/page/management/scene/component/scene_input_form.dart';
 import 'package:smart_order_app/ui/page/management/scene/edit/form/scene_edit_form_controller.dart';
 import 'package:smart_order_app/usecase/state/scenes.dart';
 
@@ -19,22 +19,13 @@ class SceneEditPage extends ConsumerWidget with ErrorHandlerMixin {
       title: "場面編集",
       body: Column(children: [
         Expanded(
-          child: Column(
-            children: [
-              TextFormField(
-                initialValue:
-                    sceneEditFormControllerProvider(scene).scene.scene,
-                decoration: const InputDecoration(
-                  hintText: '場面を入力してください',
-                ),
-                onChanged: ref
-                    .read(sceneEditFormControllerProvider(scene).notifier)
-                    .onChangeScene,
-              ),
-              FormErrorMessage(
-                errorMessage: sceneForm.sceneInput.displayError?.errorMessage,
-              ),
-            ],
+          child: SceneInputField(
+            description: "場面を編集して下さい。",
+            initialValue: sceneEditFormControllerProvider(scene).scene.scene,
+            onChanged: ref
+                .read(sceneEditFormControllerProvider(scene).notifier)
+                .onChangeScene,
+            errorMessage: sceneForm.sceneInput.displayError?.errorMessage,
           ),
         ),
         ElevatedButton(

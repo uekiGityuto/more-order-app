@@ -4,7 +4,7 @@ const maxMethodLength = 30;
 
 enum MethodInputError {
   empty(errorMessage: '未入力です'),
-  tooLonger(errorMessage: '$maxMethodLength文字以下で入力してください'),
+  tooLonger(errorMessage: '$maxMethodLength文字以下で入力して下さい'),
   ;
 
   const MethodInputError({required this.errorMessage});

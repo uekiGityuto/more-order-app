@@ -1,5 +1,6 @@
 import 'package:path/path.dart';
 import 'package:smart_order_app/infrastructure/db/init/migration.dart';
+import 'package:smart_order_app/infrastructure/db/init/sample_data.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DB {
@@ -25,7 +26,7 @@ class DB {
     }, onUpgrade: (db, oldVersion, newVersion) async {
       await executeScript(db, oldVersion, newVersion);
     });
-
+    await executeSampleScript(db);
     return db;
   }
 }

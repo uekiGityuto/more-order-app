@@ -32,7 +32,7 @@ class TutorialPageState extends State<TutorialPage>
           imageAssetPath: "assets/images/tutorial/ordinary_order.png",
           body: '''
 からあげ棒下さい。
-袋に入れてください。
+袋に入れて下さい。
 PayPayで払います。
 
 私たちの便利な生活は、

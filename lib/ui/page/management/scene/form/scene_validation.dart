@@ -4,7 +4,7 @@ const maxSceneLength = 30;
 
 enum SceneInputError {
   empty(errorMessage: '未入力です'),
-  tooLonger(errorMessage: '$maxSceneLength文字以下で入力してください'),
+  tooLonger(errorMessage: '$maxSceneLength文字以下で入力して下さい'),
   ;
 
   const SceneInputError({required this.errorMessage});

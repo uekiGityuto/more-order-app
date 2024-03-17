@@ -5,7 +5,7 @@ const maxPhraseLength = 30;
 
 enum PhraseInputError {
   empty(errorMessage: '未入力です'),
-  tooLonger(errorMessage: '$maxPhraseLength文字以下で入力してください'),
+  tooLonger(errorMessage: '$maxPhraseLength文字以下で入力して下さい'),
   ;
 
   const PhraseInputError({required this.errorMessage});
@@ -26,7 +26,7 @@ class PhraseInput extends FormzInput<String, PhraseInputError> {
 }
 
 enum ScenesInputError {
-  unselected(errorMessage: '少なくとも1つのシーンを選択してください'),
+  unselected(errorMessage: '少なくとも1つのシーンを選択して下さい'),
   ;
 
   const ScenesInputError({required this.errorMessage});

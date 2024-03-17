@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ErrorMessage extends StatelessWidget {
   final String message;
   const ErrorMessage({Key? key, String? message})
-      : message = message ?? 'エラーが発生しました。お手数ですが、アプリの再起動等をお試しください。',
+      : message = message ?? 'エラーが発生しました。お手数ですが、アプリの再起動等をお試し下さい。',
         super(key: key);
 
   @override
