@@ -13,7 +13,7 @@ class FreeTextField extends StatelessWidget {
       maxLines: null,
       minLines: 3,
       decoration: InputDecoration(
-        hintText: '店員さんとの会話でご利用ください',
+        hintText: '店員さんとの会話でご利用下さい',
         hintStyle: TextStyle(
           fontSize: 16 * MediaQuery.of(context).textScaleFactor,
         ),

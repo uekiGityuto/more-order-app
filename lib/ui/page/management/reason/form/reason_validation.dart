@@ -4,7 +4,7 @@ const maxReasonLength = 30;
 
 enum ReasonInputError {
   empty(errorMessage: '未入力です'),
-  tooLonger(errorMessage: '$maxReasonLength文字以下で入力してください'),
+  tooLonger(errorMessage: '$maxReasonLength文字以下で入力して下さい'),
   ;
 
   const ReasonInputError({required this.errorMessage});
