@@ -4,6 +4,7 @@ import 'package:smart_order_app/domain/valueObject/id.dart';
 import 'package:smart_order_app/ui/component/form/form_error_message.dart';
 import 'package:smart_order_app/ui/component/form/simple_checkbox_list_tile.dart';
 import 'package:smart_order_app/ui/component/typography/section_title.dart';
+import 'package:smart_order_app/ui/page/management/scene/add/page.dart';
 
 class ScenesCheckboxField extends StatelessWidget {
   final String description;
@@ -40,6 +41,34 @@ class ScenesCheckboxField extends StatelessWidget {
         ).toList(),
         FormErrorMessage(
           errorMessage: errorMessage,
+        ),
+        Align(
+          alignment: Alignment.topRight,
+          child: TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SceneAddPage()),
+              );
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  '場面を追加する',
+                  style: TextStyle(
+                    color: const Color(0xFF1558D6),
+                    fontSize: 14 * MediaQuery.of(context).textScaleFactor,
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_forward,
+                  size: 14 * MediaQuery.of(context).textScaleFactor,
+                  color: const Color(0xFF1558D6),
+                ),
+              ],
+            ),
+          ),
         ),
       ],
     );
