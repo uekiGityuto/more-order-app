@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_order_app/domain/entity/scene.dart';
 import 'package:smart_order_app/domain/valueObject/id.dart';
+import 'package:smart_order_app/ui/component/button/text_link_button.dart';
 import 'package:smart_order_app/ui/component/form/form_error_message.dart';
 import 'package:smart_order_app/ui/component/form/simple_checkbox_list_tile.dart';
 import 'package:smart_order_app/ui/component/typography/section_title.dart';
@@ -42,32 +43,11 @@ class ScenesCheckboxField extends StatelessWidget {
         FormErrorMessage(
           errorMessage: errorMessage,
         ),
-        Align(
+        const Align(
           alignment: Alignment.topRight,
-          child: TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SceneAddPage()),
-              );
-            },
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  '場面を追加する',
-                  style: TextStyle(
-                    color: const Color(0xFF1558D6),
-                    fontSize: 14 * MediaQuery.of(context).textScaleFactor,
-                  ),
-                ),
-                Icon(
-                  Icons.arrow_forward,
-                  size: 14 * MediaQuery.of(context).textScaleFactor,
-                  color: const Color(0xFF1558D6),
-                ),
-              ],
-            ),
+          child: TextLinkButton(
+            nextPage: SceneAddPage(),
+            text: '場面を追加する',
           ),
         ),
       ],
