@@ -4,12 +4,14 @@ class NavigationButton extends StatelessWidget {
   final Widget nextPage;
   final String text;
   final bool isSecondary;
+  final bool disabled;
 
   const NavigationButton({
     Key? key,
     required this.nextPage,
     required this.text,
     this.isSecondary = false,
+    this.disabled = false,
   }) : super(key: key);
 
   @override
@@ -28,12 +30,12 @@ class NavigationButton extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: isSecondary
           ? OutlinedButton.icon(
-              onPressed: navigate,
+              onPressed: disabled ? null : navigate,
               label: label,
               icon: icon,
             )
           : ElevatedButton.icon(
-              onPressed: navigate,
+              onPressed: disabled ? null : navigate,
               label: label,
               icon: icon,
             ),
