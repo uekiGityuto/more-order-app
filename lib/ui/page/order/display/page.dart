@@ -50,7 +50,7 @@ class OrderDisplayPage extends StatelessWidget {
                 const SizedBox(
                   height: 24,
                 ),
-                LastMessage(paymentMethod: paymentMethodText),
+                LastMessage(hasPhrases: phrases.isNotEmpty, paymentMethod: paymentMethodText),
                 const SizedBox(
                   height: 64,
                 ),
