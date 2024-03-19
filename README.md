@@ -3,6 +3,11 @@
 注文が苦手な人のためのアプリ。
 もっと簡単に注文できるようになることを目指す。
 
+## Requirements
+
+Flutterのインストールなどを行う。
+[参考](https://zenn.dev/kazutxt/books/flutter_practice_introduction/viewer/06_chapter1_environment)
+
 ## Getting Started
 
 For Mac Users
