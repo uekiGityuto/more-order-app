@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:smart_order_app/ui/component/dialog/delete_confirmation_dialog.dart';
-import 'package:smart_order_app/ui/component/error_message.dart';
-import 'package:smart_order_app/ui/component/loader.dart';
-import 'package:smart_order_app/ui/error_handler_mixin.dart';
-import 'package:smart_order_app/ui/layout/default_layout.dart';
-import 'package:smart_order_app/ui/page/management/component/edit_and_delete_list_tile.dart';
-import 'package:smart_order_app/ui/page/management/scene/edit/page.dart';
-import 'package:smart_order_app/ui/page/management/scene/list/component/delete_confirmation_dialog_content.dart';
-import 'package:smart_order_app/usecase/state/scenes.dart';
+import 'package:more_order_app/ui/component/dialog/delete_confirmation_dialog.dart';
+import 'package:more_order_app/ui/component/error_message.dart';
+import 'package:more_order_app/ui/component/loader.dart';
+import 'package:more_order_app/ui/error_handler_mixin.dart';
+import 'package:more_order_app/ui/layout/default_layout.dart';
+import 'package:more_order_app/ui/page/management/component/edit_and_delete_list_tile.dart';
+import 'package:more_order_app/ui/page/management/scene/edit/page.dart';
+import 'package:more_order_app/ui/page/management/scene/list/component/delete_confirmation_dialog_content.dart';
+import 'package:more_order_app/usecase/state/scenes.dart';
 
 class SceneListPage extends ConsumerWidget with ErrorHandlerMixin {
   const SceneListPage({Key? key}) : super(key: key);

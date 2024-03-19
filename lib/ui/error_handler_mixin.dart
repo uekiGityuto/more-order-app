@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_order_app/domain/errors/error.dart';
-import 'package:smart_order_app/ui/component/snack_bar/simple_snackbar.dart';
+import 'package:more_order_app/domain/errors/error.dart';
+import 'package:more_order_app/ui/component/snack_bar/simple_snackbar.dart';
 
 mixin ErrorHandlerMixin {
   Future<void> execute(

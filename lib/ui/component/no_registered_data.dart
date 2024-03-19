@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_order_app/ui/component/button/navigation_button.dart';
+import 'package:more_order_app/ui/component/button/navigation_button.dart';
 
 class NoRegisteredData extends StatelessWidget {
   final String message;

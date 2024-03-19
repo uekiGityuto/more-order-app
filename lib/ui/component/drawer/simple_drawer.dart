@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:smart_order_app/ui/component/error_message.dart';
-import 'package:smart_order_app/ui/component/list_tile_navigation.dart';
-import 'package:smart_order_app/ui/component/loader.dart';
-import 'package:smart_order_app/ui/component/typography/section_title.dart';
-import 'package:smart_order_app/ui/page/order/select/page.dart';
-import 'package:smart_order_app/usecase/state/scenes.dart';
+import 'package:more_order_app/ui/component/error_message.dart';
+import 'package:more_order_app/ui/component/list_tile_navigation.dart';
+import 'package:more_order_app/ui/component/loader.dart';
+import 'package:more_order_app/ui/component/typography/section_title.dart';
+import 'package:more_order_app/ui/page/order/select/page.dart';
+import 'package:more_order_app/usecase/state/scenes.dart';
 
 class SimpleDrawer extends ConsumerWidget {
   const SimpleDrawer({super.key});

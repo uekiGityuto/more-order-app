@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:smart_order_app/domain/entity/scene.dart';
-import 'package:smart_order_app/domain/valueObject/id.dart';
-import 'package:smart_order_app/infrastructure/db/dto/phrase.dart';
+import 'package:more_order_app/domain/entity/scene.dart';
+import 'package:more_order_app/domain/valueObject/id.dart';
+import 'package:more_order_app/infrastructure/db/dto/phrase.dart';
 
 part 'scene.freezed.dart';
 part 'scene.g.dart';

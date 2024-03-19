@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:smart_order_app/domain/entity/phrase.dart';
-import 'package:smart_order_app/domain/valueObject/id.dart';
+import 'package:more_order_app/domain/entity/phrase.dart';
+import 'package:more_order_app/domain/valueObject/id.dart';
 
 part 'scene.freezed.dart';
 

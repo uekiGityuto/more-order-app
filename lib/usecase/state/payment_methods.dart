@@ -1,8 +1,8 @@
+import 'package:more_order_app/domain/entity/payment_method.dart';
+import 'package:more_order_app/domain/errors/error.dart';
+import 'package:more_order_app/domain/errors/max_add_count.dart';
+import 'package:more_order_app/domain/repository/repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:smart_order_app/domain/entity/payment_method.dart';
-import 'package:smart_order_app/domain/errors/error.dart';
-import 'package:smart_order_app/domain/errors/max_add_count.dart';
-import 'package:smart_order_app/domain/repository/repository.dart';
 
 part 'payment_methods.g.dart';
 

@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:smart_order_app/domain/entity/payment_method.dart';
-import 'package:smart_order_app/domain/entity/reason.dart';
-import 'package:smart_order_app/domain/entity/scene.dart';
-import 'package:smart_order_app/domain/valueObject/id.dart';
-import 'package:smart_order_app/ui/form/form_creation_status.dart';
+import 'package:more_order_app/domain/entity/payment_method.dart';
+import 'package:more_order_app/domain/entity/reason.dart';
+import 'package:more_order_app/domain/entity/scene.dart';
+import 'package:more_order_app/domain/valueObject/id.dart';
+import 'package:more_order_app/ui/form/form_creation_status.dart';
 
 part 'order_form.freezed.dart';
 

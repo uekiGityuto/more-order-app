@@ -1,5 +1,5 @@
 import 'package:formz/formz.dart';
-import 'package:smart_order_app/domain/valueObject/id.dart';
+import 'package:more_order_app/domain/valueObject/id.dart';
 
 const maxPhraseLength = 30;
 

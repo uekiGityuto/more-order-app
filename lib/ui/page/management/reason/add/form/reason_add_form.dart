@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:smart_order_app/ui/page/management/reason/form/reason_validation.dart';
+import 'package:more_order_app/ui/page/management/reason/form/reason_validation.dart';
 
 part 'reason_add_form.freezed.dart';
 
