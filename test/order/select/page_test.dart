@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:smart_order_app/constants.dart';
-import 'package:smart_order_app/domain/repository/repository.dart';
-import 'package:smart_order_app/ui/page/order/select/page.dart';
+import 'package:more_order_app/constants.dart';
+import 'package:more_order_app/domain/repository/repository.dart';
+import 'package:more_order_app/ui/page/order/select/page.dart';
 
 import '../../fake_repository.dart';
 

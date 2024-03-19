@@ -1,5 +1,5 @@
+import 'package:more_order_app/infrastructure/db/init/migration.dart';
 import 'package:path/path.dart';
-import 'package:smart_order_app/infrastructure/db/init/migration.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DB {
@@ -16,7 +16,7 @@ class DB {
   }
 
   static Future<Database> open() async {
-    final path = join(await getDatabasesPath(), 'smart_order.db');
+    final path = join(await getDatabasesPath(), 'more_order.db');
     await _deleteDB(path);
     final db = await openDatabase(path,
         version: _version,

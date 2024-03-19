@@ -1,8 +1,8 @@
-import 'package:smart_order_app/domain/entity/payment_method.dart';
-import 'package:smart_order_app/domain/entity/phrase.dart';
-import 'package:smart_order_app/domain/entity/reason.dart';
-import 'package:smart_order_app/domain/entity/scene.dart';
-import 'package:smart_order_app/domain/repository/repository.dart';
+import 'package:more_order_app/domain/entity/payment_method.dart';
+import 'package:more_order_app/domain/entity/phrase.dart';
+import 'package:more_order_app/domain/entity/reason.dart';
+import 'package:more_order_app/domain/entity/scene.dart';
+import 'package:more_order_app/domain/repository/repository.dart';
 
 class FakeRepository implements Repository {
   final List<Scene> scenes;

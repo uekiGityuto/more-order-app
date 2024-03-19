@@ -1,4 +1,4 @@
-# smart_order_app
+# more_order_app
 
 A new Flutter project.
 

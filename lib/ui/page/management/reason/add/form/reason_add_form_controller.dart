@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
+import 'package:more_order_app/ui/page/management/reason/add/form/reason_add_form.dart';
+import 'package:more_order_app/ui/page/management/reason/form/reason_validation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:smart_order_app/ui/page/management/reason/add/form/reason_add_form.dart';
-import 'package:smart_order_app/ui/page/management/reason/form/reason_validation.dart';
 
 part 'reason_add_form_controller.g.dart';
 

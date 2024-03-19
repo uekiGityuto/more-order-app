@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:smart_order_app/domain/entity/payment_method.dart';
-import 'package:smart_order_app/ui/error_handler_mixin.dart';
-import 'package:smart_order_app/ui/layout/default_layout.dart';
-import 'package:smart_order_app/ui/page/management/payment_method/edit/form/payment_method_edit_form_controller.dart';
-import 'package:smart_order_app/usecase/state/payment_methods.dart';
+import 'package:more_order_app/domain/entity/payment_method.dart';
+import 'package:more_order_app/ui/error_handler_mixin.dart';
+import 'package:more_order_app/ui/layout/default_layout.dart';
+import 'package:more_order_app/ui/page/management/payment_method/edit/form/payment_method_edit_form_controller.dart';
+import 'package:more_order_app/usecase/state/payment_methods.dart';
 
 import '../component/payment_method_default_checkbox_form.dart';
 import '../component/payment_method_input_form.dart';

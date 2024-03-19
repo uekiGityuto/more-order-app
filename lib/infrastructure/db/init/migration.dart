@@ -1,4 +1,4 @@
-import 'package:smart_order_app/constants.dart';
+import 'package:more_order_app/constants.dart';
 import 'package:sqflite/sqflite.dart';
 
 const _migrationScripts = {

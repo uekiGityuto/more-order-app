@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:smart_order_app/domain/entity/scene.dart';
-import 'package:smart_order_app/domain/valueObject/id.dart';
-import 'package:smart_order_app/ui/component/button/text_link_button.dart';
-import 'package:smart_order_app/ui/component/form/form_error_message.dart';
-import 'package:smart_order_app/ui/component/form/simple_checkbox_list_tile.dart';
-import 'package:smart_order_app/ui/component/typography/section_title.dart';
-import 'package:smart_order_app/ui/page/management/scene/add/page.dart';
+import 'package:more_order_app/domain/entity/scene.dart';
+import 'package:more_order_app/domain/valueObject/id.dart';
+import 'package:more_order_app/ui/component/button/text_link_button.dart';
+import 'package:more_order_app/ui/component/form/form_error_message.dart';
+import 'package:more_order_app/ui/component/form/simple_checkbox_list_tile.dart';
+import 'package:more_order_app/ui/component/typography/section_title.dart';
+import 'package:more_order_app/ui/page/management/scene/add/page.dart';
 
 class ScenesCheckboxField extends StatelessWidget {
   final String description;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smart_order_app/ui/component/button/navigation_button.dart';
-import 'package:smart_order_app/ui/component/no_registered_data.dart';
-import 'package:smart_order_app/ui/page/management/reason/add/page.dart';
+import 'package:more_order_app/ui/component/button/navigation_button.dart';
+import 'package:more_order_app/ui/component/no_registered_data.dart';
+import 'package:more_order_app/ui/page/management/reason/add/page.dart';
 
 class NoReason extends StatelessWidget {
   const NoReason({Key? key}) : super(key: key);

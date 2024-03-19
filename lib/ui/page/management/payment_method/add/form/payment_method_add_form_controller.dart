@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
+import 'package:more_order_app/ui/page/management/payment_method/add/form/payment_method_add_form.dart';
+import 'package:more_order_app/ui/page/management/payment_method/form/payment_method_validation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:smart_order_app/ui/page/management/payment_method/add/form/payment_method_add_form.dart';
-import 'package:smart_order_app/ui/page/management/payment_method/form/payment_method_validation.dart';
 
 part 'payment_method_add_form_controller.g.dart';
 
