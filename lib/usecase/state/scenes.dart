@@ -13,7 +13,7 @@ class ScenesNotifier extends _$ScenesNotifier {
   Future<List<Scene>> build() async {
     state = const AsyncValue.loading();
     final repository = ref.read(repositoryProvider);
-    return await repository.getScenesAndPhrases();
+    return await repository.fetchScenesAndPhrases();
   }
 
   Future<void> updateState() async {
