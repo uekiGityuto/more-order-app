@@ -25,18 +25,23 @@ class DefaultLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     final effectiveBodyOption = bodyOption ?? BodyOption();
 
-    return Scaffold(
-      appBar: SimpleAppBar(title: title),
-      drawer: const SimpleDrawer(),
-      body: SafeArea(
-        child: Container(
-          padding: effectiveBodyOption.dense
-              ? const EdgeInsets.all(0)
-              : const EdgeInsets.all(16.0),
-          child: body,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: SimpleAppBar(title: title),
+        drawer: const SimpleDrawer(),
+        body: SafeArea(
+          child: Container(
+            padding: effectiveBodyOption.dense
+                ? const EdgeInsets.all(0)
+                : const EdgeInsets.all(16.0),
+            child: body,
+          ),
         ),
+        bottomNavigationBar: const SimpleBottomAppBar(),
       ),
-      bottomNavigationBar: const SimpleBottomAppBar(),
     );
   }
 }
