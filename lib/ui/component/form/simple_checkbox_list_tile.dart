@@ -21,7 +21,12 @@ class SimpleCheckboxListTile extends StatelessWidget {
     return CheckboxListTile(
         value: value,
         onChanged: onChanged,
-        title: Text(title),
+        title: Text(
+          title,
+          style: TextStyle(
+            fontSize: 16 * MediaQuery.of(context).textScaleFactor,
+          ),
+        ),
         tileColor: tileColor ?? Theme.of(context).colorScheme.surface,
         dense: dense);
   }

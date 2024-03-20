@@ -41,7 +41,7 @@ const _sampleDataScripts = [
     INSERT INTO scenes_phrases(scene_id, phrase_id) VALUES(3, 4);
   ''',
   '''
-    INSERT INTO reasons(reason, is_default) VALUES('喉が痛いのでこちらで注文します', 1);
+    INSERT INTO reasons(reason, is_default) VALUES('話すことが苦手なのでこちらで注文します', 1);
   ''',
   '''
     INSERT INTO payment_methods(method, is_default) VALUES('PayPay', 1);

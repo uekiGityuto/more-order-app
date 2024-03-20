@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:more_order_app/domain/valueObject/id.dart';
 import 'package:more_order_app/ui/component/button/navigation_button.dart';
+import 'package:more_order_app/ui/component/button/text_link_button.dart';
 import 'package:more_order_app/ui/component/error_message.dart';
 import 'package:more_order_app/ui/component/form/simple_checkbox_list_tile.dart';
 import 'package:more_order_app/ui/component/form/simple_select_form.dart';
@@ -10,6 +11,8 @@ import 'package:more_order_app/ui/component/loader.dart';
 import 'package:more_order_app/ui/component/typography/section_title.dart';
 import 'package:more_order_app/ui/form/form_creation_status.dart';
 import 'package:more_order_app/ui/layout/default_layout.dart';
+import 'package:more_order_app/ui/page/management/phrase/add/page.dart';
+import 'package:more_order_app/ui/page/management/reason/add/page.dart';
 import 'package:more_order_app/ui/page/order/display/page.dart';
 import 'package:more_order_app/ui/page/order/select/component/no_payment_method.dart';
 import 'package:more_order_app/ui/page/order/select/component/no_phrase.dart';
@@ -47,7 +50,13 @@ class OrderSelectPage extends ConsumerWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SectionTitle(text: "理由"),
+                              SectionTitle(
+                                text: "理由",
+                                rightContent: TextLinkButton(
+                                  nextPage: const ReasonAddPage(),
+                                  text: reasons.isEmpty ? '理由の登録' : '理由の追加',
+                                ),
+                              ),
                               reasons.isEmpty
                                   ? const NoReason()
                                   : SimpleSelectForm(
@@ -71,7 +80,13 @@ class OrderSelectPage extends ConsumerWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SectionTitle(text: "フレーズ"),
+                              SectionTitle(
+                                text: "フレーズ",
+                                rightContent: TextLinkButton(
+                                  nextPage: const PhraseAddPage(),
+                                  text: reasons.isEmpty ? 'フレーズの登録' : 'フレーズの追加',
+                                ),
+                              ),
                               if (scene.phrases.isEmpty) const NoPhrase(),
                               ...scene.phrases.map(
                                 (phrase) {
@@ -93,7 +108,13 @@ class OrderSelectPage extends ConsumerWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SectionTitle(text: "支払方法"),
+                              SectionTitle(
+                                text: "支払方法",
+                                rightContent: TextLinkButton(
+                                  nextPage: const ReasonAddPage(),
+                                  text: reasons.isEmpty ? '支払方法の登録' : '支払方法の追加',
+                                ),
+                              ),
                               paymentMethods.isEmpty
                                   ? const NoPaymentMethod()
                                   : SimpleSelectForm(
