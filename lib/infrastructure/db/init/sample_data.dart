@@ -2,19 +2,16 @@ import 'package:sqflite/sqflite.dart';
 
 const _sampleDataScripts = [
   '''
-    INSERT INTO scenes(scene) VALUES('コンビニ');
-  ''',
-  '''
-    INSERT INTO scenes(scene) VALUES('レストラン');
-  ''',
-  '''
-    INSERT INTO phrases(phrase) VALUES('ホットのカフェラテM');
+    INSERT INTO phrases(phrase) VALUES('ホットのコーヒーM');
   ''',
   '''
     INSERT INTO scenes_phrases(scene_id, phrase_id) VALUES(1, 1);
   ''',
   '''
     INSERT INTO scenes_phrases(scene_id, phrase_id) VALUES(2, 1);
+  ''',
+  '''
+    INSERT INTO scenes_phrases(scene_id, phrase_id) VALUES(3, 1);
   ''',
   '''
     INSERT INTO phrases(phrase) VALUES('ファミチキ');
@@ -41,7 +38,16 @@ const _sampleDataScripts = [
     INSERT INTO scenes_phrases(scene_id, phrase_id) VALUES(3, 4);
   ''',
   '''
+    INSERT INTO phrases(phrase) VALUES('予約していた山田太郎です');
+  ''',
+  '''
+    INSERT INTO scenes_phrases(scene_id, phrase_id) VALUES(1, 5);
+  ''',
+  '''
     INSERT INTO reasons(reason, is_default) VALUES('話すことが苦手なのでこちらで注文します', 1);
+  ''',
+  '''
+    INSERT INTO reasons(reason) VALUES('喉が痛いのでこちらで注文します');
   ''',
   '''
     INSERT INTO payment_methods(method, is_default) VALUES('PayPay', 1);
