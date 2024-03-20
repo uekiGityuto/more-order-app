@@ -50,11 +50,11 @@ class OrderSelectPage extends ConsumerWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SectionTitle(
+                              SectionTitle(
                                 text: "理由",
                                 rightContent: TextLinkButton(
-                                  nextPage: ReasonAddPage(),
-                                  text: '理由の追加',
+                                  nextPage: const ReasonAddPage(),
+                                  text: reasons.isEmpty ? '理由の登録' : '理由の追加',
                                 ),
                               ),
                               reasons.isEmpty
@@ -80,11 +80,11 @@ class OrderSelectPage extends ConsumerWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SectionTitle(
+                              SectionTitle(
                                 text: "フレーズ",
                                 rightContent: TextLinkButton(
-                                  nextPage: PhraseAddPage(),
-                                  text: 'フレーズの追加',
+                                  nextPage: const PhraseAddPage(),
+                                  text: reasons.isEmpty ? 'フレーズの登録' : 'フレーズの追加',
                                 ),
                               ),
                               if (scene.phrases.isEmpty) const NoPhrase(),
@@ -108,11 +108,11 @@ class OrderSelectPage extends ConsumerWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SectionTitle(
+                              SectionTitle(
                                 text: "支払方法",
                                 rightContent: TextLinkButton(
-                                  nextPage: ReasonAddPage(),
-                                  text: '支払方法の追加',
+                                  nextPage: const ReasonAddPage(),
+                                  text: reasons.isEmpty ? '支払方法の登録' : '支払方法の追加',
                                 ),
                               ),
                               paymentMethods.isEmpty
