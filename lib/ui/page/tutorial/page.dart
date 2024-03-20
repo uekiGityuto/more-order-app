@@ -28,7 +28,7 @@ class TutorialPageState extends State<TutorialPage>
       PageModel.withChild(
         color: Theme.of(context).colorScheme.onPrimary,
         child: const PageModelChild(
-          title: '生活するとは"注文する"こと',
+          title: '生活するとは\n"注文する"こと',
           imageAssetPath: "assets/images/tutorial/ordinary_order.png",
           body: '''
 からあげ棒下さい。
@@ -46,7 +46,7 @@ PayPayで払います。
           title: '注文したいけど注文できない',
           imageAssetPath: "assets/images/tutorial/cannot_speak.png",
           body: '''
-吃音症、場面緘黙症、人見知り、難聴。
+人見知り、吃音症、場面緘黙症、難聴。
 
 様々な理由で、
 私たちは注文したくてもできません。
@@ -74,14 +74,14 @@ PayPayで払います。
       PageModel.withChild(
         color: Theme.of(context).colorScheme.onPrimary,
         child: const PageModelChild(
-          title: "さあ、今こそ世の中の便利を享受しよう！",
+          title: "さあ、今こそ世の中の便利を体感しよう！",
           imageAssetPath: "assets/images/tutorial/more_order.png",
           body: '''
 諦めるのは今ここで最後にしましょう。
 "More Order"を使えば、
 私たちの好きなものが注文できます。
 
-さあ、今こそ世の中の便利を享受しよう！
+さあ、今こそ世の中の便利を体感しよう！
 ''',
         ),
       ),
