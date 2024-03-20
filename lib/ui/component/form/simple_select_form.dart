@@ -39,6 +39,14 @@ class SimpleSelectForm<T> extends StatelessWidget {
           );
         }).toList(),
       ],
+      selectedItemBuilder: (BuildContext context) {
+        return [
+          const Text("表示しない", overflow: TextOverflow.ellipsis),
+          ...options.map<Widget>((Option option) {
+            return Text(option.label, overflow: TextOverflow.ellipsis);
+          }).toList(),
+        ];
+      },
     );
   }
 }
