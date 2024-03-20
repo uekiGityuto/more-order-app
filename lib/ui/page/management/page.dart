@@ -18,7 +18,7 @@ class ManagementPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      title: "管理メニュー",
+      title: "メニュー",
       body: ListView(
         children: [
           MenuItem(title: "フレーズ", options: [
