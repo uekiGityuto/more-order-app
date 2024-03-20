@@ -30,7 +30,7 @@ class ReasonInputField extends StatelessWidget {
           controller: controller,
           initialValue: initialValue,
           decoration: const InputDecoration(
-            hintText: '例: 話すことが苦手なのでこちらで注文します',
+            hintText: '例: 喉が痛いのでこちらで注文します',
           ),
           onChanged: onChanged,
         ),
