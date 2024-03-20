@@ -34,16 +34,14 @@ class ReasonEditPage extends ConsumerWidget with ErrorHandlerMixin {
                 height: 24,
               ),
               ReasonDefaultCheckboxField(
+                description:
+                    _getDefaultMessage(existingIsDefault: reason.isDefault),
                 value: reasonForm.isDefault,
                 onChanged: (bool? newValue) {
                   ref
                       .read(reasonEditFormControllerProvider(reason).notifier)
                       .onChangeIsDefault(newValue);
                 },
-                additionalMessage: _getIsDefaultAdditionalMessage(
-                  existingIsDefault: reason.isDefault,
-                  isDefault: reasonForm.isDefault,
-                ),
               )
             ],
           ),
@@ -73,14 +71,11 @@ class ReasonEditPage extends ConsumerWidget with ErrorHandlerMixin {
     );
   }
 
-  String _getIsDefaultAdditionalMessage(
-      {required bool existingIsDefault, required bool isDefault}) {
-    if (existingIsDefault && !isDefault) {
-      return "デフォルト登録を解除する場合は、他の理由をデフォルトとして登録することをおすすめします。デフォルトの理由がない場合、理由の非表示がデフォルトになります。";
-    } else if (!existingIsDefault && isDefault) {
-      return "既にデフォルトとして登録されている理由がある場合、その理由は、自動的にデフォルトではなくなります。";
-    } else {
-      return "";
+  String _getDefaultMessage({required bool existingIsDefault}) {
+    var message = "いつもの理由にする場合はチェックして下さい。";
+    if (!existingIsDefault) {
+      message += "\nなお、いつもの理由は一つしか登録できないので、既に登録されている場合は、自動的に更新されます。";
     }
+    return message;
   }
 }

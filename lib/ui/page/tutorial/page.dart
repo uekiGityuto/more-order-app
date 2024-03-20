@@ -30,14 +30,12 @@ class TutorialPageState extends State<TutorialPage>
         child: const PageModelChild(
           title: '生活するとは\n"注文する"こと',
           imageAssetPath: "assets/images/tutorial/ordinary_order.png",
-          body: '''
-からあげ棒下さい。
+          body: '''からあげ棒下さい。
 袋に入れて下さい。
 PayPayで払います。
 
 私たちの便利な生活は、
-注文することで成り立っています。
-''',
+注文することで成り立っています。''',
         ),
       ),
       PageModel.withChild(
@@ -45,15 +43,13 @@ PayPayで払います。
         child: const PageModelChild(
           title: '注文したいけど注文できない',
           imageAssetPath: "assets/images/tutorial/cannot_speak.png",
-          body: '''
-人見知り、吃音症、場面緘黙症、難聴。
+          body: '''人見知り、吃音症、場面緘黙症、難聴。
 
 様々な理由で、
 私たちは注文したくてもできません。
 食べたいものが食べられない、
 欲しいものを伝えられない。
-そんなもどかしい思いをしてばかりです。
-''',
+そんなもどかしい思いをしてばかりです。''',
         ),
       ),
       PageModel.withChild(
@@ -61,14 +57,12 @@ PayPayで払います。
         child: const PageModelChild(
           title: 'でも"More Order"があります',
           imageAssetPath: "assets/images/tutorial/order_with_app.png",
-          body: '''
-使い方は簡単。
+          body: '''使い方は簡単。
 使いたい「場面」と注文したい「フレーズ」を登録。
 後はそれらを選択して店員に見せるだけ。
 
 このアプリで注文する「理由」や「支払方法」も
-登録すれば店員に見せることができます。
-''',
+登録すれば店員に見せることができます。''',
         ),
       ),
       PageModel.withChild(
@@ -76,13 +70,11 @@ PayPayで払います。
         child: const PageModelChild(
           title: "さあ、今こそ世の中の便利を体感しよう！",
           imageAssetPath: "assets/images/tutorial/more_order.png",
-          body: '''
-諦めるのは今ここで最後にしましょう。
+          body: '''諦めるのは今ここで最後にしましょう。
 "More Order"を使えば、
 私たちの好きなものが注文できます。
 
-さあ、今こそ世の中の便利を体感しよう！
-''',
+さあ、今こそ世の中の便利を体感しよう！''',
         ),
       ),
     ];

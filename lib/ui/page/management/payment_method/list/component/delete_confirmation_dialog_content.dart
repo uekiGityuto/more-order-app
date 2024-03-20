@@ -12,9 +12,10 @@ class DeleteConfirmationDialogContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        paymentMethod.isDefault
-            ? const Text("この支払方法はデフォルトとして登録されていますが、削除しても良いですか？")
-            : const Text("この支払方法を削除しますか？"),
+        const Text("この支払方法を削除しますか？"),
+        const SizedBox(
+          height: 8.0,
+        ),
         ListTile(
           leading: const Icon(Icons.fiber_manual_record),
           title: Text(paymentMethod.method),

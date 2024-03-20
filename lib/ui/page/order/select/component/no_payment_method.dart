@@ -9,8 +9,7 @@ class NoPaymentMethod extends StatelessWidget {
     return const NoRegisteredData(
       message: '''注文時に「PayPay」、「現金」などの支払方法を表示することができます。
 
-非表示にすることもできるので、何かしら登録してみることをおすすめします。
-''',
+非表示にすることもできるので、何かしら登録してみることをおすすめします。''',
     );
   }
 }

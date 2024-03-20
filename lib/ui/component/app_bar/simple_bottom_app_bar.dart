@@ -37,7 +37,7 @@ class SimpleBottomAppBar extends StatelessWidget {
             ),
             _buildBottomAppBarItem(
               context: context,
-              icon: Icons.add,
+              icon: Icons.playlist_add,
               label: 'メニュー',
               onPressed: () => Navigator.pushAndRemoveUntil(
                 context,

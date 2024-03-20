@@ -35,15 +35,15 @@ class ReasonAddPage extends HookConsumerWidget with ErrorHandlerMixin {
                 height: 24,
               ),
               ReasonDefaultCheckboxField(
+                description: '''いつもの理由にしておけば、注文時に選択する手間が省けて便利です。
+なお、いつもの理由は一つしか登録できないので、既に登録されている場合は、自動的に更新されます。''',
                 value: reasonForm.isDefault,
                 onChanged: (bool? newValue) {
                   ref
                       .read(reasonAddFormControllerProvider.notifier)
                       .onChangeIsDefault(newValue);
                 },
-                additionalMessage:
-                    _getIsDefaultAdditionalMessage(reasonForm.isDefault),
-              )
+              ),
             ],
           ),
         ),
@@ -67,9 +67,5 @@ class ReasonAddPage extends HookConsumerWidget with ErrorHandlerMixin {
         ),
       ]),
     );
-  }
-
-  String _getIsDefaultAdditionalMessage(bool isDefault) {
-    return isDefault ? "既にデフォルトとして登録されている理由がある場合、その理由は、自動的にデフォルトではなくなります。" : "";
   }
 }

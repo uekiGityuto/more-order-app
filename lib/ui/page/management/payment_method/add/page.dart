@@ -35,14 +35,14 @@ class PaymentMethodAddPage extends HookConsumerWidget with ErrorHandlerMixin {
                 height: 24,
               ),
               PaymentMethodDefaultCheckboxField(
+                description: '''いつもの支払方法にしておけば、注文時に選択する手間が省けて便利です。
+なお、いつもの支払方法は一つしか登録できないので、既に登録されている場合は、自動的に更新されます。''',
                 value: paymentMethodForm.isDefault,
                 onChanged: (bool? newValue) {
                   ref
                       .read(paymentMethodAddFormControllerProvider.notifier)
                       .onChangeIsDefault(newValue);
                 },
-                additionalMessage:
-                    _getIsDefaultAdditionalMessage(paymentMethodForm.isDefault),
               )
             ],
           ),
@@ -71,11 +71,5 @@ class PaymentMethodAddPage extends HookConsumerWidget with ErrorHandlerMixin {
         ),
       ]),
     );
-  }
-
-  String _getIsDefaultAdditionalMessage(bool isDefault) {
-    return isDefault
-        ? "既にデフォルトとして登録されている支払方法がある場合、その支払方法は、自動的にデフォルトではなくなります。"
-        : "";
   }
 }

@@ -12,9 +12,10 @@ class DeleteConfirmationDialogContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        reason.isDefault
-            ? const Text("この理由はデフォルトとして登録されていますが、削除しても良いですか？")
-            : const Text("この理由を削除しますか？"),
+        const Text("この理由を削除しますか？"),
+        const SizedBox(
+          height: 8.0,
+        ),
         ListTile(
           leading: const Icon(Icons.fiber_manual_record),
           title: Text(reason.reason),

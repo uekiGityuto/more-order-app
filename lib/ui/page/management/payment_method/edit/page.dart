@@ -3,11 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:more_order_app/domain/entity/payment_method.dart';
 import 'package:more_order_app/ui/error_handler_mixin.dart';
 import 'package:more_order_app/ui/layout/default_layout.dart';
+import 'package:more_order_app/ui/page/management/payment_method/component/payment_method_default_checkbox_form.dart';
+import 'package:more_order_app/ui/page/management/payment_method/component/payment_method_input_form.dart';
 import 'package:more_order_app/ui/page/management/payment_method/edit/form/payment_method_edit_form_controller.dart';
 import 'package:more_order_app/usecase/state/payment_methods.dart';
-
-import '../component/payment_method_default_checkbox_form.dart';
-import '../component/payment_method_input_form.dart';
 
 class PaymentMethodEditPage extends ConsumerWidget with ErrorHandlerMixin {
   final PaymentMethod paymentMethod;
@@ -39,6 +38,8 @@ class PaymentMethodEditPage extends ConsumerWidget with ErrorHandlerMixin {
                 height: 24,
               ),
               PaymentMethodDefaultCheckboxField(
+                description: _getDefaultMessage(
+                    existingIsDefault: paymentMethod.isDefault),
                 value: paymentMethodForm.isDefault,
                 onChanged: (bool? newValue) {
                   ref
@@ -47,10 +48,6 @@ class PaymentMethodEditPage extends ConsumerWidget with ErrorHandlerMixin {
                               .notifier)
                       .onChangeIsDefault(newValue);
                 },
-                additionalMessage: _getIsDefaultAdditionalMessage(
-                  existingIsDefault: paymentMethod.isDefault,
-                  isDefault: paymentMethodForm.isDefault,
-                ),
               )
             ],
           ),
@@ -82,14 +79,11 @@ class PaymentMethodEditPage extends ConsumerWidget with ErrorHandlerMixin {
     );
   }
 
-  String _getIsDefaultAdditionalMessage(
-      {required bool existingIsDefault, required bool isDefault}) {
-    if (existingIsDefault && !isDefault) {
-      return "デフォルト登録を解除する場合は、他の支払方法をデフォルトとして登録することをおすすめします。デフォルトの支払方法がない場合、支払方法の非表示がデフォルトになります。";
-    } else if (!existingIsDefault && isDefault) {
-      return "既にデフォルトとして登録されている支払方法がある場合、その支払方法は、自動的にデフォルトではなくなります。";
-    } else {
-      return "";
+  String _getDefaultMessage({required bool existingIsDefault}) {
+    var message = "いつもの支払方法にする場合はチェックして下さい。";
+    if (!existingIsDefault) {
+      message += "\nなお、いつもの支払方法は一つしか登録できないので、既に登録されている場合は、自動的に更新されます。";
     }
+    return message;
   }
 }
