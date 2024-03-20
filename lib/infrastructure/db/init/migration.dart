@@ -55,6 +55,12 @@ const _migrationScripts = {
     '''
       INSERT INTO scenes(scene, is_default) VALUES('$defaultScene', 1);
     ''',
+    '''
+      INSERT INTO scenes(scene) VALUES('コンビニ');
+    ''',
+    '''
+      INSERT INTO scenes(scene) VALUES('カフェ/レストラン');
+    ''',
   ],
 };
 

@@ -7,14 +7,14 @@ class PaymentMethodDefaultCheckboxField extends StatelessWidget {
   final String description;
   final bool value;
   final void Function(bool?) onChanged;
-  final String additionalMessage;
+  final String? additionalMessage;
 
   const PaymentMethodDefaultCheckboxField({
     Key? key,
-    this.description = "この支払方法をデフォルトにする場合はチェックして下さい。",
+    required this.description,
     required this.value,
     required this.onChanged,
-    required this.additionalMessage,
+    this.additionalMessage,
   }) : super(key: key);
 
   @override
@@ -22,13 +22,13 @@ class PaymentMethodDefaultCheckboxField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionTitle(text: "デフォルト"),
+        const SectionTitle(text: "いつもの支払方法"),
         Text(description),
         const SizedBox(height: 12.0),
         SimpleCheckboxListTile(
           value: value,
           onChanged: onChanged,
-          title: "デフォルトとして登録",
+          title: "いつもの支払方法として登録",
         ),
         FormAdditionalMessage(message: additionalMessage),
       ],

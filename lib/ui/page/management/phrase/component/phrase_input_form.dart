@@ -30,7 +30,7 @@ class PhraseInputField extends StatelessWidget {
           controller: controller,
           initialValue: initialValue,
           decoration: const InputDecoration(
-            hintText: '例: ホットのカフェラテ Mサイズ',
+            hintText: '例: ホットのコーヒー Mサイズ',
           ),
           onChanged: onChanged,
         ),

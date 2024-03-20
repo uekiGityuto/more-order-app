@@ -12,7 +12,7 @@ class PaymentMethodsNotifier extends _$PaymentMethodsNotifier {
   Future<List<PaymentMethod>> build() async {
     state = const AsyncValue.loading();
     final repository = ref.read(repositoryProvider);
-    return await repository.getPaymentMethods();
+    return await repository.fetchPaymentMethods();
   }
 
   Future<void> updateState() async {

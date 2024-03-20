@@ -11,7 +11,7 @@ Repository repository(RepositoryRef ref) =>
     throw UnimplementedError('Provider was not initialized');
 
 abstract interface class Repository {
-  Future<List<Scene>> getScenesAndPhrases();
+  Future<List<Scene>> fetchScenesAndPhrases();
 
   Future<int> countPhrases();
   Future<void> addPhrase(String phrase, List<Scene> scenes);
@@ -22,7 +22,7 @@ abstract interface class Repository {
   });
   Future<void> deletePhrase(Phrase phrase);
 
-  Future<List<Reason>> getReasons();
+  Future<List<Reason>> fetchReasons();
   Future<int> countReasons();
   Future<void> addReason(String reason, bool isDefault);
   Future<void> updateReason(Reason reason);
@@ -33,7 +33,7 @@ abstract interface class Repository {
   Future<void> updateScene(Scene scene);
   Future<void> deleteScene(Scene scene);
 
-  Future<List<PaymentMethod>> getPaymentMethods();
+  Future<List<PaymentMethod>> fetchPaymentMethods();
   Future<int> countPaymentMethods();
   Future<void> addPaymentMethod(String method, bool isDefault);
   Future<void> updatePaymentMethod(PaymentMethod paymentMethod);

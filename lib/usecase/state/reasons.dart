@@ -12,7 +12,7 @@ class ReasonsNotifier extends _$ReasonsNotifier {
   Future<List<Reason>> build() async {
     state = const AsyncValue.loading();
     final repository = ref.read(repositoryProvider);
-    return await repository.getReasons();
+    return await repository.fetchReasons();
   }
 
   Future<void> updateState() async {

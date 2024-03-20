@@ -11,6 +11,7 @@ import 'package:more_order_app/ui/component/loader.dart';
 import 'package:more_order_app/ui/component/typography/section_title.dart';
 import 'package:more_order_app/ui/form/form_creation_status.dart';
 import 'package:more_order_app/ui/layout/default_layout.dart';
+import 'package:more_order_app/ui/page/management/payment_method/add/page.dart';
 import 'package:more_order_app/ui/page/management/phrase/add/page.dart';
 import 'package:more_order_app/ui/page/management/reason/add/page.dart';
 import 'package:more_order_app/ui/page/order/display/page.dart';
@@ -51,6 +52,34 @@ class OrderSelectPage extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SectionTitle(
+                                text: "フレーズ",
+                                rightContent: TextLinkButton(
+                                  nextPage: const PhraseAddPage(),
+                                  text: reasons.isEmpty ? 'フレーズの登録' : 'フレーズの追加',
+                                ),
+                              ),
+                              if (scene.phrases.isEmpty) const NoPhrase(),
+                              ...scene.phrases.map(
+                                (phrase) {
+                                  return SimpleCheckboxListTile(
+                                    value: orderForm.phrasesInput[phrase.id],
+                                    onChanged: (bool? newValue) {
+                                      ref
+                                          .read(orderFormControllerProvider(
+                                                  sceneName)
+                                              .notifier)
+                                          .onChangePhrases(phrase.id, newValue);
+                                    },
+                                    title: phrase.phrase,
+                                  );
+                                },
+                              ).toList(),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SectionTitle(
                                 text: "理由",
                                 rightContent: TextLinkButton(
                                   nextPage: const ReasonAddPage(),
@@ -81,38 +110,12 @@ class OrderSelectPage extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SectionTitle(
-                                text: "フレーズ",
-                                rightContent: TextLinkButton(
-                                  nextPage: const PhraseAddPage(),
-                                  text: reasons.isEmpty ? 'フレーズの登録' : 'フレーズの追加',
-                                ),
-                              ),
-                              if (scene.phrases.isEmpty) const NoPhrase(),
-                              ...scene.phrases.map(
-                                (phrase) {
-                                  return SimpleCheckboxListTile(
-                                    value: orderForm.phrasesInput[phrase.id],
-                                    onChanged: (bool? newValue) {
-                                      ref
-                                          .read(orderFormControllerProvider(
-                                                  sceneName)
-                                              .notifier)
-                                          .onChangePhrases(phrase.id, newValue);
-                                    },
-                                    title: phrase.phrase,
-                                  );
-                                },
-                              ).toList(),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SectionTitle(
                                 text: "支払方法",
                                 rightContent: TextLinkButton(
-                                  nextPage: const ReasonAddPage(),
-                                  text: reasons.isEmpty ? '支払方法の登録' : '支払方法の追加',
+                                  nextPage: const PaymentMethodAddPage(),
+                                  text: paymentMethods.isEmpty
+                                      ? '支払方法の登録'
+                                      : '支払方法の追加',
                                 ),
                               ),
                               paymentMethods.isEmpty

@@ -15,7 +15,7 @@ class FakeRepository implements Repository {
   });
 
   @override
-  Future<List<Scene>> getScenesAndPhrases() async {
+  Future<List<Scene>> fetchScenesAndPhrases() async {
     return scenes;
   }
 
@@ -46,7 +46,7 @@ class FakeRepository implements Repository {
   }
 
   @override
-  Future<List<Reason>> getReasons() async {
+  Future<List<Reason>> fetchReasons() async {
     return reasons;
   }
 
@@ -91,7 +91,7 @@ class FakeRepository implements Repository {
   }
 
   @override
-  Future<List<PaymentMethod>> getPaymentMethods() async {
+  Future<List<PaymentMethod>> fetchPaymentMethods() async {
     return paymentMethods;
   }
 

@@ -13,6 +13,9 @@ class DeleteConfirmationDialogContent extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         const Text("このフレーズを削除しますか？"),
+        const SizedBox(
+          height: 8.0,
+        ),
         ListTile(
           leading: const Icon(Icons.fiber_manual_record),
           title: Text(phrase.phrase),
