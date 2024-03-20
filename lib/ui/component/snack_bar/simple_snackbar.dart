@@ -21,7 +21,7 @@ class SimpleSnackBar extends SnackBar {
             ],
           ),
           backgroundColor:
-              type == SnackBarType.success ? Colors.brown : Colors.red,
+              type == SnackBarType.success ? Colors.green : Colors.red,
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
