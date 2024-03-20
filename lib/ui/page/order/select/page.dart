@@ -52,6 +52,34 @@ class OrderSelectPage extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SectionTitle(
+                                text: "フレーズ",
+                                rightContent: TextLinkButton(
+                                  nextPage: const PhraseAddPage(),
+                                  text: reasons.isEmpty ? 'フレーズの登録' : 'フレーズの追加',
+                                ),
+                              ),
+                              if (scene.phrases.isEmpty) const NoPhrase(),
+                              ...scene.phrases.map(
+                                (phrase) {
+                                  return SimpleCheckboxListTile(
+                                    value: orderForm.phrasesInput[phrase.id],
+                                    onChanged: (bool? newValue) {
+                                      ref
+                                          .read(orderFormControllerProvider(
+                                                  sceneName)
+                                              .notifier)
+                                          .onChangePhrases(phrase.id, newValue);
+                                    },
+                                    title: phrase.phrase,
+                                  );
+                                },
+                              ).toList(),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SectionTitle(
                                 text: "理由",
                                 rightContent: TextLinkButton(
                                   nextPage: const ReasonAddPage(),
@@ -76,34 +104,6 @@ class OrderSelectPage extends ConsumerWidget {
                                             .onChangeReason(newValue);
                                       },
                                     ),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SectionTitle(
-                                text: "フレーズ",
-                                rightContent: TextLinkButton(
-                                  nextPage: const PhraseAddPage(),
-                                  text: reasons.isEmpty ? 'フレーズの登録' : 'フレーズの追加',
-                                ),
-                              ),
-                              if (scene.phrases.isEmpty) const NoPhrase(),
-                              ...scene.phrases.map(
-                                (phrase) {
-                                  return SimpleCheckboxListTile(
-                                    value: orderForm.phrasesInput[phrase.id],
-                                    onChanged: (bool? newValue) {
-                                      ref
-                                          .read(orderFormControllerProvider(
-                                                  sceneName)
-                                              .notifier)
-                                          .onChangePhrases(phrase.id, newValue);
-                                    },
-                                    title: phrase.phrase,
-                                  );
-                                },
-                              ).toList(),
                             ],
                           ),
                           Column(
