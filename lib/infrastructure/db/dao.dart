@@ -243,8 +243,7 @@ class DAO implements Repository {
 
   @override
   Future<List<Reason>> fetchReasons() async {
-    List<Map<String, dynamic>> result =
-        await db.query("reasons", orderBy: "is_default DESC");
+    List<Map<String, dynamic>> result = await db.query("reasons");
     return result.map((r) => ReasonDTO.fromJson(r).toEntity()).toList();
   }
 
@@ -387,8 +386,7 @@ class DAO implements Repository {
 
   @override
   Future<List<PaymentMethod>> fetchPaymentMethods() async {
-    List<Map<String, dynamic>> result =
-        await db.query("payment_methods", orderBy: "is_default DESC");
+    List<Map<String, dynamic>> result = await db.query("payment_methods");
     return result.map((r) => PaymentMethodDTO.fromJson(r).toEntity()).toList();
   }
 
