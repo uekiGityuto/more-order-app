@@ -10,13 +10,15 @@ class BodyOption {
 }
 
 class DefaultLayout extends StatelessWidget {
-  final Widget body;
   final String title;
+  final bool cannotBack;
+  final Widget body;
   final BodyOption? bodyOption;
 
   const DefaultLayout({
     Key? key,
     required this.title,
+    this.cannotBack = false,
     required this.body,
     this.bodyOption,
   }) : super(key: key);
@@ -30,7 +32,14 @@ class DefaultLayout extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        appBar: SimpleAppBar(title: title),
+        appBar: SimpleAppBar(
+            title: title,
+            leading: !cannotBack && Navigator.canPop(context)
+                ? IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () => Navigator.of(context).pop(),
+                  )
+                : null),
         drawer: const SimpleDrawer(),
         body: SafeArea(
           child: Container(

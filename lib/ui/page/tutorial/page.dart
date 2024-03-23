@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_overboard/flutter_overboard.dart';
-import 'package:more_order_app/constants.dart';
-import 'package:more_order_app/ui/page/order/select/page.dart';
 import 'package:more_order_app/ui/page/tutorial/component/page_model_child.dart';
 import 'package:more_order_app/usecase/controller/shared_preferences.dart';
 
@@ -43,7 +41,7 @@ PayPayで払います。
         child: const PageModelChild(
           title: '注文したいけど注文できない',
           imageAssetPath: "assets/images/tutorial/cannot_speak.png",
-          body: '''人見知り、吃音症、場面緘黙症、難聴。
+          body: '''人見知り、あがり症、吃音症、場面緘黙症。
 
 様々な理由で、
 私たちは注文したくてもできません。
@@ -93,29 +91,11 @@ PayPayで払います。
         finishText: "FINISH",
         skipCallback: () async {
           await SharedPreferencesController.setTutorialDone();
-          // OrderSelectPage以外のページから遷移するようにする場合は、popにする。
-          // （popにするとWidget Stackが積み重なって開発しづらいのでpushAndRemoveUntilにしている）
-          navigator.pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) => const OrderSelectPage(
-                sceneName: defaultScene,
-              ),
-            ),
-            (_) => false,
-          );
+          navigator.popUntil((route) => route.isFirst);
         },
         finishCallback: () async {
           await SharedPreferencesController.setTutorialDone();
-          // OrderSelectPage以外のページから遷移するようにする場合は、popにする。
-          // （popにするとWidget Stackが積み重なって開発しづらいのでpushAndRemoveUntilにしている）
-          navigator.pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) => const OrderSelectPage(
-                sceneName: defaultScene,
-              ),
-            ),
-            (_) => false,
-          );
+          navigator.popUntil((route) => route.isFirst);
         },
       ),
     );

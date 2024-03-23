@@ -23,13 +23,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions,
       automaticallyImplyLeading: automaticallyImplyLeading,
       centerTitle: centerTitle,
-      leading: leading ??
-          (Navigator.canPop(context)
-              ? IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () => Navigator.of(context).pop(),
-                )
-              : null),
+      leading: leading,
     );
   }
 
