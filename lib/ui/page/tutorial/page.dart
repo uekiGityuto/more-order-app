@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_overboard/flutter_overboard.dart';
-import 'package:more_order_app/constants.dart';
-import 'package:more_order_app/ui/page/order/select/page.dart';
 import 'package:more_order_app/ui/page/tutorial/component/page_model_child.dart';
 import 'package:more_order_app/usecase/controller/shared_preferences.dart';
 
@@ -93,29 +91,11 @@ PayPayで払います。
         finishText: "FINISH",
         skipCallback: () async {
           await SharedPreferencesController.setTutorialDone();
-          // OrderSelectPage以外のページから遷移するようにする場合は、popにする。
-          // （popにするとWidget Stackが積み重なって開発しづらいのでpushAndRemoveUntilにしている）
-          navigator.pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) => const OrderSelectPage(
-                sceneName: defaultScene,
-              ),
-            ),
-            (_) => false,
-          );
+          navigator.popUntil((route) => route.isFirst);
         },
         finishCallback: () async {
           await SharedPreferencesController.setTutorialDone();
-          // OrderSelectPage以外のページから遷移するようにする場合は、popにする。
-          // （popにするとWidget Stackが積み重なって開発しづらいのでpushAndRemoveUntilにしている）
-          navigator.pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) => const OrderSelectPage(
-                sceneName: defaultScene,
-              ),
-            ),
-            (_) => false,
-          );
+          navigator.popUntil((route) => route.isFirst);
         },
       ),
     );
