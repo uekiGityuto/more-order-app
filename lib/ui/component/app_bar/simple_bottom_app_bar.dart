@@ -46,7 +46,9 @@ class SimpleBottomAppBar extends StatelessWidget {
                 ),
                 _buildBottomAppBarItem(
                   context: context,
-                  icon: Icons.star,
+                  icon: currentLocation == NavigationItem.defaultSceneItem
+                      ? Icons.star
+                      : Icons.star_border,
                   label: NavigationItem.defaultSceneItem.name,
                   onPressed: currentLocation == NavigationItem.defaultSceneItem
                       ? null
@@ -62,7 +64,9 @@ class SimpleBottomAppBar extends StatelessWidget {
                 ),
                 _buildBottomAppBarItem(
                   context: context,
-                  icon: Icons.playlist_add,
+                  icon: currentLocation == NavigationItem.managementItem
+                      ? Icons.my_library_add
+                      : Icons.my_library_add_outlined,
                   label: NavigationItem.managementItem.name,
                   onPressed: currentLocation == NavigationItem.managementItem
                       ? null
@@ -99,13 +103,13 @@ class SimpleBottomAppBar extends StatelessWidget {
           Icon(
             icon,
             size: 24.0,
-            color: active ? Theme.of(context).colorScheme.tertiary : null,
+            color: active ? Theme.of(context).colorScheme.primary : null,
           ),
           const SizedBox(height: 4.0),
           Text(
             label,
             style: TextStyle(
-              color: active ? Theme.of(context).colorScheme.tertiary : null,
+              color: active ? Theme.of(context).colorScheme.primary : null,
               // これ以上大きくするとoverflowするので固定値にする
               fontSize: 12,
               fontWeight: active ? FontWeight.bold : null,
