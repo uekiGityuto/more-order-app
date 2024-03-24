@@ -1,7 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:more_order_app/constants.dart';
 import 'package:more_order_app/domain/valueObject/id.dart';
+import 'package:more_order_app/ui/component/app_bar/simple_bottom_app_bar.dart';
 import 'package:more_order_app/ui/component/button/navigation_button.dart';
 import 'package:more_order_app/ui/component/button/text_link_button.dart';
 import 'package:more_order_app/ui/component/error_message.dart';
@@ -40,6 +42,10 @@ class OrderSelectPage extends ConsumerWidget {
     return DefaultLayout(
       title: sceneName,
       suppressBack: true,
+      bottomAppBarOption: sceneName == defaultScene
+          ? const BottomAppBarOption(
+              currentLocation: NavigationItem.defaultSceneItem)
+          : null,
       body: orderForm.creationStatus == FormCreationStatus.failed
           ? const ErrorMessage()
           : scene == null || reasons == null || paymentMethods == null

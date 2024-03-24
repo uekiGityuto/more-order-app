@@ -26,6 +26,7 @@ class OrderDisplayPage extends StatelessWidget {
     final paymentMethodText = paymentMethod?.method;
     return DefaultLayout(
       title: "表示画面",
+      bottomAppBarOption: const BottomAppBarOption(suppressBannerAd: true),
       body: Column(
         children: [
           Expanded(
@@ -41,7 +42,6 @@ class OrderDisplayPage extends StatelessWidget {
           ),
         ],
       ),
-      suppressBannerAd: true,
     );
   }
 }

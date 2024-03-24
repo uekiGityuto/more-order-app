@@ -4,19 +4,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class AdBanner extends StatefulWidget {
+class SimpleBannerAd extends StatefulWidget {
   final AdSize size;
 
-  const AdBanner({
+  const SimpleBannerAd({
     Key? key,
     required this.size,
   }) : super(key: key);
 
   @override
-  State<AdBanner> createState() => _AdBannerState();
+  State<SimpleBannerAd> createState() => _SimpleBannerAdState();
 }
 
-class _AdBannerState extends State<AdBanner> {
+class _SimpleBannerAdState extends State<SimpleBannerAd> {
   late BannerAd banner;
 
   @override

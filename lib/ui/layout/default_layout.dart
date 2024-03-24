@@ -9,12 +9,22 @@ class BodyOption {
   BodyOption({this.dense = false});
 }
 
+class BottomAppBarOption {
+  final bool suppressBannerAd;
+  final NavigationItem? currentLocation;
+
+  const BottomAppBarOption({
+    this.suppressBannerAd = false,
+    this.currentLocation,
+  });
+}
+
 class DefaultLayout extends StatelessWidget {
   final String title;
   final bool suppressBack;
   final Widget body;
   final BodyOption? bodyOption;
-  final bool suppressBannerAd;
+  final BottomAppBarOption? bottomAppBarOption;
 
   const DefaultLayout({
     Key? key,
@@ -22,12 +32,14 @@ class DefaultLayout extends StatelessWidget {
     this.suppressBack = false,
     required this.body,
     this.bodyOption,
-    this.suppressBannerAd = false,
+    this.bottomAppBarOption,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final effectiveBodyOption = bodyOption ?? BodyOption();
+    final effectiveBottomAppBarOption =
+        bottomAppBarOption ?? const BottomAppBarOption();
 
     return GestureDetector(
       onTap: () {
@@ -51,8 +63,10 @@ class DefaultLayout extends StatelessWidget {
             child: body,
           ),
         ),
-        bottomNavigationBar:
-            SimpleBottomAppBar(suppressBannerAd: suppressBannerAd),
+        bottomNavigationBar: SimpleBottomAppBar(
+          suppressBannerAd: effectiveBottomAppBarOption.suppressBannerAd,
+          currentLocation: effectiveBottomAppBarOption.currentLocation,
+        ),
       ),
     );
   }
