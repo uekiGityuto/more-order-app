@@ -8,7 +8,7 @@ import 'package:more_order_app/ui/page/order/select/page.dart';
 import '../../fake_repository.dart';
 
 void main() {
-  testWidgets('タスク一覧が空の時にメッセージが表示されること', (WidgetTester tester) async {
+  testWidgets('TODO: 必要なテストを書く', (WidgetTester tester) async {
     await tester.pumpWidget(
       ProviderScope(
           overrides: [
@@ -23,7 +23,7 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    // TODO:
-    // expect(find.text('タスクを追加して下さい。'), findsOneWidget);
+    // TODO: 必要なテストを書く
+    // expect(find.text('〇〇'), findsOneWidget);
   });
 }
