@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -65,12 +66,15 @@ class _SimpleBannerAdState extends State<SimpleBannerAd> {
     const double placeholderHeight = 50;
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: _isBannerAdLoaded ? AdSize.banner.height.toDouble() : placeholderHeight,
+      height: _isBannerAdLoaded
+          ? AdSize.banner.height.toDouble()
+          : placeholderHeight,
       alignment: Alignment.center,
       child: _isBannerAdLoaded
           ? AdWidget(ad: _bannerAd)
           : const SizedBox(
               height: placeholderHeight,
+              // TODO: 多分消す
               child: Center(
                 child: Text('Loading ad...'),
               ),
