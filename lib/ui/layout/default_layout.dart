@@ -11,16 +11,18 @@ class BodyOption {
 
 class DefaultLayout extends StatelessWidget {
   final String title;
-  final bool cannotBack;
+  final bool suppressBack;
   final Widget body;
   final BodyOption? bodyOption;
+  final bool suppressBannerAd;
 
   const DefaultLayout({
     Key? key,
     required this.title,
-    this.cannotBack = false,
+    this.suppressBack = false,
     required this.body,
     this.bodyOption,
+    this.suppressBannerAd = false,
   }) : super(key: key);
 
   @override
@@ -34,7 +36,7 @@ class DefaultLayout extends StatelessWidget {
       child: Scaffold(
         appBar: SimpleAppBar(
             title: title,
-            leading: !cannotBack && Navigator.canPop(context)
+            leading: !suppressBack && Navigator.canPop(context)
                 ? IconButton(
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () => Navigator.of(context).pop(),
@@ -49,7 +51,8 @@ class DefaultLayout extends StatelessWidget {
             child: body,
           ),
         ),
-        bottomNavigationBar: const SimpleBottomAppBar(),
+        bottomNavigationBar:
+            SimpleBottomAppBar(suppressBannerAd: suppressBannerAd),
       ),
     );
   }

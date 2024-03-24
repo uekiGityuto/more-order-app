@@ -5,14 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdBanner extends StatefulWidget {
+  final AdSize size;
+
   const AdBanner({
     Key? key,
     required this.size,
   }) : super(key: key);
-  final AdSize size;
 
   @override
-  _AdBannerState createState() => _AdBannerState();
+  State<AdBanner> createState() => _AdBannerState();
 }
 
 class _AdBannerState extends State<AdBanner> {

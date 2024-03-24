@@ -19,7 +19,7 @@ class ManagementPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultLayout(
       title: "メニュー",
-      cannotBack: true,
+      suppressBack: true,
       body: ListView(
         children: [
           MenuItem(title: "フレーズ", options: [
