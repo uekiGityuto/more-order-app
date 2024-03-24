@@ -18,22 +18,15 @@ class BannerAdWrapper extends StatelessWidget {
           if (snapshot.hasData) {
             final data = snapshot.data;
             if (data != null) {
-              return Container(
+              return SizedBox(
                 height: 70,
-                color: Colors.white70,
                 child: SimpleBannerAd(size: data),
               );
             } else {
-              return Container(
-                height: 70,
-                color: Colors.white70,
-              );
+              return const SizedBox(height: 70);
             }
           } else {
-            return Container(
-              height: 70,
-              color: Colors.white70,
-            );
+            return const SizedBox(height: 70);
           }
         },
       );

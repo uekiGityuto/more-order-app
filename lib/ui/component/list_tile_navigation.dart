@@ -41,7 +41,11 @@ class NavigationAction {
         if (nextPage != null) {
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => nextPage),
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) => nextPage,
+              transitionDuration: const Duration(seconds: 0),
+            ),
+
             (_) => false,
           );
         }
