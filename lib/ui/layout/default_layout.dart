@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:more_order_app/ui/component/ad/simple_banner_ad.dart';
 import 'package:more_order_app/ui/component/app_bar/simple_app_bar.dart';
 import 'package:more_order_app/ui/component/app_bar/simple_bottom_app_bar.dart';
 import 'package:more_order_app/ui/component/drawer/simple_drawer.dart';
@@ -42,11 +43,18 @@ class DefaultLayout extends StatelessWidget {
                 : null),
         drawer: const SimpleDrawer(),
         body: SafeArea(
-          child: Container(
-            padding: effectiveBodyOption.dense
-                ? const EdgeInsets.all(0)
-                : const EdgeInsets.all(16.0),
-            child: body,
+          child: Column(
+            children: [
+              const SimpleBannerAd(),
+              Flexible(
+                child: Container(
+                  padding: effectiveBodyOption.dense
+                      ? const EdgeInsets.all(0)
+                      : const EdgeInsets.all(16.0),
+                  child: body,
+                ),
+              ),
+            ],
           ),
         ),
         bottomNavigationBar: const SimpleBottomAppBar(),
