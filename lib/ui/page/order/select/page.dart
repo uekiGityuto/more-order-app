@@ -145,24 +145,25 @@ class OrderSelectPage extends ConsumerWidget {
                                     ),
                             ],
                           ),
+                          NavigationButton(
+                            nextPage: OrderDisplayPage(
+                              reason: orderForm.reasons?.firstWhereOrNull(
+                                  (r) => r.id == orderForm.reasonInput),
+                              phrases: scene.phrases
+                                  .where((p) =>
+                                      orderForm.phrasesInput[p.id] == true)
+                                  .toList(),
+                              paymentMethod: orderForm.paymentMethods
+                                  ?.firstWhereOrNull((p) =>
+                                      p.id == orderForm.paymentMethodInput),
+                            ),
+                            text: '表示する',
+                            disabled: scene.phrases.isEmpty &&
+                                reasons.isEmpty &&
+                                paymentMethods.isEmpty,
+                          ),
                         ].withSpaceBetween(height: 24.0),
                       ),
-                    ),
-                    NavigationButton(
-                      nextPage: OrderDisplayPage(
-                        reason: orderForm.reasons?.firstWhereOrNull(
-                            (r) => r.id == orderForm.reasonInput),
-                        phrases: scene.phrases
-                            .where((p) => orderForm.phrasesInput[p.id] == true)
-                            .toList(),
-                        paymentMethod: orderForm.paymentMethods
-                            ?.firstWhereOrNull(
-                                (p) => p.id == orderForm.paymentMethodInput),
-                      ),
-                      text: '表示する',
-                      disabled: scene.phrases.isEmpty &&
-                          reasons.isEmpty &&
-                          paymentMethods.isEmpty,
                     ),
                   ],
                 ),
