@@ -19,3 +19,9 @@ update_icon:
 	flutter pub run flutter_launcher_icons:main
 update_splash:
 	flutter pub run flutter_native_splash:create
+build_ios:
+	make setup_ios
+	flutter build ios
+build_android:
+	make setup
+	flutter build appbundle

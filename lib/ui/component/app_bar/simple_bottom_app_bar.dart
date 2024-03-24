@@ -54,9 +54,12 @@ class SimpleBottomAppBar extends StatelessWidget {
                       ? null
                       : () => Navigator.pushAndRemoveUntil(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => const OrderSelectPage(
-                                  sceneName: defaultScene),
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      const OrderSelectPage(
+                                          sceneName: defaultScene),
+                              transitionDuration: const Duration(seconds: 0),
                             ),
                             (_) => false,
                           ),
@@ -72,8 +75,11 @@ class SimpleBottomAppBar extends StatelessWidget {
                       ? null
                       : () => Navigator.pushAndRemoveUntil(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => const ManagementPage(),
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      const ManagementPage(),
+                              transitionDuration: const Duration(seconds: 0),
                             ),
                             (_) => false,
                           ),
