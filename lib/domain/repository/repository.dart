@@ -1,7 +1,7 @@
-import 'package:more_order_app/domain/entity/payment_method.dart';
-import 'package:more_order_app/domain/entity/phrase.dart';
-import 'package:more_order_app/domain/entity/reason.dart';
-import 'package:more_order_app/domain/entity/scene.dart';
+import 'package:more_order/domain/entity/payment_method.dart';
+import 'package:more_order/domain/entity/phrase.dart';
+import 'package:more_order/domain/entity/reason.dart';
+import 'package:more_order/domain/entity/scene.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'repository.g.dart';

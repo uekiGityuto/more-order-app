@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:more_order_app/domain/entity/payment_method.dart';
+import 'package:more_order/domain/entity/payment_method.dart';
 
 class DeleteConfirmationDialogContent extends StatelessWidget {
   final PaymentMethod paymentMethod;

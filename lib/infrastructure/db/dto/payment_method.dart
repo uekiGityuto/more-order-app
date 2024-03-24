@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:more_order_app/domain/entity/payment_method.dart';
-import 'package:more_order_app/domain/valueObject/id.dart';
+import 'package:more_order/domain/entity/payment_method.dart';
+import 'package:more_order/domain/valueObject/id.dart';
 
 part 'payment_method.freezed.dart';
 part 'payment_method.g.dart';

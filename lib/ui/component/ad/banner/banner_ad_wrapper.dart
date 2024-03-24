@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:more_order_app/ui/component/ad/banner/simpole_banner_ad.dart';
+import 'package:more_order/ui/component/ad/banner/simpole_banner_ad.dart';
 
 class BannerAdWrapper extends StatelessWidget {
   const BannerAdWrapper({Key? key}) : super(key: key);

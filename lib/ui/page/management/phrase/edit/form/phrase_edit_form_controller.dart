@@ -1,10 +1,10 @@
 import 'package:formz/formz.dart';
-import 'package:more_order_app/domain/entity/phrase.dart';
-import 'package:more_order_app/domain/valueObject/id.dart';
-import 'package:more_order_app/ui/form/form_creation_status.dart';
-import 'package:more_order_app/ui/page/management/phrase/edit/form/phrase_edit_form.dart';
-import 'package:more_order_app/ui/page/management/phrase/form/phrase_validation.dart';
-import 'package:more_order_app/usecase/state/scenes.dart';
+import 'package:more_order/domain/entity/phrase.dart';
+import 'package:more_order/domain/valueObject/id.dart';
+import 'package:more_order/ui/form/form_creation_status.dart';
+import 'package:more_order/ui/page/management/phrase/edit/form/phrase_edit_form.dart';
+import 'package:more_order/ui/page/management/phrase/form/phrase_validation.dart';
+import 'package:more_order/usecase/state/scenes.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'phrase_edit_form_controller.g.dart';

@@ -1,6 +1,6 @@
 import 'package:formz/formz.dart';
-import 'package:more_order_app/ui/page/management/scene/add/form/scene_add_form.dart';
-import 'package:more_order_app/ui/page/management/scene/form/scene_validation.dart';
+import 'package:more_order/ui/page/management/scene/add/form/scene_add_form.dart';
+import 'package:more_order/ui/page/management/scene/form/scene_validation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'scene_add_form_controller.g.dart';

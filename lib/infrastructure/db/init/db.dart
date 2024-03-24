@@ -1,5 +1,5 @@
-import 'package:more_order_app/infrastructure/db/init/migration.dart';
-// import 'package:more_order_app/infrastructure/db/init/sample_data.dart';
+import 'package:more_order/infrastructure/db/init/migration.dart';
+// import 'package:more_order/infrastructure/db/init/sample_data.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

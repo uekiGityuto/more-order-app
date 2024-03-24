@@ -1,4 +1,4 @@
-package com.morecoltd.more_order_app
+package com.morecoltd.more_order
 
 import io.flutter.embedding.android.FlutterActivity
 

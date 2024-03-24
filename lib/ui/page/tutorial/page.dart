@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_overboard/flutter_overboard.dart';
-import 'package:more_order_app/ui/page/tutorial/component/page_model_child.dart';
-import 'package:more_order_app/usecase/controller/shared_preferences.dart';
+import 'package:more_order/ui/page/tutorial/component/page_model_child.dart';
+import 'package:more_order/usecase/controller/shared_preferences.dart';
 
 class TutorialPage extends StatefulWidget {
   const TutorialPage({Key? key}) : super(key: key);
