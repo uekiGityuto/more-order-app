@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:more_order_app/ui/component/app_bar/simple_bottom_app_bar.dart';
 import 'package:more_order_app/ui/component/list_tile_navigation.dart';
 import 'package:more_order_app/ui/layout/default_layout.dart';
 import 'package:more_order_app/ui/page/management/component/menu_item.dart';
@@ -20,6 +21,8 @@ class ManagementPage extends StatelessWidget {
     return DefaultLayout(
       title: "メニュー",
       suppressBack: true,
+      bottomAppBarOption: const BottomAppBarOption(
+          currentLocation: NavigationItem.managementItem),
       body: ListView(
         children: [
           MenuItem(title: "フレーズ", options: [

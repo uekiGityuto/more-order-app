@@ -4,10 +4,24 @@ import 'package:more_order_app/ui/component/ad/banner/banner_ad_wrapper.dart';
 import 'package:more_order_app/ui/page/management/page.dart';
 import 'package:more_order_app/ui/page/order/select/page.dart';
 
+enum NavigationItem {
+  defaultSceneItem(name: defaultScene),
+  managementItem(name: "メニュー");
+
+  const NavigationItem({required this.name});
+
+  final String name;
+}
+
 class SimpleBottomAppBar extends StatelessWidget {
   final bool suppressBannerAd;
-  const SimpleBottomAppBar({Key? key, this.suppressBannerAd = false})
-      : super(key: key);
+  final NavigationItem? currentLocation;
+
+  const SimpleBottomAppBar({
+    Key? key,
+    this.suppressBannerAd = false,
+    this.currentLocation,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,26 +47,33 @@ class SimpleBottomAppBar extends StatelessWidget {
                 _buildBottomAppBarItem(
                   context: context,
                   icon: Icons.star,
-                  label: defaultScene,
-                  onPressed: () => Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const OrderSelectPage(sceneName: defaultScene),
-                    ),
-                    (_) => false,
-                  ),
+                  label: NavigationItem.defaultSceneItem.name,
+                  onPressed: currentLocation == NavigationItem.defaultSceneItem
+                      ? null
+                      : () => Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const OrderSelectPage(
+                                  sceneName: defaultScene),
+                            ),
+                            (_) => false,
+                          ),
+                  active: currentLocation == NavigationItem.defaultSceneItem,
                 ),
                 _buildBottomAppBarItem(
                   context: context,
                   icon: Icons.playlist_add,
-                  label: 'メニュー',
-                  onPressed: () => Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ManagementPage()),
-                    (_) => false,
-                  ),
+                  label: NavigationItem.managementItem.name,
+                  onPressed: currentLocation == NavigationItem.managementItem
+                      ? null
+                      : () => Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ManagementPage(),
+                            ),
+                            (_) => false,
+                          ),
+                  active: currentLocation == NavigationItem.managementItem,
                 ),
               ],
             ),
@@ -66,7 +87,8 @@ class SimpleBottomAppBar extends StatelessWidget {
     required BuildContext context,
     required IconData icon,
     required String label,
-    required VoidCallback onPressed,
+    VoidCallback? onPressed,
+    bool active = false,
   }) {
     return InkWell(
       onTap: onPressed,
@@ -74,9 +96,21 @@ class SimpleBottomAppBar extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 24.0),
+          Icon(
+            icon,
+            size: 24.0,
+            color: active ? Theme.of(context).colorScheme.tertiary : null,
+          ),
           const SizedBox(height: 4.0),
-          Text(label, style: Theme.of(context).textTheme.bodySmall),
+          Text(
+            label,
+            style: TextStyle(
+              color: active ? Theme.of(context).colorScheme.tertiary : null,
+              // これ以上大きくするとoverflowするので固定値にする
+              fontSize: 12,
+              fontWeight: active ? FontWeight.bold : null,
+            ),
+          ),
         ],
       ),
     );
