@@ -39,7 +39,7 @@ class OrderSelectPage extends ConsumerWidget {
     final paymentMethods = orderForm.paymentMethods;
     return DefaultLayout(
       title: sceneName,
-      cannotBack: true,
+      suppressBack: true,
       body: orderForm.creationStatus == FormCreationStatus.failed
           ? const ErrorMessage()
           : scene == null || reasons == null || paymentMethods == null
