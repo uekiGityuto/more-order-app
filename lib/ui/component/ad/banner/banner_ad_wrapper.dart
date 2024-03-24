@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:more_order_app/ui/component/ad/banner/ad_banner.dart';
+import 'package:more_order_app/ui/component/ad/banner/simpole_banner_ad.dart';
 
-class AdBannerWrapper extends StatelessWidget {
-  const AdBannerWrapper({Key? key}) : super(key: key);
+class BannerAdWrapper extends StatelessWidget {
+  const BannerAdWrapper({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => FutureBuilder(
@@ -21,7 +21,7 @@ class AdBannerWrapper extends StatelessWidget {
               return Container(
                 height: 70,
                 color: Colors.white70,
-                child: AdBanner(size: data),
+                child: SimpleBannerAd(size: data),
               );
             } else {
               return Container(

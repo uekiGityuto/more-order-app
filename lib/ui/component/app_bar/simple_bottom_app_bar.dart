@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:more_order_app/constants.dart';
-import 'package:more_order_app/ui/component/ad/banner/ad_banner_wrapper.dart';
+import 'package:more_order_app/ui/component/ad/banner/banner_ad_wrapper.dart';
 import 'package:more_order_app/ui/page/management/page.dart';
 import 'package:more_order_app/ui/page/order/select/page.dart';
 
@@ -15,7 +15,7 @@ class SimpleBottomAppBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (!suppressBannerAd) const AdBannerWrapper(),
+        if (!suppressBannerAd) const BannerAdWrapper(),
         BottomAppBar(
           height: 72.0,
           child: SizedBox(
