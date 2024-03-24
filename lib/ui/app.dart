@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:more_order_app/constants.dart';
-import 'package:more_order_app/ui/page/order/select/page.dart';
-import 'package:more_order_app/ui/style/theme.dart';
+import 'package:more_order/constants.dart';
+import 'package:more_order/ui/page/order/select/page.dart';
+import 'package:more_order/ui/style/theme.dart';
 
 class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:more_order_app/ui/error_handler_mixin.dart';
-import 'package:more_order_app/ui/layout/default_layout.dart';
-import 'package:more_order_app/ui/page/management/scene/add/form/scene_add_form_controller.dart';
-import 'package:more_order_app/ui/page/management/scene/component/scene_input_form.dart';
-import 'package:more_order_app/usecase/state/scenes.dart';
+import 'package:more_order/ui/error_handler_mixin.dart';
+import 'package:more_order/ui/layout/default_layout.dart';
+import 'package:more_order/ui/page/management/scene/add/form/scene_add_form_controller.dart';
+import 'package:more_order/ui/page/management/scene/component/scene_input_form.dart';
+import 'package:more_order/usecase/state/scenes.dart';
 
 class SceneAddPage extends HookConsumerWidget with ErrorHandlerMixin {
   const SceneAddPage({Key? key}) : super(key: key);

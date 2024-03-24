@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:more_order_app/ui/component/form/form_error_message.dart';
-import 'package:more_order_app/ui/component/typography/section_title.dart';
+import 'package:more_order/ui/component/form/form_error_message.dart';
+import 'package:more_order/ui/component/typography/section_title.dart';
 
 class PaymentMethodInputField extends StatelessWidget {
   final String description;

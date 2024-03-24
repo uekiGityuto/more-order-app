@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:more_order_app/domain/entity/payment_method.dart';
-import 'package:more_order_app/domain/valueObject/id.dart';
+import 'package:more_order/domain/entity/payment_method.dart';
+import 'package:more_order/domain/valueObject/id.dart';
 
 class PaymentMethodSelectForm extends StatelessWidget {
   final Id? value;

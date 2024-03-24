@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:more_order_app/ui/component/form/form_additional_message.dart';
-import 'package:more_order_app/ui/component/form/simple_checkbox_list_tile.dart';
-import 'package:more_order_app/ui/component/typography/section_title.dart';
+import 'package:more_order/ui/component/form/form_additional_message.dart';
+import 'package:more_order/ui/component/form/simple_checkbox_list_tile.dart';
+import 'package:more_order/ui/component/typography/section_title.dart';
 
 class PaymentMethodDefaultCheckboxField extends StatelessWidget {
   final String description;

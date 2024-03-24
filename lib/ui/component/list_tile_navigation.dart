@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:more_order_app/ui/component/snack_bar/simple_snackbar.dart';
+import 'package:more_order/ui/component/snack_bar/simple_snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 enum NavigationType { push, pushReplacement, pushAndRemoveUntil, webView }
@@ -45,7 +45,6 @@ class NavigationAction {
               pageBuilder: (context, animation, secondaryAnimation) => nextPage,
               transitionDuration: const Duration(seconds: 0),
             ),
-
             (_) => false,
           );
         }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:more_order_app/ui/component/app_bar/simple_app_bar.dart';
-import 'package:more_order_app/ui/component/app_bar/simple_bottom_app_bar.dart';
-import 'package:more_order_app/ui/component/drawer/simple_drawer.dart';
+import 'package:more_order/ui/component/app_bar/simple_app_bar.dart';
+import 'package:more_order/ui/component/app_bar/simple_bottom_app_bar.dart';
+import 'package:more_order/ui/component/drawer/simple_drawer.dart';
 
 class BodyOption {
   final bool dense;

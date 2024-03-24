@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:more_order_app/domain/entity/phrase.dart';
+import 'package:more_order/domain/entity/phrase.dart';
 
 class Phrases extends StatelessWidget {
   final List<Phrase> phrases;

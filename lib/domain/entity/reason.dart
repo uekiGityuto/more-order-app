@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:more_order_app/domain/valueObject/id.dart';
+import 'package:more_order/domain/valueObject/id.dart';
 
 part 'reason.freezed.dart';
 

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:more_order_app/ui/component/dialog/delete_confirmation_dialog.dart';
-import 'package:more_order_app/ui/component/error_message.dart';
-import 'package:more_order_app/ui/component/loader.dart';
-import 'package:more_order_app/ui/error_handler_mixin.dart';
-import 'package:more_order_app/ui/layout/default_layout.dart';
-import 'package:more_order_app/ui/page/management/component/edit_and_delete_list_tile.dart';
-import 'package:more_order_app/ui/page/management/reason/edit/page.dart';
-import 'package:more_order_app/ui/page/management/reason/list/component/delete_confirmation_dialog_content.dart';
-import 'package:more_order_app/usecase/state/reasons.dart';
+import 'package:more_order/ui/component/dialog/delete_confirmation_dialog.dart';
+import 'package:more_order/ui/component/error_message.dart';
+import 'package:more_order/ui/component/loader.dart';
+import 'package:more_order/ui/error_handler_mixin.dart';
+import 'package:more_order/ui/layout/default_layout.dart';
+import 'package:more_order/ui/page/management/component/edit_and_delete_list_tile.dart';
+import 'package:more_order/ui/page/management/reason/edit/page.dart';
+import 'package:more_order/ui/page/management/reason/list/component/delete_confirmation_dialog_content.dart';
+import 'package:more_order/usecase/state/reasons.dart';
 
 class ReasonListPage extends ConsumerWidget with ErrorHandlerMixin {
   const ReasonListPage({Key? key}) : super(key: key);

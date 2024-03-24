@@ -1,6 +1,6 @@
 {
-  "name": "more_order_app",
-  "short_name": "more_order_app",
+  "name": "more_order",
+  "short_name": "more_order",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",

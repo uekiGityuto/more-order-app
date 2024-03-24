@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:more_order_app/constants.dart';
-import 'package:more_order_app/ui/component/ad/banner/banner_ad_wrapper.dart';
-import 'package:more_order_app/ui/page/management/page.dart';
-import 'package:more_order_app/ui/page/order/select/page.dart';
+import 'package:more_order/constants.dart';
+import 'package:more_order/ui/component/ad/banner/banner_ad_wrapper.dart';
+import 'package:more_order/ui/page/management/page.dart';
+import 'package:more_order/ui/page/order/select/page.dart';
 
 enum NavigationItem {
   defaultSceneItem(name: defaultScene),

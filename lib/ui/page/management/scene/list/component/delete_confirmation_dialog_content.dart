@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:more_order_app/domain/entity/scene.dart';
+import 'package:more_order/domain/entity/scene.dart';
 
 class DeleteConfirmationDialogContent extends StatelessWidget {
   final Scene scene;
