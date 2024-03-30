@@ -46,16 +46,22 @@ class ManagementPage extends StatelessWidget {
             title: "その他",
             options: [
               ListTileOption(
+                title: "使い方",
+                navigationType: NavigationType.webView,
+                webURL:
+                    "https://tin-chopper-b95.notion.site/08da88772b27489d82e7edd165829d50#6b1b1dd9f3db4d59866e6edb3e4a8431",
+              ),
+              ListTileOption(
                 title: "利用規約",
                 navigationType: NavigationType.webView,
                 webURL:
-                    "https://www.notion.so/4740156fca0c4969ada7921076b37558?pvs=4",
+                    "https://tin-chopper-b95.notion.site/4740156fca0c4969ada7921076b37558",
               ),
               ListTileOption(
                 title: "プライバシーポリシー",
                 navigationType: NavigationType.webView,
                 webURL:
-                    "https://www.notion.so/a639ca1a37f84d719f84a873e604041c?pvs=4",
+                    "https://tin-chopper-b95.notion.site/a639ca1a37f84d719f84a873e604041c",
               ),
             ],
           ),
