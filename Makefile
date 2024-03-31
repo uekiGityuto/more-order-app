@@ -20,7 +20,7 @@ update_icon:
 update_splash:
 	flutter pub run flutter_native_splash:create
 build_ios:
-	make setup_ios
+	make setup_all
 	flutter build ios
 build_android:
 	make setup
