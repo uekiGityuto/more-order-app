@@ -46,7 +46,7 @@ class ManagementPage extends StatelessWidget {
             title: "その他",
             options: [
               ListTileOption(
-                title: "使い方",
+                title: "サポートページ",
                 navigationType: NavigationType.webView,
                 webURL:
                     "https://tin-chopper-b95.notion.site/08da88772b27489d82e7edd165829d50#6b1b1dd9f3db4d59866e6edb3e4a8431",

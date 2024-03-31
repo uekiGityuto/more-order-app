@@ -41,7 +41,7 @@ PayPayで払います。
         child: const PageModelChild(
           title: '注文したいけど注文できない',
           imageAssetPath: "assets/images/tutorial/cannot_speak.png",
-          body: '''人見知り、あがり症、吃音症、場面緘黙症。
+          body: '''会話が苦手、人見知り、あがり症、どもり。
 
 様々な理由で、
 私たちは注文したくてもできません。
