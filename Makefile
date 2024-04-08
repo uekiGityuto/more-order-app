@@ -1,4 +1,4 @@
-.PHONY: setup setup_ios setup_all gen gen-watch lint test update_icon update_splash
+.PHONY: setup setup_ios setup_all gen gen_watch lint test update_icon update_splash run build_ios build_android
 setup:
 	flutter clean
 	flutter pub get
@@ -19,6 +19,8 @@ update_icon:
 	flutter pub run flutter_launcher_icons:main
 update_splash:
 	flutter pub run flutter_native_splash:create
+run:
+	flutter run
 build_ios:
 	make setup_all
 	flutter build ios
