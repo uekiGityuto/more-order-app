@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:more_order/domain/entity/payment_method.dart';
-import 'package:more_order/domain/entity/phrase.dart';
 import 'package:more_order/domain/entity/reason.dart';
 import 'package:more_order/ui/layout/default_layout.dart';
 import 'package:more_order/ui/page/order/display/component/free_text_field.dart';
@@ -11,12 +10,12 @@ import 'package:more_order/ui/style/extension/list_space_between.dart';
 
 class OrderDisplayPage extends StatelessWidget {
   final Reason? reason;
-  final List<Phrase> phrases;
+  final Map<String, int> phrasesWithQuantity;
   final PaymentMethod? paymentMethod;
   const OrderDisplayPage({
     Key? key,
     this.reason,
-    required this.phrases,
+    required this.phrasesWithQuantity,
     required this.paymentMethod,
   }) : super(key: key);
 
@@ -33,8 +32,9 @@ class OrderDisplayPage extends StatelessWidget {
             child: ListView(
               children: [
                 if (reasonText != null) ReasonField(reason: reasonText),
-                if (phrases.isNotEmpty) Phrases(phrases: phrases),
-                if (phrases.isNotEmpty || paymentMethodText != null)
+                if (phrasesWithQuantity.isNotEmpty)
+                  Phrases(phrasesWithQuantity: phrasesWithQuantity),
+                if (phrasesWithQuantity.isNotEmpty || paymentMethodText != null)
                   LastMessage(paymentMethod: paymentMethodText),
                 const FreeTextField(),
               ].withSpaceBetween(height: 24.0),

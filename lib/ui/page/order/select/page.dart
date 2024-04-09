@@ -7,7 +7,6 @@ import 'package:more_order/ui/component/app_bar/simple_bottom_app_bar.dart';
 import 'package:more_order/ui/component/button/navigation_button.dart';
 import 'package:more_order/ui/component/button/text_link_button.dart';
 import 'package:more_order/ui/component/error_message.dart';
-import 'package:more_order/ui/component/form/simple_checkbox_list_tile.dart';
 import 'package:more_order/ui/component/form/simple_select_form.dart';
 import 'package:more_order/ui/component/loader.dart';
 import 'package:more_order/ui/component/typography/section_title.dart';
@@ -20,6 +19,7 @@ import 'package:more_order/ui/page/order/display/page.dart';
 import 'package:more_order/ui/page/order/select/component/no_payment_method.dart';
 import 'package:more_order/ui/page/order/select/component/no_phrase.dart';
 import 'package:more_order/ui/page/order/select/component/no_reason.dart';
+import 'package:more_order/ui/page/order/select/component/phrase_list_tile_form.dart';
 import 'package:more_order/ui/page/order/select/form/order_form_controller.dart';
 import 'package:more_order/ui/page/tutorial/page.dart';
 import 'package:more_order/ui/style/extension/list_space_between.dart';
@@ -68,16 +68,25 @@ class OrderSelectPage extends ConsumerWidget {
                               if (scene.phrases.isEmpty) const NoPhrase(),
                               ...scene.phrases.map(
                                 (phrase) {
-                                  return SimpleCheckboxListTile(
-                                    value: orderForm.phrasesInput[phrase.id],
-                                    onChanged: (bool? newValue) {
+                                  return PhraseListTileForm(
+                                    title: phrase.phrase,
+                                    quantity: orderForm.phrasesInput[phrase.id]
+                                        .toString(),
+                                    countUp: () {
                                       ref
                                           .read(orderFormControllerProvider(
                                                   sceneName)
                                               .notifier)
-                                          .onChangePhrases(phrase.id, newValue);
+                                          .onChangePhrasesByCountUp(phrase.id);
                                     },
-                                    title: phrase.phrase,
+                                    countDown: () {
+                                      ref
+                                          .read(orderFormControllerProvider(
+                                                  sceneName)
+                                              .notifier)
+                                          .onChangePhrasesByCountDown(
+                                              phrase.id);
+                                    },
                                   );
                                 },
                               ).toList(),
@@ -149,10 +158,10 @@ class OrderSelectPage extends ConsumerWidget {
                             nextPage: OrderDisplayPage(
                               reason: orderForm.reasons?.firstWhereOrNull(
                                   (r) => r.id == orderForm.reasonInput),
-                              phrases: scene.phrases
-                                  .where((p) =>
-                                      orderForm.phrasesInput[p.id] == true)
-                                  .toList(),
+                              phrasesWithQuantity: ref
+                                  .read(orderFormControllerProvider(sceneName)
+                                      .notifier)
+                                  .toPhrasesWithQuantity(),
                               paymentMethod: orderForm.paymentMethods
                                   ?.firstWhereOrNull((p) =>
                                       p.id == orderForm.paymentMethodInput),

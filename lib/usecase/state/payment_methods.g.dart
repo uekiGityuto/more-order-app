@@ -7,7 +7,7 @@ part of 'payment_methods.dart';
 // **************************************************************************
 
 String _$paymentMethodsNotifierHash() =>
-    r'3119ee1baedb73ed82e15269fd0edca2c0c68812';
+    r'13b16446ca1ada0d12150fd74e23e3ec29c200ee';
 
 /// See also [PaymentMethodsNotifier].
 @ProviderFor(PaymentMethodsNotifier)

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:more_order/domain/entity/phrase.dart';
 
 class Phrases extends StatelessWidget {
-  final List<Phrase> phrases;
+  final Map<String, int> phrasesWithQuantity;
 
-  const Phrases({Key? key, required this.phrases}) : super(key: key);
+  const Phrases({Key? key, required this.phrasesWithQuantity})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: phrases.map((phrase) {
+      children: phrasesWithQuantity.entries.map((entry) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Row(
@@ -25,7 +25,9 @@ class Phrases extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  phrase.phrase,
+                  entry.value == 1
+                      ? entry.key
+                      : '${entry.key}  ×${entry.value}',
                   style: TextStyle(
                     fontSize: 24 * MediaQuery.of(context).textScaleFactor,
                   ),

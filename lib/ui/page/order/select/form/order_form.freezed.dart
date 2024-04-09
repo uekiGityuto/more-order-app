@@ -20,7 +20,7 @@ mixin _$OrderForm {
   List<Reason>? get reasons => throw _privateConstructorUsedError;
   Id? get reasonInput => throw _privateConstructorUsedError;
   Scene? get scene => throw _privateConstructorUsedError;
-  Map<Id, bool> get phrasesInput => throw _privateConstructorUsedError;
+  Map<Id, int> get phrasesInput => throw _privateConstructorUsedError;
   List<PaymentMethod>? get paymentMethods => throw _privateConstructorUsedError;
   Id? get paymentMethodInput => throw _privateConstructorUsedError;
 
@@ -39,7 +39,7 @@ abstract class $OrderFormCopyWith<$Res> {
       List<Reason>? reasons,
       Id? reasonInput,
       Scene? scene,
-      Map<Id, bool> phrasesInput,
+      Map<Id, int> phrasesInput,
       List<PaymentMethod>? paymentMethods,
       Id? paymentMethodInput});
 
@@ -89,7 +89,7 @@ class _$OrderFormCopyWithImpl<$Res, $Val extends OrderForm>
       phrasesInput: null == phrasesInput
           ? _value.phrasesInput
           : phrasesInput // ignore: cast_nullable_to_non_nullable
-              as Map<Id, bool>,
+              as Map<Id, int>,
       paymentMethods: freezed == paymentMethods
           ? _value.paymentMethods
           : paymentMethods // ignore: cast_nullable_to_non_nullable
@@ -151,7 +151,7 @@ abstract class _$$OrderFormImplCopyWith<$Res>
       List<Reason>? reasons,
       Id? reasonInput,
       Scene? scene,
-      Map<Id, bool> phrasesInput,
+      Map<Id, int> phrasesInput,
       List<PaymentMethod>? paymentMethods,
       Id? paymentMethodInput});
 
@@ -202,7 +202,7 @@ class __$$OrderFormImplCopyWithImpl<$Res>
       phrasesInput: null == phrasesInput
           ? _value._phrasesInput
           : phrasesInput // ignore: cast_nullable_to_non_nullable
-              as Map<Id, bool>,
+              as Map<Id, int>,
       paymentMethods: freezed == paymentMethods
           ? _value._paymentMethods
           : paymentMethods // ignore: cast_nullable_to_non_nullable
@@ -223,7 +223,7 @@ class _$OrderFormImpl implements _OrderForm {
       required final List<Reason>? reasons,
       required this.reasonInput,
       required this.scene,
-      required final Map<Id, bool> phrasesInput,
+      required final Map<Id, int> phrasesInput,
       required final List<PaymentMethod>? paymentMethods,
       required this.paymentMethodInput})
       : _reasons = reasons,
@@ -246,9 +246,9 @@ class _$OrderFormImpl implements _OrderForm {
   final Id? reasonInput;
   @override
   final Scene? scene;
-  final Map<Id, bool> _phrasesInput;
+  final Map<Id, int> _phrasesInput;
   @override
-  Map<Id, bool> get phrasesInput {
+  Map<Id, int> get phrasesInput {
     if (_phrasesInput is EqualUnmodifiableMapView) return _phrasesInput;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_phrasesInput);
@@ -315,7 +315,7 @@ abstract class _OrderForm implements OrderForm {
       required final List<Reason>? reasons,
       required final Id? reasonInput,
       required final Scene? scene,
-      required final Map<Id, bool> phrasesInput,
+      required final Map<Id, int> phrasesInput,
       required final List<PaymentMethod>? paymentMethods,
       required final Id? paymentMethodInput}) = _$OrderFormImpl;
 
@@ -328,7 +328,7 @@ abstract class _OrderForm implements OrderForm {
   @override
   Scene? get scene;
   @override
-  Map<Id, bool> get phrasesInput;
+  Map<Id, int> get phrasesInput;
   @override
   List<PaymentMethod>? get paymentMethods;
   @override
