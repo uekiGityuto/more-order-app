@@ -7,7 +7,8 @@ class ReasonField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      alignment: Alignment.center,
+      padding: const EdgeInsets.all(12.0),
       decoration: BoxDecoration(
         color: const Color(0xFFECE8D5),
         borderRadius: BorderRadius.circular(8.0),
