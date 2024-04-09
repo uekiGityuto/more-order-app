@@ -14,7 +14,7 @@ class OrderForm with _$OrderForm {
     required List<Reason>? reasons,
     required Id? reasonInput,
     required Scene? scene,
-    required Map<Id, bool> phrasesInput,
+    required Map<Id, int> phrasesInput,
     required List<PaymentMethod>? paymentMethods,
     required Id? paymentMethodInput,
   }) = _OrderForm;
