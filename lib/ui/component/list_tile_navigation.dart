@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:more_order/ui/component/snack_bar/simple_snackbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-enum NavigationType { push, pushReplacement, pushAndRemoveUntil, webView }
+enum NavigationType {
+  push,
+  pushReplacement,
+  pushAndRemoveUntil,
+  webView,
+  customAction
+}
 
 class NavigationAction {
   final BuildContext context;
@@ -13,6 +19,7 @@ class NavigationAction {
     required NavigationType type,
     Widget? nextPage,
     String? webURL,
+    void Function()? onTap,
   }) async {
     switch (type) {
       case NavigationType.webView:
@@ -49,6 +56,10 @@ class NavigationAction {
           );
         }
         break;
+      case NavigationType.customAction:
+        if (onTap != null) {
+          onTap();
+        }
     }
   }
 
@@ -75,6 +86,7 @@ class ListTileOption {
   final NavigationType navigationType;
   final Widget? nextPage;
   final String? webURL;
+  void Function()? onTap;
 
   ListTileOption({
     required this.title,
@@ -82,6 +94,7 @@ class ListTileOption {
     this.navigationType = NavigationType.push,
     this.nextPage,
     this.webURL,
+    this.onTap,
   });
 }
 
@@ -105,6 +118,7 @@ class ListTileNavigation extends StatelessWidget {
         type: option.navigationType,
         nextPage: option.nextPage,
         webURL: option.webURL,
+        onTap: option.onTap,
       ),
     );
   }

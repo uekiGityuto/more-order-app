@@ -12,6 +12,7 @@ import 'package:more_order/ui/page/management/reason/list/page.dart';
 import 'package:more_order/ui/page/management/scene/add/page.dart';
 import 'package:more_order/ui/page/management/scene/list/page.dart';
 import 'package:more_order/ui/style/extension/list_space_between.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ManagementPage extends StatelessWidget {
   const ManagementPage({Key? key}) : super(key: key);
@@ -51,6 +52,14 @@ class ManagementPage extends StatelessWidget {
                 webURL:
                     "https://tin-chopper-b95.notion.site/08da88772b27489d82e7edd165829d50#6b1b1dd9f3db4d59866e6edb3e4a8431",
               ),
+              ListTileOption(
+                  title: "アプリをシェア",
+                  navigationType: NavigationType.customAction,
+                  onTap: () {
+                    // TODO: Android版が出たら修正
+                    Share.share(
+                        '【iOS限定】More Orderで注文のストレスから自由になろう!\nhttps://apps.apple.com/jp/app/more-order/id6479958296');
+                  }),
               ListTileOption(
                 title: "利用規約",
                 navigationType: NavigationType.webView,
