@@ -17,7 +17,7 @@ import 'package:more_order/ui/page/order/select/component/no_payment_method.dart
 import 'package:more_order/ui/page/order/select/component/no_phrase.dart';
 import 'package:more_order/ui/page/order/select/component/no_reason.dart';
 import 'package:more_order/ui/page/order/select/component/phrase_list_tile_form.dart';
-import 'package:more_order/ui/page/order/select/registered/form/order_form_controller.dart';
+import 'package:more_order/ui/page/order/select/registered/form/registered_order_form_controller.dart';
 import 'package:more_order/ui/style/extension/list_space_between.dart';
 
 class RegisteredOrderSelectPage extends ConsumerWidget {
@@ -28,7 +28,8 @@ class RegisteredOrderSelectPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final orderForm = ref.watch(orderFormControllerProvider(sceneName));
+    final orderForm =
+        ref.watch(registeredOrderFormControllerProvider(sceneName));
     final scene = orderForm.scene;
     final reasons = orderForm.reasons;
     final paymentMethods = orderForm.paymentMethods;
@@ -60,14 +61,14 @@ class RegisteredOrderSelectPage extends ConsumerWidget {
                                       .toString(),
                                   countUp: () {
                                     ref
-                                        .read(orderFormControllerProvider(
+                                        .read(registeredOrderFormControllerProvider(
                                                 sceneName)
                                             .notifier)
                                         .onChangePhrasesByCountUp(phrase.id);
                                   },
                                   countDown: () {
                                     ref
-                                        .read(orderFormControllerProvider(
+                                        .read(registeredOrderFormControllerProvider(
                                                 sceneName)
                                             .notifier)
                                         .onChangePhrasesByCountDown(phrase.id);
@@ -99,7 +100,7 @@ class RegisteredOrderSelectPage extends ConsumerWidget {
                                         .toList(),
                                     onChanged: (Id? newValue) {
                                       ref
-                                          .read(orderFormControllerProvider(
+                                          .read(registeredOrderFormControllerProvider(
                                                   sceneName)
                                               .notifier)
                                           .onChangeReason(newValue);
@@ -131,7 +132,7 @@ class RegisteredOrderSelectPage extends ConsumerWidget {
                                         .toList(),
                                     onChanged: (Id? newValue) {
                                       ref
-                                          .read(orderFormControllerProvider(
+                                          .read(registeredOrderFormControllerProvider(
                                                   sceneName)
                                               .notifier)
                                           .onChangePaymentMethod(newValue);
@@ -144,7 +145,7 @@ class RegisteredOrderSelectPage extends ConsumerWidget {
                             reason: orderForm.reasons?.firstWhereOrNull(
                                 (r) => r.id == orderForm.reasonInput),
                             phrasesWithQuantity: ref
-                                .read(orderFormControllerProvider(sceneName)
+                                .read(registeredOrderFormControllerProvider(sceneName)
                                     .notifier)
                                 .toPhrasesWithQuantity(),
                             paymentMethod: orderForm.paymentMethods

@@ -1,19 +1,19 @@
 import 'package:collection/collection.dart';
 import 'package:more_order/domain/valueObject/id.dart';
 import 'package:more_order/ui/form/form_creation_status.dart';
-import 'package:more_order/ui/page/order/select/registered/form/order_form.dart';
-import 'package:more_order/usecase/state/order.dart';
+import 'package:more_order/ui/page/order/select/registered/form/registered_order_form.dart';
+import 'package:more_order/usecase/state/registered_order.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'order_form_controller.g.dart';
+part 'registered_order_form_controller.g.dart';
 
 @riverpod
-class OrderFormController extends _$OrderFormController {
+class RegisteredOrderFormController extends _$RegisteredOrderFormController {
   @override
-  OrderForm build(String sceneName) {
-    final orderFuture = ref.watch(orderProvider);
+  RegisteredOrderForm build(String sceneName) {
+    final orderFuture = ref.watch(registeredOrderProvider);
     return orderFuture.when(
-      error: (e, s) => OrderForm(
+      error: (e, s) => RegisteredOrderForm(
         creationStatus: FormCreationStatus.failed,
         reasons: null,
         reasonInput: null,
@@ -22,7 +22,7 @@ class OrderFormController extends _$OrderFormController {
         paymentMethods: null,
         paymentMethodInput: null,
       ),
-      loading: () => OrderForm(
+      loading: () => RegisteredOrderForm(
         creationStatus: FormCreationStatus.creating,
         reasons: null,
         reasonInput: null,
@@ -35,7 +35,7 @@ class OrderFormController extends _$OrderFormController {
         final scene =
             order.scenes.firstWhereOrNull((scene) => scene.scene == sceneName);
         if (scene == null) {
-          return OrderForm(
+          return RegisteredOrderForm(
             creationStatus: FormCreationStatus.failed,
             reasons: null,
             reasonInput: null,
@@ -45,7 +45,7 @@ class OrderFormController extends _$OrderFormController {
             paymentMethodInput: null,
           );
         } else {
-          return OrderForm(
+          return RegisteredOrderForm(
             creationStatus: FormCreationStatus.created,
             reasons: order.reasons,
             reasonInput: order.reasons.firstWhereOrNull((r) => r.isDefault)?.id,

@@ -1,0 +1,13 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'order.freezed.dart';
+
+@freezed
+abstract class Order implements _$Order {
+  const Order._();
+
+  const factory Order({
+    required String phrase,
+    required int quantity,
+  }) = _Order;
+}
