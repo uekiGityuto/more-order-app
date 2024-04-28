@@ -138,10 +138,10 @@ class CustomOrderSelectPage extends ConsumerWidget {
                           nextPage: OrderDisplayPage(
                             reason: orderForm.reasons?.firstWhereOrNull(
                                 (r) => r.id == orderForm.reasonInput),
-                            phrasesWithQuantity: ref
+                            orders: ref
                                 .read(
                                     customOrderFormControllerProvider.notifier)
-                                .toPhrasesWithQuantity(),
+                                .toOrders(),
                             paymentMethod: orderForm.paymentMethods
                                 ?.firstWhereOrNull((p) =>
                                     p.id == orderForm.paymentMethodInput),

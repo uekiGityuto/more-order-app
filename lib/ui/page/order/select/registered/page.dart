@@ -61,16 +61,18 @@ class RegisteredOrderSelectPage extends ConsumerWidget {
                                       .toString(),
                                   countUp: () {
                                     ref
-                                        .read(registeredOrderFormControllerProvider(
-                                                sceneName)
-                                            .notifier)
+                                        .read(
+                                            registeredOrderFormControllerProvider(
+                                                    sceneName)
+                                                .notifier)
                                         .onChangePhrasesByCountUp(phrase.id);
                                   },
                                   countDown: () {
                                     ref
-                                        .read(registeredOrderFormControllerProvider(
-                                                sceneName)
-                                            .notifier)
+                                        .read(
+                                            registeredOrderFormControllerProvider(
+                                                    sceneName)
+                                                .notifier)
                                         .onChangePhrasesByCountDown(phrase.id);
                                   },
                                 );
@@ -100,9 +102,10 @@ class RegisteredOrderSelectPage extends ConsumerWidget {
                                         .toList(),
                                     onChanged: (Id? newValue) {
                                       ref
-                                          .read(registeredOrderFormControllerProvider(
-                                                  sceneName)
-                                              .notifier)
+                                          .read(
+                                              registeredOrderFormControllerProvider(
+                                                      sceneName)
+                                                  .notifier)
                                           .onChangeReason(newValue);
                                     },
                                   ),
@@ -132,9 +135,10 @@ class RegisteredOrderSelectPage extends ConsumerWidget {
                                         .toList(),
                                     onChanged: (Id? newValue) {
                                       ref
-                                          .read(registeredOrderFormControllerProvider(
-                                                  sceneName)
-                                              .notifier)
+                                          .read(
+                                              registeredOrderFormControllerProvider(
+                                                      sceneName)
+                                                  .notifier)
                                           .onChangePaymentMethod(newValue);
                                     },
                                   ),
@@ -144,10 +148,11 @@ class RegisteredOrderSelectPage extends ConsumerWidget {
                           nextPage: OrderDisplayPage(
                             reason: orderForm.reasons?.firstWhereOrNull(
                                 (r) => r.id == orderForm.reasonInput),
-                            phrasesWithQuantity: ref
-                                .read(registeredOrderFormControllerProvider(sceneName)
+                            orders: ref
+                                .read(registeredOrderFormControllerProvider(
+                                        sceneName)
                                     .notifier)
-                                .toPhrasesWithQuantity(),
+                                .toOrders(),
                             paymentMethod: orderForm.paymentMethods
                                 ?.firstWhereOrNull((p) =>
                                     p.id == orderForm.paymentMethodInput),

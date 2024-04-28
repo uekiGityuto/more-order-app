@@ -92,15 +92,11 @@ class CustomOrderFormController extends _$CustomOrderFormController {
     );
   }
 
-  Map<String, int> toPhrasesWithQuantity() {
+  List<Order> toOrders() {
     return state.ordersInput.entries
-        .toList()
-        .where((entry) =>
-            (entry.value.phrase.isNotEmpty && entry.value.quantity > 0))
-        .fold<Map<String, int>>({}, (map, entry) {
-      map[entry.value.phrase] = entry.value.quantity;
-      return map;
-    });
+        .map((entry) => entry.value)
+        .where((order) => !order.isEmpty())
+        .toList();
   }
 
   void onChangePaymentMethod(Id? id) {

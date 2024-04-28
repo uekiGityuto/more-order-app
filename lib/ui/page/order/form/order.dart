@@ -10,4 +10,8 @@ abstract class Order implements _$Order {
     required String phrase,
     required int quantity,
   }) = _Order;
+
+  bool isEmpty() {
+    return phrase.isEmpty && quantity == 0;
+  }
 }
