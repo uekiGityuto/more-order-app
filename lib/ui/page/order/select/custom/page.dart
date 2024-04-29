@@ -47,7 +47,7 @@ class CustomOrderSelectPage extends ConsumerWidget {
                             RichText(
                               text: TextSpan(
                                 text:
-                                    "一時的に注文したいフレーズを入力して下さい。\nここに入力したフレーズは保存されないので、繰り返し使いたい場合は",
+                                    "注文したいフレーズを入力して下さい。\nここに入力したフレーズは保存されないため、繰り返し使いたい場合は",
                                 style: DefaultTextStyle.of(context).style,
                                 children: [
                                   buildInlineTextLink(
@@ -59,40 +59,59 @@ class CustomOrderSelectPage extends ConsumerWidget {
                                 ],
                               ),
                             ),
-                            ...List.generate(
-                              orderForm.ordersInput.entries.toList().length,
-                              (index) {
-                                final entry = orderForm.ordersInput.entries
-                                    .toList()[index];
+                            Container(
+                              color: Theme.of(context).colorScheme.surface,
+                              margin: const EdgeInsets.only(top: 12.0),
+                              padding: const EdgeInsets.only(bottom: 12.0),
+                              child: Column(
+                                children: [
+                                  ...List.generate(
+                                    orderForm.ordersInput.entries
+                                        .toList()
+                                        .length,
+                                    (index) {
+                                      final entry = orderForm
+                                          .ordersInput.entries
+                                          .toList()[index];
 
-                                return PhraseListTileForm(
-                                  quantity: entry.value.quantity.toString(),
-                                  onChangedPhrase: (phrase) {
-                                    ref
+                                      return PhraseListTileForm(
+                                        quantity:
+                                            entry.value.quantity.toString(),
+                                        onChangedPhrase: (phrase) {
+                                          ref
+                                              .read(
+                                                  customOrderFormControllerProvider
+                                                      .notifier)
+                                              .onChangePhrase(
+                                                  entry.key, phrase);
+                                        },
+                                        countUp: () {
+                                          ref
+                                              .read(
+                                                  customOrderFormControllerProvider
+                                                      .notifier)
+                                              .onChangeQuantityByCountUp(
+                                                  entry.key);
+                                        },
+                                        countDown: () {
+                                          ref
+                                              .read(
+                                                  customOrderFormControllerProvider
+                                                      .notifier)
+                                              .onChangeQuantityByCountDown(
+                                                  entry.key);
+                                        },
+                                      );
+                                    },
+                                  ),
+                                  AddEmptyOrder(
+                                    onTapAdd: ref
                                         .read(customOrderFormControllerProvider
                                             .notifier)
-                                        .onChangePhrase(entry.key, phrase);
-                                  },
-                                  countUp: () {
-                                    ref
-                                        .read(customOrderFormControllerProvider
-                                            .notifier)
-                                        .onChangeQuantityByCountUp(entry.key);
-                                  },
-                                  countDown: () {
-                                    ref
-                                        .read(customOrderFormControllerProvider
-                                            .notifier)
-                                        .onChangeQuantityByCountDown(entry.key);
-                                  },
-                                );
-                              },
-                            ),
-                            AddEmptyOrder(
-                              onTapAdd: ref
-                                  .read(customOrderFormControllerProvider
-                                      .notifier)
-                                  .addEmptyOrder,
+                                        .addEmptyOrder,
+                                  )
+                                ],
+                              ),
                             )
                           ],
                         ),
