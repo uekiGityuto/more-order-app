@@ -6,10 +6,12 @@ import 'package:more_order/ui/component/button/navigation_button.dart';
 import 'package:more_order/ui/component/button/text_link_button.dart';
 import 'package:more_order/ui/component/error_message.dart';
 import 'package:more_order/ui/component/form/simple_select_form.dart';
+import 'package:more_order/ui/component/inline_text_link.dart';
 import 'package:more_order/ui/component/loader.dart';
 import 'package:more_order/ui/component/typography/section_title.dart';
 import 'package:more_order/ui/form/form_creation_status.dart';
 import 'package:more_order/ui/page/management/payment_method/add/page.dart';
+import 'package:more_order/ui/page/management/phrase/add/page.dart';
 import 'package:more_order/ui/page/management/reason/add/page.dart';
 import 'package:more_order/ui/page/order/display/page.dart';
 import 'package:more_order/ui/page/order/select/component/no_payment_method.dart';
@@ -40,6 +42,23 @@ class CustomOrderSelectPage extends ConsumerWidget {
                           children: [
                             const SectionTitle(
                               text: "フレーズ",
+                            ),
+//                             const Text('''一時的に注文したいフレーズを入力して下さい。
+// ここに入力したフレーズは保存されないので、繰り返し使いたい場合はフレーズの登録をおすすめします。'''),
+                            RichText(
+                              text: TextSpan(
+                                text:
+                                    "一時的に注文したいフレーズを入力して下さい。\nここに入力したフレーズは保存されないので、繰り返し使いたい場合は",
+                                style: DefaultTextStyle.of(context).style,
+                                children: [
+                                  buildInlineTextLink(
+                                    context: context,
+                                    text: 'フレーズの登録',
+                                    nextPage: const PhraseAddPage(),
+                                  ),
+                                  const TextSpan(text: "をおすすめします。"),
+                                ],
+                              ),
                             ),
                             ...List.generate(
                               orderForm.ordersInput.entries.toList().length,
