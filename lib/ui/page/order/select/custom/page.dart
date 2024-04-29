@@ -16,6 +16,7 @@ import 'package:more_order/ui/page/management/reason/add/page.dart';
 import 'package:more_order/ui/page/order/display/page.dart';
 import 'package:more_order/ui/page/order/select/component/no_payment_method.dart';
 import 'package:more_order/ui/page/order/select/component/no_reason.dart';
+import 'package:more_order/ui/page/order/select/custom/component/add_empty_order.dart';
 import 'package:more_order/ui/page/order/select/custom/component/phrase_list_tile_form.dart';
 import 'package:more_order/ui/page/order/select/custom/form/custom_order_form_controller.dart';
 import 'package:more_order/ui/style/extension/list_space_between.dart';
@@ -43,8 +44,6 @@ class CustomOrderSelectPage extends ConsumerWidget {
                             const SectionTitle(
                               text: "フレーズ",
                             ),
-//                             const Text('''一時的に注文したいフレーズを入力して下さい。
-// ここに入力したフレーズは保存されないので、繰り返し使いたい場合はフレーズの登録をおすすめします。'''),
                             RichText(
                               text: TextSpan(
                                 text:
@@ -89,23 +88,11 @@ class CustomOrderSelectPage extends ConsumerWidget {
                                 );
                               },
                             ),
-                            InkWell(
-                              onTap: () {
-                                ref
-                                    .read(customOrderFormControllerProvider
-                                        .notifier)
-                                    .addEmptyOrder();
-                              },
-                              child: Container(
-                                margin: const EdgeInsets.only(top: 12.0),
-                                child: const Row(
-                                  children: [
-                                    Icon(Icons.add_circle),
-                                    SizedBox(width: 12),
-                                    Text('フレーズの入力を追加'),
-                                  ],
-                                ),
-                              ),
+                            AddEmptyOrder(
+                              onTapAdd: ref
+                                  .read(customOrderFormControllerProvider
+                                      .notifier)
+                                  .addEmptyOrder,
                             )
                           ],
                         ),
