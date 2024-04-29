@@ -38,6 +38,7 @@ class CustomOrderSelectPage extends ConsumerWidget {
                   Expanded(
                     child: ListView(
                       children: [
+                        const Text("この画面では登録していないフレーズを使って注文できます。"),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
