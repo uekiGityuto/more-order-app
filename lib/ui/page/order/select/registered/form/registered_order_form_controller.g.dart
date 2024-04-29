@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'order_form_controller.dart';
+part of 'registered_order_form_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$orderFormControllerHash() =>
-    r'9afd01ddb87737715ff192ee5dc59162471e6b20';
+String _$registeredOrderFormControllerHash() =>
+    r'e8e3835212826ae45ccb61b1bf3b86cb1d8aff2f';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,36 +30,37 @@ class _SystemHash {
   }
 }
 
-abstract class _$OrderFormController
-    extends BuildlessAutoDisposeNotifier<OrderForm> {
+abstract class _$RegisteredOrderFormController
+    extends BuildlessAutoDisposeNotifier<RegisteredOrderForm> {
   late final String sceneName;
 
-  OrderForm build(
+  RegisteredOrderForm build(
     String sceneName,
   );
 }
 
-/// See also [OrderFormController].
-@ProviderFor(OrderFormController)
-const orderFormControllerProvider = OrderFormControllerFamily();
+/// See also [RegisteredOrderFormController].
+@ProviderFor(RegisteredOrderFormController)
+const registeredOrderFormControllerProvider =
+    RegisteredOrderFormControllerFamily();
 
-/// See also [OrderFormController].
-class OrderFormControllerFamily extends Family<OrderForm> {
-  /// See also [OrderFormController].
-  const OrderFormControllerFamily();
+/// See also [RegisteredOrderFormController].
+class RegisteredOrderFormControllerFamily extends Family<RegisteredOrderForm> {
+  /// See also [RegisteredOrderFormController].
+  const RegisteredOrderFormControllerFamily();
 
-  /// See also [OrderFormController].
-  OrderFormControllerProvider call(
+  /// See also [RegisteredOrderFormController].
+  RegisteredOrderFormControllerProvider call(
     String sceneName,
   ) {
-    return OrderFormControllerProvider(
+    return RegisteredOrderFormControllerProvider(
       sceneName,
     );
   }
 
   @override
-  OrderFormControllerProvider getProviderOverride(
-    covariant OrderFormControllerProvider provider,
+  RegisteredOrderFormControllerProvider getProviderOverride(
+    covariant RegisteredOrderFormControllerProvider provider,
   ) {
     return call(
       provider.sceneName,
@@ -78,30 +79,31 @@ class OrderFormControllerFamily extends Family<OrderForm> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'orderFormControllerProvider';
+  String? get name => r'registeredOrderFormControllerProvider';
 }
 
-/// See also [OrderFormController].
-class OrderFormControllerProvider
-    extends AutoDisposeNotifierProviderImpl<OrderFormController, OrderForm> {
-  /// See also [OrderFormController].
-  OrderFormControllerProvider(
+/// See also [RegisteredOrderFormController].
+class RegisteredOrderFormControllerProvider
+    extends AutoDisposeNotifierProviderImpl<RegisteredOrderFormController,
+        RegisteredOrderForm> {
+  /// See also [RegisteredOrderFormController].
+  RegisteredOrderFormControllerProvider(
     String sceneName,
   ) : this._internal(
-          () => OrderFormController()..sceneName = sceneName,
-          from: orderFormControllerProvider,
-          name: r'orderFormControllerProvider',
+          () => RegisteredOrderFormController()..sceneName = sceneName,
+          from: registeredOrderFormControllerProvider,
+          name: r'registeredOrderFormControllerProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$orderFormControllerHash,
-          dependencies: OrderFormControllerFamily._dependencies,
+                  : _$registeredOrderFormControllerHash,
+          dependencies: RegisteredOrderFormControllerFamily._dependencies,
           allTransitiveDependencies:
-              OrderFormControllerFamily._allTransitiveDependencies,
+              RegisteredOrderFormControllerFamily._allTransitiveDependencies,
           sceneName: sceneName,
         );
 
-  OrderFormControllerProvider._internal(
+  RegisteredOrderFormControllerProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -114,8 +116,8 @@ class OrderFormControllerProvider
   final String sceneName;
 
   @override
-  OrderForm runNotifierBuild(
-    covariant OrderFormController notifier,
+  RegisteredOrderForm runNotifierBuild(
+    covariant RegisteredOrderFormController notifier,
   ) {
     return notifier.build(
       sceneName,
@@ -123,10 +125,10 @@ class OrderFormControllerProvider
   }
 
   @override
-  Override overrideWith(OrderFormController Function() create) {
+  Override overrideWith(RegisteredOrderFormController Function() create) {
     return ProviderOverride(
       origin: this,
-      override: OrderFormControllerProvider._internal(
+      override: RegisteredOrderFormControllerProvider._internal(
         () => create()..sceneName = sceneName,
         from: from,
         name: null,
@@ -139,14 +141,15 @@ class OrderFormControllerProvider
   }
 
   @override
-  AutoDisposeNotifierProviderElement<OrderFormController, OrderForm>
-      createElement() {
-    return _OrderFormControllerProviderElement(this);
+  AutoDisposeNotifierProviderElement<RegisteredOrderFormController,
+      RegisteredOrderForm> createElement() {
+    return _RegisteredOrderFormControllerProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is OrderFormControllerProvider && other.sceneName == sceneName;
+    return other is RegisteredOrderFormControllerProvider &&
+        other.sceneName == sceneName;
   }
 
   @override
@@ -158,18 +161,20 @@ class OrderFormControllerProvider
   }
 }
 
-mixin OrderFormControllerRef on AutoDisposeNotifierProviderRef<OrderForm> {
+mixin RegisteredOrderFormControllerRef
+    on AutoDisposeNotifierProviderRef<RegisteredOrderForm> {
   /// The parameter `sceneName` of this provider.
   String get sceneName;
 }
 
-class _OrderFormControllerProviderElement
-    extends AutoDisposeNotifierProviderElement<OrderFormController, OrderForm>
-    with OrderFormControllerRef {
-  _OrderFormControllerProviderElement(super.provider);
+class _RegisteredOrderFormControllerProviderElement
+    extends AutoDisposeNotifierProviderElement<RegisteredOrderFormController,
+        RegisteredOrderForm> with RegisteredOrderFormControllerRef {
+  _RegisteredOrderFormControllerProviderElement(super.provider);
 
   @override
-  String get sceneName => (origin as OrderFormControllerProvider).sceneName;
+  String get sceneName =>
+      (origin as RegisteredOrderFormControllerProvider).sceneName;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

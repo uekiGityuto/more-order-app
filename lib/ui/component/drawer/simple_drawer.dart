@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:more_order/constants.dart';
 import 'package:more_order/ui/component/error_message.dart';
 import 'package:more_order/ui/component/list_tile_navigation.dart';
 import 'package:more_order/ui/component/loader.dart';
@@ -25,15 +26,25 @@ class SimpleDrawer extends ConsumerWidget {
                 loading: () => const Loader(),
                 data: (scenes) {
                   return Column(
-                    children: scenes.map((scene) {
-                      return ListTileNavigation(
+                    children: [
+                      ...scenes.map((scene) {
+                        return ListTileNavigation(
+                          option: ListTileOption(
+                            title: scene.scene,
+                            nextPage: OrderSelectPage(sceneName: scene.scene),
+                            navigationType: NavigationType.pushAndRemoveUntil,
+                          ),
+                        );
+                      }).toList(),
+                      ListTileNavigation(
                         option: ListTileOption(
-                          title: scene.scene,
-                          nextPage: OrderSelectPage(sceneName: scene.scene),
+                          title: customScene,
+                          nextPage:
+                              const OrderSelectPage(sceneName: customScene),
                           navigationType: NavigationType.pushAndRemoveUntil,
                         ),
-                      );
-                    }).toList(),
+                      ),
+                    ],
                   );
                 },
               ),

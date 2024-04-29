@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:more_order/ui/style/custom_color.dart';
 
 class TextLinkButton extends StatelessWidget {
   final Widget nextPage;
@@ -25,7 +26,7 @@ class TextLinkButton extends StatelessWidget {
           Text(
             text,
             style: TextStyle(
-              color: const Color(0xFF1558D6),
+              color: CustomColors.linkBlue,
               fontSize: 14 * MediaQuery.of(context).textScaleFactor,
             ),
           ),
