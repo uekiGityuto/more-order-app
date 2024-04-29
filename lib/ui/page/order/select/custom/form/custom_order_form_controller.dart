@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:collection/collection.dart';
 import 'package:more_order/domain/valueObject/id.dart';
 import 'package:more_order/ui/form/form_creation_status.dart';
@@ -36,8 +38,7 @@ class CustomOrderFormController extends _$CustomOrderFormController {
           reasons: order.reasons,
           reasonInput: order.reasons.firstWhereOrNull((r) => r.isDefault)?.id,
           ordersInput: {
-            for (int i = 0; i <= 10; i++)
-              i: const Order(phrase: "", quantity: 0)
+            for (int i = 0; i <= 4; i++) i: const Order(phrase: "", quantity: 0)
           },
           paymentMethods: order.paymentMethods,
           paymentMethodInput:
@@ -87,6 +88,17 @@ class CustomOrderFormController extends _$CustomOrderFormController {
       ordersInput[key] =
           ordersInput[key]!.copyWith(quantity: ordersInput[key]!.quantity - 1);
     }
+    state = state.copyWith(
+      ordersInput: ordersInput,
+    );
+  }
+
+  void addEmptyOrder() {
+    final ordersInput = Map<int, Order>.from(state.ordersInput);
+    int nextKey = ordersInput.keys
+            .fold(0, (previousValue, element) => max(previousValue, element)) +
+        1;
+    ordersInput[nextKey] = const Order(phrase: "", quantity: 0);
     state = state.copyWith(
       ordersInput: ordersInput,
     );
