@@ -14,4 +14,8 @@ abstract class Order implements _$Order {
   bool isEmpty() {
     return phrase.isEmpty || quantity == 0;
   }
+
+  bool isQuantityZero() {
+    return phrase.isNotEmpty && quantity == 0;
+  }
 }

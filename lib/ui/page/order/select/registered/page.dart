@@ -52,7 +52,13 @@ class RegisteredOrderSelectPage extends ConsumerWidget {
                                 text: reasons.isEmpty ? 'フレーズの登録' : 'フレーズの追加',
                               ),
                             ),
-                            if (scene.phrases.isEmpty) const NoPhrase(),
+                            scene.phrases.isEmpty
+                                ? const NoPhrase()
+                                : Container(
+                                    margin: const EdgeInsets.only(bottom: 12.0),
+                                    child: const Text(
+                                        "各フレーズの右側にある「+」ボタンをタップして注文したい個数を指定してください。"),
+                                  ),
                             ...scene.phrases.map(
                               (phrase) {
                                 return PhraseListTileForm(
@@ -157,7 +163,7 @@ class RegisteredOrderSelectPage extends ConsumerWidget {
                                 ?.firstWhereOrNull((p) =>
                                     p.id == orderForm.paymentMethodInput),
                           ),
-                          text: '表示する',
+                          text: '注文内容を表示する',
                           disabled: scene.phrases.isEmpty &&
                               reasons.isEmpty &&
                               paymentMethods.isEmpty,
