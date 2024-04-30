@@ -45,24 +45,26 @@ class CustomOrderSelectPage extends ConsumerWidget {
                             const SectionTitle(
                               text: "フレーズ",
                             ),
-                            RichText(
-                              text: TextSpan(
-                                text:
-                                    "注文したいフレーズを入力して下さい。\nここに入力したフレーズは保存されないため、繰り返し使いたい場合は",
-                                style: DefaultTextStyle.of(context).style,
-                                children: [
-                                  buildInlineTextLink(
-                                    context: context,
-                                    text: 'フレーズの登録',
-                                    nextPage: const PhraseAddPage(),
-                                  ),
-                                  const TextSpan(text: "をおすすめします。"),
-                                ],
+                            Container(
+                              margin: const EdgeInsets.only(bottom: 12.0),
+                              child: RichText(
+                                text: TextSpan(
+                                  text:
+                                      "注文したいフレーズとその個数を入力して下さい。\nここに入力したフレーズは保存されないため、繰り返し使いたい場合は",
+                                  style: DefaultTextStyle.of(context).style,
+                                  children: [
+                                    buildInlineTextLink(
+                                      context: context,
+                                      text: 'フレーズの登録',
+                                      nextPage: const PhraseAddPage(),
+                                    ),
+                                    const TextSpan(text: "をおすすめします。"),
+                                  ],
+                                ),
                               ),
                             ),
                             Container(
                               color: Theme.of(context).colorScheme.surface,
-                              margin: const EdgeInsets.only(top: 12.0),
                               padding: const EdgeInsets.only(bottom: 12.0),
                               child: Column(
                                 children: [
