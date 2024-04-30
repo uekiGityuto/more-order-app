@@ -5,6 +5,7 @@ import 'package:more_order/domain/valueObject/id.dart';
 import 'package:more_order/ui/component/button/navigation_button.dart';
 import 'package:more_order/ui/component/button/text_link_button.dart';
 import 'package:more_order/ui/component/error_message.dart';
+import 'package:more_order/ui/component/form/form_error_message.dart';
 import 'package:more_order/ui/component/form/simple_select_form.dart';
 import 'package:more_order/ui/component/inline_text_link.dart';
 import 'package:more_order/ui/component/loader.dart';
@@ -115,7 +116,14 @@ class CustomOrderSelectPage extends ConsumerWidget {
                                   )
                                 ],
                               ),
-                            )
+                            ),
+                            if (ref
+                                .read(
+                                    customOrderFormControllerProvider.notifier)
+                                .isQuantityZero())
+                              const FormErrorMessage(
+                                errorMessage: "個数が0のフレーズは注文内容に含まれません。",
+                              ),
                           ],
                         ),
                         Column(
@@ -192,7 +200,7 @@ class CustomOrderSelectPage extends ConsumerWidget {
                                 ?.firstWhereOrNull((p) =>
                                     p.id == orderForm.paymentMethodInput),
                           ),
-                          text: '表示する',
+                          text: '注文内容を表示する',
                           disabled: reasons.isEmpty && paymentMethods.isEmpty,
                         ),
                       ].withSpaceBetween(height: 24.0),

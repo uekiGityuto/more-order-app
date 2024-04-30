@@ -163,7 +163,7 @@ class RegisteredOrderSelectPage extends ConsumerWidget {
                                 ?.firstWhereOrNull((p) =>
                                     p.id == orderForm.paymentMethodInput),
                           ),
-                          text: '表示する',
+                          text: '注文内容を表示する',
                           disabled: scene.phrases.isEmpty &&
                               reasons.isEmpty &&
                               paymentMethods.isEmpty,

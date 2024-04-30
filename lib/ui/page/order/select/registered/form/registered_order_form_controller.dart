@@ -61,12 +61,6 @@ class RegisteredOrderFormController extends _$RegisteredOrderFormController {
     );
   }
 
-  void onChangeReason(Id? id) {
-    state = state.copyWith(
-      reasonInput: id,
-    );
-  }
-
   void onChangePhrases(Id id, int count) {
     final phrasesInput = Map<Id, int>.from(state.phrasesInput)..[id] = count;
     state = state.copyWith(
@@ -101,6 +95,12 @@ class RegisteredOrderFormController extends _$RegisteredOrderFormController {
                 Order(phrase: p.phrase, quantity: state.phrasesInput[p.id]!))
             .toList() ??
         [];
+  }
+
+  void onChangeReason(Id? id) {
+    state = state.copyWith(
+      reasonInput: id,
+    );
   }
 
   void onChangePaymentMethod(Id? id) {

@@ -48,12 +48,6 @@ class CustomOrderFormController extends _$CustomOrderFormController {
     );
   }
 
-  void onChangeReason(Id? id) {
-    state = state.copyWith(
-      reasonInput: id,
-    );
-  }
-
   void onChangePhrase(int key, String phrase) {
     final ordersInput = Map<int, Order>.from(state.ordersInput);
     if (ordersInput[key] == null) {
@@ -104,11 +98,22 @@ class CustomOrderFormController extends _$CustomOrderFormController {
     );
   }
 
+  bool isQuantityZero() {
+    return state.ordersInput.entries
+        .any((entry) => entry.value.isQuantityZero());
+  }
+
   List<Order> toOrders() {
     return state.ordersInput.entries
         .map((entry) => entry.value)
         .where((order) => !order.isEmpty())
         .toList();
+  }
+
+  void onChangeReason(Id? id) {
+    state = state.copyWith(
+      reasonInput: id,
+    );
   }
 
   void onChangePaymentMethod(Id? id) {
