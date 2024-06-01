@@ -19,7 +19,7 @@ class QuantitySelector extends StatelessWidget {
       children: [
         IconButton(
           padding: EdgeInsets.zero,
-          iconSize: 20,
+          iconSize: 28,
           icon: const Icon(Icons.remove_circle),
           onPressed: countDown,
         ),
@@ -35,7 +35,7 @@ class QuantitySelector extends StatelessWidget {
         ),
         IconButton(
           padding: EdgeInsets.zero,
-          iconSize: 20,
+          iconSize: 28,
           icon: const Icon(Icons.add_circle),
           onPressed: countUp,
         ),

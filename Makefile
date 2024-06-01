@@ -23,7 +23,7 @@ run:
 	flutter run
 build_ios:
 	make setup_all
-	flutter build ios
+	flutter build ios --build-name=$(BUILD_NAME) --build-number=$(BUILD_NUMBER)
 build_android:
 	make setup
-	flutter build appbundle
+	flutter build appbundle --build-name=$(BUILD_NAME) --build-number=$(BUILD_NUMBER)
